@@ -1,7 +1,7 @@
 bs-hl-color=cba6f7
 color=181825
 daemonize
-image=/nix/store/3v1cjbfilz52sjafvl9pbj23nl7s6w7b-nix-wallpaper-nineish-dark-gray.png
+image=~/.config/sway/lockscreen.png
 inside-clear-color=00000000
 inside-color=00000000
 inside-ver-color=00000000

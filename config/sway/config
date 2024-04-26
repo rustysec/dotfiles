@@ -9,6 +9,8 @@ focus_on_window_activation smart
 mouse_warping output
 workspace_layout default
 workspace_auto_back_and_forth no
+seat seat0 xcursor_theme Catppuccin-Mocha-Dark-Cursors 24
+
 client.focused #4c7899 #285577 #ffffff #2e9ef4 #285577
 client.focused_inactive #333333 #5f676a #ffffff #484e50 #5f676a
 client.unfocused #333333 #222222 #888888 #292d2e #222222
@@ -110,7 +112,7 @@ exec_always kanshi
 
 exec waybar
 
-exec swaybg -m fill --image /nix/store/m65zjxg6nfan5gjrz6dijnn432xvf0aq-wallhaven-m9lxe9.jpg
+exec swaybg -m fill --image ~/.config/sway/background.jpg
 
 exec swayidle -w timeout 300 'swaylock' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock' 
 
