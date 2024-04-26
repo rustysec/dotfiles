@@ -18,7 +18,7 @@ for dir in config/*;
 do
     echo "-- Setting up $dir"
     rm -f ~/.$dir
-    ln -s `pwd`/config/$dir ~/.$dir
+    ln -s `pwd`/$dir ~/.$dir
 done
 
 mkdir ~/.zsh 2>/dev/null || true
