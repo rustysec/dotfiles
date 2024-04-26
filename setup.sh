@@ -38,9 +38,18 @@ git clone https://github.com/catppuccin/zsh-syntax-highlighting.git \
     ~/.zsh/catppuccin
 
 CTP_VERSION="v0.7.3"
-if [ ! -e ~/.themes/Catppuccin-Frappe-Standard-Lavender-Dark ]; then \
+if [ ! -e ~/.themes/Catppuccin-Mocha-Standard-Blue-Dark ]; then \
   mkdir -p ~/.themes \
   && curl -L https://github.com/catppuccin/gtk/releases/download/$CTP_VERSION/Catppuccin-Mocha-Standard-Blue-Dark.zip -o ~/.themes/catppuccin.zip \
   && unzip ~/.themes/catppuccin.zip -d ~/.themes/ \
   && rm -rf ~/.themes/catppuccin.zip;
 fi
+
+CTP_CURSOR_VERSION="v0.2.0"
+if [ ! -e ~/.themes/Catppuccin-Mocha-Dark-Cursors ]; then \
+  mkdir -p ~/.themes \
+  && curl -L https://github.com/catppuccin/cursors/releases/download/$CTP_CURSOR_VERSION/Catppuccin-Mocha-Dark-Cursors.zip -o ~/.themes/catppuccin.zip \
+  && unzip ~/.themes/catppuccin.zip -d ~/.themes/ \
+  && rm -rf ~/.themes/catppuccin.zip;
+fi
+
