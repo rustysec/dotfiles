@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DISTRO=`lsb_release -a | grep Description | awk '{print $2} | tr A-Z a-z'
+DISTRO=`lsb_release -a | grep Description | awk '{print $2}' | tr A-Z a-z`
 
 if [ -e ./distro/$DISTRO.sh ];
 then
@@ -17,7 +17,8 @@ echo "- Linking all config folders"
 for dir in config/*;
 do
     echo "-- Setting up $dir"
-    ln -s `pwd`/config/$dir ~/.config/$dir
+    rm -f ~/.$dir
+    ln -s `pwd`/config/$dir ~/.$dir
 done
 
 mkdir ~/.zsh 2>/dev/null || true
