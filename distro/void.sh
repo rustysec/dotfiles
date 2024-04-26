@@ -24,6 +24,12 @@ sudo xbps-install -Sy \
     xdg-desktop-portal-gtk \
     mate-polkit \
     font-hack-ttf \
-    nerd-fonts
+    nerd-fonts \
+    font-awesome6 \
+    papirus-icon-theme
 
 sudo usermod -a -G _seatd $(whoami)
+sudo ln -s /etc/sv/dhcpd /var/service
+sudo ln -s /etc/sv/dbus /var/service
+sudo ln -s /etc/sv/elogind /var/service
+sudo ln -s /etc/sv/polkitd /var/service
