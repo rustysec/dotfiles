@@ -97,6 +97,11 @@ mode "resize" {
 
 gaps inner 5
 gaps outer 5
+
+exec pipewire
+exec pipewire-pulse
+exec wireplumber
+
 exec dbus-sway-environment
 
 exec configure-gtk

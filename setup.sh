@@ -23,6 +23,9 @@ done
 
 mkdir ~/.zsh 2>/dev/null || true
 
+git clone https://github.com/tmux-plugins/tmux-sensible ~/.config/tmux/plugins/sensible
+git clone https://github.com/catppuccin/tmux ~/.config/tmux/plugins/catppuccin
+
 # Oh-My-Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 

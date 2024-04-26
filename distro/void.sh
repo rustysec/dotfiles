@@ -19,6 +19,7 @@ sudo xbps-install -Sy \
     kanshi \
     foot \
     psutils \
+    psmisc \
     xdg-desktop-portal-wlr \
     xdg-desktop-portal-gtk \
     mate-polkit \
