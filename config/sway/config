@@ -1,0 +1,211 @@
+font pango:Hack, Font Awesome 6 Free 13.000000
+floating_modifier Mod4
+default_border pixel 2
+default_floating_border normal 2
+hide_edge_borders none
+focus_wrapping no
+focus_follows_mouse yes
+focus_on_window_activation smart
+mouse_warping output
+workspace_layout default
+workspace_auto_back_and_forth no
+client.focused #4c7899 #285577 #ffffff #2e9ef4 #285577
+client.focused_inactive #333333 #5f676a #ffffff #484e50 #5f676a
+client.unfocused #333333 #222222 #888888 #292d2e #222222
+client.urgent #2f343a #900000 #ffffff #900000 #900000
+client.placeholder #000000 #0c0c0c #ffffff #000000 #0c0c0c
+client.background #ffffff
+
+bindsym Mod4+0 workspace number 10
+bindsym Mod4+1 workspace number 1
+bindsym Mod4+2 workspace number 2
+bindsym Mod4+3 workspace number 3
+bindsym Mod4+4 workspace number 4
+bindsym Mod4+5 workspace number 5
+bindsym Mod4+6 workspace number 6
+bindsym Mod4+7 workspace number 7
+bindsym Mod4+8 workspace number 8
+bindsym Mod4+9 workspace number 9
+bindsym Mod4+Down focus down
+bindsym Mod4+Left focus left
+bindsym Mod4+Return exec foot -e tmux new
+bindsym Mod4+Right focus right
+bindsym Mod4+Shift+0 move container to workspace number 10
+bindsym Mod4+Shift+1 move container to workspace number 1
+bindsym Mod4+Shift+2 move container to workspace number 2
+bindsym Mod4+Shift+3 move container to workspace number 3
+bindsym Mod4+Shift+4 move container to workspace number 4
+bindsym Mod4+Shift+5 move container to workspace number 5
+bindsym Mod4+Shift+6 move container to workspace number 6
+bindsym Mod4+Shift+7 move container to workspace number 7
+bindsym Mod4+Shift+8 move container to workspace number 8
+bindsym Mod4+Shift+9 move container to workspace number 9
+bindsym Mod4+Shift+Down move down
+bindsym Mod4+Shift+Left move left
+bindsym Mod4+Shift+Return exec foot
+bindsym Mod4+Shift+Right move right
+bindsym Mod4+Shift+Up move up
+bindsym Mod4+Shift+e exec bash ~/.config/locker/menu.sh
+bindsym Mod4+Shift+f fullscreen
+bindsym Mod4+Shift+h move left
+bindsym Mod4+Shift+j move down
+bindsym Mod4+Shift+k move up
+bindsym Mod4+Shift+l move right
+bindsym Mod4+Shift+p exec foot -T python -e nix-shell -p python3 --command python
+bindsym Mod4+Shift+q kill
+bindsym Mod4+Shift+t floating toggle
+bindsym Mod4+Shift+x move scratchpad
+bindsym Mod4+Space exec fuzzel
+bindsym Mod4+Up focus up
+bindsym Mod4+a focus parent
+bindsym Mod4+bar splith
+bindsym Mod4+c focus child
+bindsym Mod4+e layout toggle split
+bindsym Mod4+h focus left
+bindsym Mod4+j focus down
+bindsym Mod4+k focus up
+bindsym Mod4+l focus right
+bindsym Mod4+minus splitv
+bindsym Mod4+p exec grim -g "$(slurp -d)" - | wl-copy -t image/png
+bindsym Mod4+s layout stacking
+bindsym Mod4+t focus mode_toggle
+bindsym Mod4+w layout tabbed
+bindsym Mod4+x scratchpad show
+bindsym Print exec grim -g "$(slurp -d)" - | wl-copy -t image/png
+bindsym XF86AudioLowerVolume exec pamixer -ud 2 && dc -e "[`pamixer --get-volume`]sM 100d `pamixer --get-volume`<Mp"
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioMute exec pamixer --toggle-mute && ( pamixer --get-mute && echo 0 )
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioRaiseVolume exec pamixer -ui 2 && dc -e "[`pamixer --get-volume`]sM 100d `pamixer --get-volume`<Mp"
+bindsym XF86MonBrightnessDown exec light -U 5%
+bindsym XF86MonBrightnessUp exec light -A 5%
+
+mode "resize" {
+  bindsym Down resize grow height 10 px
+  bindsym Escape mode default
+  bindsym Left resize shrink width 10 px
+  bindsym Return mode default
+  bindsym Right resize grow width 10 px
+  bindsym Up resize shrink height 10 px
+  bindsym h resize shrink width 10 px
+  bindsym j resize grow height 10 px
+  bindsym k resize shrink height 10 px
+  bindsym l resize grow width 10 px
+}
+
+gaps inner 5
+gaps outer 5
+exec dbus-sway-environment
+
+exec configure-gtk
+
+exec_always kanshi
+
+exec waybar
+
+exec swaybg -m fill --image /nix/store/m65zjxg6nfan5gjrz6dijnn432xvf0aq-wallhaven-m9lxe9.jpg
+
+exec swayidle -w timeout 300 'swaylock' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock' 
+
+exec blueman-applet
+
+exec mako
+
+exec nm-applet --indicator
+
+exec gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+
+exec gsettings set org.gnome.desktop.interface gtk-theme 'Catppuccin-Mocha-Standard-Blue-Dark'
+
+exec gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
+
+exec gsettings set org.gnome.desktop.interface cursor-theme 'Catppuccin-Frappe-Dark-Cursors'
+
+exec "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_TYPE NIXOS_OZONE_WL XCURSOR_THEME XCURSOR_SIZE; systemctl --user start sway-session.target"
+set $rosewater #f5e0dc
+set $flamingo  #f2cdcd
+set $pink      #f5c2e7
+set $mauve     #cba6f7
+set $red       #f38ba8
+set $maroon    #eba0ac
+set $peach     #fab387
+set $yellow    #f9e2af
+set $green     #a6e3a1
+set $teal      #94e2d5
+set $sky       #89dceb
+set $sapphire  #74c7ec
+set $blue      #89b4fa
+set $lavender  #b4befe
+set $text      #cdd6f4
+set $subtext1  #bac2de
+set $subtext0  #a6adc8
+set $overlay2  #9399b2
+set $overlay1  #7f849c
+set $overlay0  #6c7086
+set $surface2  #585b70
+set $surface1  #45475a
+set $surface0  #313244
+set $base      #1e1e2e
+set $mantle    #181825
+set $crust     #11111b
+
+client.focused           $teal     $base $text  $mauve $teal
+client.focused_inactive  $overlay0 $base $text  $overlay0 $overlay0
+client.unfocused         $overlay0 $base $text  $overlay0 $overlay0
+client.urgent            $peach    $base $peach $peach    $peach
+client.placeholder       $overlay0 $base $text  $overlay0 $overlay0
+client.background        $base
+
+input "1267:12624:ELAN0670:00_04F3:3150_Touchpad" {
+  dwt enabled
+  natural_scroll enabled
+  click_method clickfinger
+}
+
+input "1739:52710:DLL0945:00_06CB:CDE6_Touchpad" {
+  dwt enabled
+  natural_scroll enabled
+  click_method clickfinger
+}
+
+input "76:613:Apple_Inc._Magic_Trackpad_2" {
+  dwt enabled
+  natural_scroll enabled
+  click_method clickfinger
+}
+
+input "1452:613:Apple_Inc._Magic_Trackpad" {
+  dwt enabled
+  natural_scroll enabled
+  click_method clickfinger
+}
+
+exec_always swaymsg input "1:1:AT_Translated_Set_2_keyboard" {
+  xkb_layout "us"
+  xkb_variant "colemak"
+  xkb_options caps:swapescape
+}
+
+input "1452:834:Apple_Internal_Keyboard_/_Trackpad" {
+  dwt enabled
+  natural_scroll enabled
+  click_method clickfinger
+  xkb_layout "us"
+  xkb_variant "colemak"
+  xkb_options caps:swapescape
+}
+
+bindgesture swipe:3:right workspace prev
+bindgesture swipe:3:left workspace next
+
+for_window [app_id="^blueman-manager$"] floating enable, resize set 500 500
+for_window [app_id="^.blueman-manager-wrapped$"] floating enable, resize set 500 500
+for_window [app_id="^pavucontrol$"] floating enable, resize set 1000 1000
+for_window [app_id="^nm-connection-editor$"] floating enable, resize set 1000 1000
+for_window [app_id="^nm-openconnect-auth-dialog$"] floating enable, resize set 1000 1000
+for_window [window_role="dialog"] floating enable
+for_window [app_id="thunar" title="^Confirm to replace files"] floating enable
+for_window [app_id="thunar" title="File Operation Progress"] floating enable
+for_window [app_id="foot" title="python"] floating enable

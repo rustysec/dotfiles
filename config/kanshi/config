@@ -1,0 +1,14 @@
+profile helvetios {
+  output "Sharp Corporation 0x14FA Unknown" scale 2.000000
+}
+
+profile quoth {
+  output "LG Electronics LG Ultra HD 0x00072EE9" position 0,0 scale 1.500000
+  output "HP Inc. HP Z27q G3 CN4112035R" position 0,1440 scale 1.000000
+}
+
+profile sucellus {
+  output "Chimei Innolux Corporation 0x1301 Unknown" scale 1.250000
+}
+
+
