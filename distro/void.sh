@@ -20,6 +20,8 @@ sudo xbps-install -Sy \
     foot \
     psutils \
     psmisc \
+    zip \
+    unzip \
     xdg-desktop-portal-wlr \
     xdg-desktop-portal-gtk \
     mate-polkit \
