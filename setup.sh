@@ -40,7 +40,10 @@ git clone https://github.com/catppuccin/tmux ~/.config/tmux/plugins/catppuccin
 
 ##############
 # Oh-My-Zsh
+rm -rf ~/.oh-my-zsh || true
+rm -f ~/.zshrc|| true
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sed -i 's/robbyrussell/flazz/' ~/.zshrc
 
 # zsh syntax
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
