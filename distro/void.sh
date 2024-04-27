@@ -4,10 +4,10 @@ sudo xbps-install -Sy \
     zsh \
     tmux \
     wget curl \
-    dbus \
+    dbus tlp \
     polkit \
     pipewire wireplumber \
-    elogind seatd \
+    elogind seatd greetd \
     sway swaylock Waybar mako fuzzel kanshi foot \
     psutils psmisc \
     zip unzip \
@@ -20,7 +20,11 @@ sudo xbps-install -Sy \
     libvirt virt-manager podman \
     gcc cross-x86_64-w64-mingw32 cross-i686-w64-mingw32 \
     xwininfo \
-    firefox
+    flatpak firefox
+
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+flatpak install flathub com.google.Chrome
 
 sudo usermod -a -G wheel video input bluetooth libvirt $(whoami)
 
@@ -31,6 +35,7 @@ SERVICES=(
     "NetworkManager"
     "libvirtd"
     "bluetoothd"
+    "tlp"
 )
 
 for service in ${SERVICES[@]};
