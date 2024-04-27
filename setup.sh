@@ -17,14 +17,14 @@ echo "- Linking all config folders"
 for dir in config/*;
 do
     echo "-- Setting up $dir"
-    if test -s ~/.$dir;
+    if test -h ~/.$dir;
     then
         rm -f ~/.$dir
     fi
 
     mkdir ~/.$dir 2>/dev/null
 
-    for file in `pwd`/$dir;
+    for file in $dir/*;
     do
         rm -f ~/.$file 2>/dev/null || true
         ln -s `pwd`/$file ~/.$file
@@ -78,7 +78,8 @@ curl \
 
 ##############
 # rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -- -y
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+. "$HOME/.cargo/env"
 rustup target add x86_64-pc-windows-gnu
 rustup component add clippy
 rustup component add llvm-tools

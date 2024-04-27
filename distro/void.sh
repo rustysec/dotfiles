@@ -15,13 +15,14 @@ sudo xbps-install -Sy \
     mate-polkit \
     font-hack-ttf nerd-fonts font-awesome6 \
     papirus-icon-theme \
-    blueman \
+    blueman libspa-bluetooth bluez \
     NetworkManager NetworkManager-openconnect nework-manager-applet \
-    libvirt virt-manager \
-    podman \
-    gcc cross-x86_64-w64-mingw32 cross-i686-w64-mingw32
+    libvirt virt-manager podman \
+    gcc cross-x86_64-w64-mingw32 cross-i686-w64-mingw32 \
+    xwininfo \
+    firefox
 
-sudo usermod -a -G _seatd $(whoami)
+sudo usermod -a -G wheel video input bluetooth libvirt $(whoami)
 
 SERVICES=(
     "dbus"
@@ -29,6 +30,7 @@ SERVICES=(
     "polkitd"
     "NetworkManager"
     "libvirtd"
+    "bluetoothd"
 )
 
 for service in ${SERVICES[@]};
