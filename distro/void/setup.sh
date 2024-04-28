@@ -22,8 +22,20 @@ sudo xbps-install -Sy \
     gcc cross-x86_64-w64-mingw32 cross-i686-w64-mingw32 \
     nodejs \
     xwininfo openssl-devel \
-    void-repo-nonfree intel-ucode \
     flatpak firefox
+
+if [[ $(grep Intel /proc/cpuinfo) == "" ]];
+then
+    sudo xbps-install -Sy \
+        linux-firmware-amd \
+        mesa-vdpau mesa-vaapi
+else
+    sudo xbps-install -Sy \
+        void-repo-nonfree \
+        intel-ucode \
+        linux-firmware-intel \
+        intel-video-accel
+fi
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
