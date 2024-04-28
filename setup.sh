@@ -2,10 +2,10 @@
 
 DISTRO=`lsb_release -a | grep Description | awk '{print $2}' | tr A-Z a-z`
 
-if [ -e ./distro/$DISTRO.sh ];
+if [ -e ./distro/$DISTRO/setup.sh ];
 then
     echo "- Running $DISTRO setup"
-    ./distro/$DISTRO.sh
+    ./distro/$DISTRO/setup.sh
 else
     echo "! Unknown setup distro $DISTRO"
 fi
@@ -52,6 +52,14 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
 # syntax theme
 git clone https://github.com/catppuccin/zsh-syntax-highlighting.git \
     ~/.zsh/catppuccin
+
+# auto suggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions \
+    ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+echo "source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
+echo "source ~/.zsh/catppuccin/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh" >> ~/.zshrc
+echo "source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
 
 ##############
 # UI Themes

@@ -5,7 +5,7 @@ sudo xbps-install -Sy \
     tmux \
     wget curl \
     dbus tlp \
-    polkit \
+    polkit ntpd-rs \
     pipewire wireplumber \
     elogind seatd greetd \
     sway swaylock swayidle Waybar mako fuzzel kanshi foot light mesa-dri wl-clipboard \
@@ -18,10 +18,10 @@ sudo xbps-install -Sy \
     papirus-icon-theme \
     blueman libspa-bluetooth bluez \
     NetworkManager NetworkManager-openconnect network-manager-applet \
-    libvirt virt-manager podman \
+    libvirt virt-manager podman qemu \
     gcc cross-x86_64-w64-mingw32 cross-i686-w64-mingw32 \
     nodejs \
-    xwininfo \
+    xwininfo openssl-devel \
     void-repo-nonfree intel-ucode \
     flatpak firefox
 
@@ -32,13 +32,16 @@ flatpak install flathub com.google.Chrome
 sudo usermod -a -G wheel,video,input,bluetooth,libvirt $(whoami)
 
 SERVICES=(
+    "acpid"
     "dbus"
     "elogind"
     "polkitd"
     "NetworkManager"
     "libvirtd"
+    "virtlogd"
     "bluetoothd"
     "tlp"
+    "ntpd"
 )
 
 for service in ${SERVICES[@]};
