@@ -35,6 +35,7 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 require('focus').setup({})
+require("ibl").setup()
 
 local cmp = require('cmp')
 
