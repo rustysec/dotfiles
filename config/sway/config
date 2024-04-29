@@ -53,7 +53,7 @@ bindsym Mod4+Shift+h move left
 bindsym Mod4+Shift+j move down
 bindsym Mod4+Shift+k move up
 bindsym Mod4+Shift+l move right
-bindsym Mod4+Shift+p exec foot -T python -e nix-shell -p python3 --command python
+bindsym Mod4+Shift+p exec foot -T python -e python3 --command python
 bindsym Mod4+Shift+q kill
 bindsym Mod4+Shift+t floating toggle
 bindsym Mod4+Shift+x move scratchpad
@@ -103,10 +103,7 @@ gaps outer 5
 exec pipewire
 exec pipewire-pulse
 exec wireplumber
-
-exec dbus-sway-environment
-
-exec configure-gtk
+exec /usr/libexec/polkit-mate-authentication-agent-1
 
 exec_always kanshi
 

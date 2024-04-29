@@ -44,35 +44,43 @@ sudo usermod -a -G wheel,video,input,bluetooth,libvirt $(whoami)
 sudo mkdir /etc/containers/registries.conf.d
 echo 'unqualified-search-registries=["docker.io"]' | sudo tee /etc/containers/registries.conf.d/10-unqualified-search-registries.conf
 
+##############
+# plymouth setup
 sudo plymouth-set-default-theme -R bgrt
 
 sudo mkdir -p /etc/sv/stop-plymouth/log
 sudo ln -s /run/runit/supervise.stop-plymouth /etc/sv/stop-plymouth/supervise
-echo '#!/bin/sh' | sudo tee -a /etc/sv/stop-plymouth/run
-echo 'plymouth quit || exit 1' | sudo tee -a /etc/sv/stop-plymouth/run
+echo '#!/bin/sh
+plymouth quit || exit 1' | sudo tee /etc/sv/stop-plymouth/run
 sudo chmod +x /etc/sv/stop-plymouth/run
 
-echo "#!/bin/sh
-dbus-run-session sway" | tee /etc/greetd/sway.sh
+##############
+# greetd/wlgreet
+echo '#!/bin/sh
+eval $(ssh-agent -s)
+dbus-run-session sway' | sudo tee /etc/greetd/sway.sh
+sudo chmod +x /etc/greetd/sway.sh
 
-sudo echo "exec "wlgreet --command sway; swaymsg exit"
+echo "exec \"wlgreet --command /etc/greetd/sway.sh; swaymsg exit\"
 bindsym Mod4+shift+e exec swaynag \
 	-t warning \
 	-m 'What do you want to do?' \
 	-b 'Poweroff' 'systemctl poweroff' \
 	-b 'Reboot' 'systemctl reboot'
-include /etc/sway/config.d/*" | tee /etc/greetd/sway-config
+include /etc/sway/config.d/*" | sudo tee /etc/greetd/sway-config
 
-sudo echo "[terminal]
+echo '[terminal]
 vt = 7
 [default_session]
-command = "agreety --cmd /bin/sh"
-user = "_greeter"" | tee /etc/greetd/config.toml
+command = "sway --config /etc/greetd/sway-config"
+user = "_greeter"' | sudo tee /etc/greetd/config.toml
+
+##############
+# finish up!
 
 SERVICES=(
     "acpid"
     "dbus"
-    "elogind"
     "polkitd"
     "NetworkManager"
     "libvirtd"
