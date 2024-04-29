@@ -29,5 +29,7 @@ sed -i "s/GRUB_CMDLINE_LINUX_DEFAULT.*/$cmdline/" /etc/default/grub
 sed -i "s/#GRUB_GFXMODE/GRUB_GFXMODE/" /etc/default/grub
 echo "GRUB_ENABLE_CRYPTODISK=y" >> /etc/default/grub
 
+ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+
 grub-install /dev/nvme0n1
 xbps-reconfigure -fa
