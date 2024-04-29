@@ -78,6 +78,14 @@ cargo install -f cargo-tree
 cargo install cross --git https://github.com/cross-rs/cross
 
 ##############
+# npm stuff
+mkdir ~/.npm-global
+npm config set prefix '~/.npm-global'
+echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.zshrc
+PATH=~/.npm-global/bin:$PATH
+npm install -g typescript typescript-language-server
+
+##############
 # Oh-My-Zsh
 rm -rf ~/.oh-my-zsh || true
 rm -f ~/.zshrc|| true
