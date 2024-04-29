@@ -52,6 +52,23 @@ echo '#!/bin/sh' | sudo tee -a /etc/sv/stop-plymouth/run
 echo 'plymouth quit || exit 1' | sudo tee -a /etc/sv/stop-plymouth/run
 sudo chmod +x /etc/sv/stop-plymouth/run
 
+echo "#!/bin/sh
+dbus-run-session sway" | tee /etc/greetd/sway.sh
+
+sudo echo "exec "wlgreet --command sway; swaymsg exit"
+bindsym Mod4+shift+e exec swaynag \
+	-t warning \
+	-m 'What do you want to do?' \
+	-b 'Poweroff' 'systemctl poweroff' \
+	-b 'Reboot' 'systemctl reboot'
+include /etc/sway/config.d/*" | tee /etc/greetd/sway-config
+
+sudo echo "[terminal]
+vt = 7
+[default_session]
+command = "agreety --cmd /bin/sh"
+user = "_greeter"" | tee /etc/greetd/config.toml
+
 SERVICES=(
     "acpid"
     "dbus"
