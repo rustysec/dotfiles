@@ -22,9 +22,9 @@ then
     sudo lvcreate --name swap -L $swap void
     sudo lvcreate --name root -l 100%FREE void
 
-    mkfs.ext4 -L root /dev/void/root
-    mkfs.ext4 -L boot /dev/nvme0n1p2
-    mkfs.vfat /dev/nvme0n1p1
+    sudo mkfs.ext4 -L root /dev/void/root
+    sudo mkfs.ext4 -L boot /dev/nvme0n1p2
+    sudo mkfs.vfat /dev/nvme0n1p1
 
     sudo mount /dev/void/root /mnt
     sudo mkdir -p /mnt/boot
@@ -35,7 +35,7 @@ then
     sudo mkdir -p /mnt/var/db/xbps/keys
     sudo cp /var/db/xbps/keys/* /mnt/var/db/xbps/keys/
 
-    xbps-install -Sy -R https://repo-default.voidlinux.org/current -r /mnt \
+    sudo xbps-install -Sy -R https://repo-default.voidlinux.org/current -r /mnt \
         base-system cryptsetup grub-x86_64-efi lvm2 \
         neovim NetworkManager
 else
