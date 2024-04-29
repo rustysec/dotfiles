@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
 
-hostname="void"
 swap="8G"
 
 while getopts u:a:f: flag
 do
     case "${flag}" in
-        h) hostname=${OPTARG};;
-        w) swap=${OPTARG};;
+        s) swap=${OPTARG};;
     esac
 done
 
@@ -21,6 +19,7 @@ sudo lvcreate --name root -l 100%FREE void
 sudo mkfs.ext4 -L root /dev/void/root
 sudo mkfs.ext4 -L boot /dev/nvme0n1p2
 sudo mkfs.vfat /dev/nvme0n1p1
+sudo mkswap /dev/void/swap
 
 sudo mount /dev/void/root /mnt
 sudo mkdir -p /mnt/boot
@@ -33,4 +32,4 @@ sudo cp /var/db/xbps/keys/* /mnt/var/db/xbps/keys/
 
 sudo xbps-install -Sy -R https://repo-default.voidlinux.org/current -r /mnt \
     base-system cryptsetup grub-x86_64-efi lvm2 \
-    neovim NetworkManager
+    neovim NetworkManager git

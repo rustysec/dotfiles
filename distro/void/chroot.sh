@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+hostname=void
+
+while getopts u:a:f: flag
+do
+    case "${flag}" in
+        h) hostname=${OPTARG};;
+    esac
+done
+
 chown root:root /
 chmod 755 /
 passwd root

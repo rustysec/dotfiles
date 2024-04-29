@@ -7,7 +7,7 @@ sudo xbps-install -Sy \
     dbus tlp \
     polkit ntpd-rs \
     pipewire wireplumber \
-    elogind seatd greetd \
+    elogind seatd greetd ripgrep grim slurp \
     sway swaylock swayidle Waybar mako fuzzel kanshi foot light mesa-dri wl-clipboard \
     pavucontrol pamixer \
     psutils psmisc powertop \
@@ -39,9 +39,10 @@ fi
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-flatpak install flathub com.google.Chrome
-
 sudo usermod -a -G wheel,video,input,bluetooth,libvirt $(whoami)
+
+mkdir /etc/containers/registries.comf.d
+echo 'unqualified-search-registries=["docker.io"]' >> /etc/containers/registries.conf.d/10-unqualified-search-registries.conf
 
 SERVICES=(
     "acpid"
