@@ -104,3 +104,4 @@ echo "source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/
 # git
 git config --global user.email  "russ@infocyte.com"
 git config --global user.name   "rustysec"
+echo 'AddKeysToAgent yes' > ~/.ssh/config
