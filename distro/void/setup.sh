@@ -5,11 +5,11 @@ sudo xbps-install -Sy \
     tmux \
     wget curl \
     dbus tlp \
-    polkit ntpd-rs \
+    polkit ntpd-rs swtpm \
     pipewire wireplumber \
-    elogind seatd greetd ripgrep grim slurp \
+    elogind seatd greetd wlgreet plymouth ripgrep grim slurp \
     sway swaylock swayidle Waybar mako fuzzel kanshi foot light mesa-dri wl-clipboard \
-    pavucontrol pamixer \
+    pavucontrol pamixer Thunar \
     psutils psmisc powertop \
     zip unzip \
     xdg-desktop-portal-wlr xdg-desktop-portal-gtk \
@@ -41,8 +41,16 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 
 sudo usermod -a -G wheel,video,input,bluetooth,libvirt $(whoami)
 
-mkdir /etc/containers/registries.comf.d
-echo 'unqualified-search-registries=["docker.io"]' >> /etc/containers/registries.conf.d/10-unqualified-search-registries.conf
+sudo mkdir /etc/containers/registries.conf.d
+echo 'unqualified-search-registries=["docker.io"]' | sudo tee /etc/containers/registries.conf.d/10-unqualified-search-registries.conf
+
+sudo plymouth-set-default-theme -R bgrt
+
+sudo mkdir -p /etc/sv/stop-plymouth/log
+sudo ln -s /run/runit/supervise.stop-plymouth /etc/sv/stop-plymouth/supervise
+echo '#!/bin/sh' | sudo tee -a /etc/sv/stop-plymouth/run
+echo 'plymouth quit || exit 1' | sudo tee -a /etc/sv/stop-plymouth/run
+sudo chmod +x /etc/sv/stop-plymouth/run
 
 SERVICES=(
     "acpid"
@@ -55,6 +63,7 @@ SERVICES=(
     "bluetoothd"
     "tlp"
     "ntpd"
+    "stop-plymouth"
 )
 
 for service in ${SERVICES[@]};

@@ -24,8 +24,9 @@ echo "/dev/nvme0n1p1    /boot/efi   vfat    defaults              0       0" >> 
 echo "/dev/void/swap    swap        swap    defaults              0       0" >> /etc/fstab
 
 uuid=`blkid -o value -s UUID /dev/nvme0n1p3`
-cmdline="GRUB_CMDLINE_LINUX_DEFAULT=\"loglevel=4 rd.lvm.vg=void rd.luks.uuid=$uuid rd.luks.options=discard\""
+cmdline="GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash rd.lvm.vg=void rd.luks.uuid=$uuid rd.luks.options=discard\""
 sed -i "s/GRUB_CMDLINE_LINUX_DEFAULT.*/$cmdline/" /etc/default/grub
+sed -i "s/#GRUB_GFXMODE/GRUB_GFXMODE/" /etc/default/grub
 echo "GRUB_ENABLE_CRYPTODISK=y" >> /etc/default/grub
 
 grub-install /dev/nvme0n1
