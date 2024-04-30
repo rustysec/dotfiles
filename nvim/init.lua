@@ -21,6 +21,9 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.wrap = false
+vim.opt.list = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -29,13 +32,9 @@ vim.o.mouse = 'a'
 require('lazy').setup('plugins')
 
 vim.cmd.colorscheme('catppuccin')
-
-vim.opt.list = true
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-
 require('focus').setup({})
 require("ibl").setup()
+require('gitsigns').setup()
 
 local cmp = require('cmp')
 
@@ -64,16 +63,14 @@ local lspconfig = require('lspconfig')
 
 lspconfig.rust_analyzer.setup({
     capabilities = capabilities,
-
     settings = {
         ['rust-analyzer'] = {
             cargo = {
                 target = os.getenv('LSP_CARGO_TARGET') or nil,
             },
-            checkOnSave = {
-                allFeatures = true,
+            check = {
                 command = 'clippy',
-                target = os.getenv('LSP_CARGO_TARGET') or nil,
+                ignore = {},
             },
             diagnostics = {
                 enable = true,
@@ -99,7 +96,7 @@ lspconfig.marksman.setup({
 })
 
 lspconfig.nil_ls.setup({
-capabilities = capabilities,
+    capabilities = capabilities,
     settings = {
         ['nil'] = {
             formatting = {

@@ -8,14 +8,20 @@ return {
             },
             winbar = {
                 lualine_c = {
-                    'filename',
+                    {
+                        'filename',
+                        path = 1,
+                    },
                     'diagnostics',
                     'navic',
                 },
             },
             inactive_winbar = {
                 lualine_c = {
-                    'filename',
+                    {
+                        'filename',
+                        path = 1,
+                    },
                     'diagnostics',
                 },
             },

@@ -1,28 +1,30 @@
 #!/usr/bin/env bash
 
+current_dir=$(pwd)
+
 sudo xbps-install -Sy \
-    zsh \
-    tmux \
-    wget curl \
-    dbus tlp \
-    polkit ntpd-rs swtpm \
-    pipewire wireplumber \
+    void-repo-multilib \
+    zsh tmux wget curl \
+    dbus tlp polkit ntpd-rs \
+    swtpm pipewire wireplumber \
     elogind seatd greetd wlgreet plymouth ripgrep grim slurp \
     sway swaylock swayidle Waybar mako fuzzel kanshi foot light mesa-dri wl-clipboard \
     pavucontrol pamixer Thunar \
-    psutils psmisc powertop \
-    zip unzip \
-    xdg-desktop-portal-wlr xdg-desktop-portal-gtk \
-    mate-polkit \
-    font-hack-ttf nerd-fonts font-awesome6 \
-    papirus-icon-theme \
+    psmisc powertop \
+    zip unzip jq \
+    xdg-desktop-portal-wlr xdg-desktop-portal-gtk mate-polkit \
+    font-hack-ttf nerd-fonts font-awesome6 papirus-icon-theme \
     blueman libspa-bluetooth bluez \
     NetworkManager NetworkManager-openconnect network-manager-applet \
     libvirt virt-manager podman qemu \
     gcc cross-x86_64-w64-mingw32 cross-i686-w64-mingw32 \
-    nodejs \
+    nodejs clang clang-analyzer clang-tools-extra \
     xwininfo openssl-devel \
-    flatpak firefox
+    flatpak firefox samba gvfs gvfs-smb \
+    cmake make faketime libcurl-devel
+
+sudo xbps-install -Sy \
+    wine wine-32bit
 
 if [[ $(grep Intel /proc/cpuinfo) == "" ]];
 then
@@ -41,8 +43,11 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 
 sudo usermod -a -G wheel,video,input,bluetooth,libvirt $(whoami)
 
+##############
+# podman setup
 sudo mkdir /etc/containers/registries.conf.d
 echo 'unqualified-search-registries=["docker.io"]' | sudo tee /etc/containers/registries.conf.d/10-unqualified-search-registries.conf
+sudo ln -s `which podman` /usr/sbin/docker
 
 ##############
 # plymouth setup
@@ -76,6 +81,22 @@ command = "sway --config /etc/greetd/sway-config"
 user = "_greeter"' | sudo tee /etc/greetd/config.toml
 
 ##############
+# markdown lsp
+mkdir -p ~/.local/bin
+curl \
+    -L https://github.com/artempyanykh/marksman/releases/download/2023-12-09/marksman-linux-x64 \
+    -o ~/.local/bin/marksman
+chmod +x ~/.local/bin/marksman
+
+##############
+# osslsigncode
+mkdir -p ~/pkgs
+git clone https://github.com/mtrojnar/osslsigncode ~/pkgs/osslsigncode
+mkdir -p ~/pkgs/osslsigncode/build
+cd ~/pkgs/osslsigncode/build && cmake -S .. && cmake --build . && mv osslsigncode ~/.local/bin
+cd $current_dir
+
+##############
 # finish up!
 
 SERVICES=(
@@ -89,6 +110,8 @@ SERVICES=(
     "tlp"
     "ntpd"
     "stop-plymouth"
+    "smbd"
+    "nmbd"
 )
 
 for service in ${SERVICES[@]};
