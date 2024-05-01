@@ -61,12 +61,17 @@ sudo chmod +x /etc/sv/stop-plymouth/run
 
 ##############
 # greetd/wlgreet
-echo '#!/bin/sh
+curl \
+    -L https://w.wallhaven.cc/full/5w/wallhaven-5wwqg3.jpg
+    -o /etc/greetd/background.jpg
+
+echo #!/bin/sh
 eval $(ssh-agent -s)
 dbus-run-session sway' | sudo tee /etc/greetd/sway.sh
 sudo chmod +x /etc/greetd/sway.sh
 
-echo "exec \"wlgreet --command /etc/greetd/sway.sh; swaymsg exit\"
+echo "exec swaybg -m fill --image /etc/greetd/background.jpg
+exec \"wlgreet --command /etc/greetd/sway.sh; swaymsg exit\"
 bindsym Mod4+shift+e exec swaynag \
 	-t warning \
 	-m 'What do you want to do?' \
