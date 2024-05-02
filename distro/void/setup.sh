@@ -85,6 +85,12 @@ vt = 7
 command = "sway --config /etc/greetd/sway-config"
 user = "_greeter"' | sudo tee /etc/greetd/config.toml
 
+echo '[border]
+red = 0.45
+green = 0.78
+blue = 0.925
+opacity = 1.0' | sudo tee /etc/greetd/wlgreet.toml
+
 ##############
 # markdown lsp
 mkdir -p ~/.local/bin
