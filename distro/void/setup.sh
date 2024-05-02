@@ -13,7 +13,7 @@ sudo xbps-install -Sy \
     psmisc powertop \
     zip unzip jq \
     xdg-desktop-portal-wlr xdg-desktop-portal-gtk mate-polkit \
-    font-hack-ttf nerd-fonts font-awesome6 papirus-icon-theme \
+    font-hack-ttf nerd-fonts font-awesome6 papirus-icon-theme gsfonts \
     blueman libspa-bluetooth bluez \
     NetworkManager NetworkManager-openconnect network-manager-applet \
     libvirt virt-manager podman qemu \
