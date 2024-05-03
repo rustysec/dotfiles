@@ -35,6 +35,7 @@ vim.cmd.colorscheme('catppuccin')
 require('focus').setup({})
 require("ibl").setup()
 require('gitsigns').setup()
+require('mini.surround').setup()
 
 local cmp = require('cmp')
 
