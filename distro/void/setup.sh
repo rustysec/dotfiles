@@ -22,7 +22,7 @@ sudo xbps-install -Sy \
     xwininfo openssl-devel lua-language-server \
     flatpak firefox samba gvfs gvfs-smb \
     cmake make faketime libcurl-devel \
-    cups avahi nss-mdns xmirror
+    cups avahi nss-mdns xmirror sof-firmware
 
 sudo xbps-install -Sy \
     wine wine-32bit
