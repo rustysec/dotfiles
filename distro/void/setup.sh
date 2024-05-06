@@ -5,7 +5,7 @@ current_dir=$(pwd)
 sudo xbps-install -Sy \
     void-repo-multilib \
     zsh tmux wget curl \
-    dbus tlp polkit ntpd-rs \
+    dbus tlp polkit ntpd-rs socklog-void cronie \
     swtpm pipewire wireplumber \
     elogind seatd greetd wlgreet plymouth ripgrep grim slurp \
     sway swaylock swayidle Waybar mako fuzzel kanshi foot light mesa-dri wl-clipboard \
@@ -19,9 +19,10 @@ sudo xbps-install -Sy \
     libvirt virt-manager podman qemu \
     gcc cross-x86_64-w64-mingw32 cross-i686-w64-mingw32 \
     nodejs clang clang-analyzer clang-tools-extra \
-    xwininfo openssl-devel \
+    xwininfo openssl-devel lua-language-server \
     flatpak firefox samba gvfs gvfs-smb \
-    cmake make faketime libcurl-devel
+    cmake make faketime libcurl-devel \
+    cups avahi nss-mdns xmirror
 
 sudo xbps-install -Sy \
     wine wine-32bit
@@ -41,7 +42,7 @@ fi
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-sudo usermod -a -G wheel,video,input,bluetooth,libvirt $(whoami)
+sudo usermod -a -G wheel,video,input,bluetooth,libvirt,lpadmin $(whoami)
 
 ##############
 # podman setup
@@ -92,6 +93,22 @@ blue = 0.925
 opacity = 1.0' | sudo tee /etc/greetd/wlgreet.toml
 
 ##############
+# powertop setup
+
+sudo mkdir -p /etc/sv/powertop/log
+sudo ln -s /run/runit/supervise.powertop /etc/sv/powertop/supervise
+echo '#!/bin/sh
+powertop --auto-tune || exit 1' | sudo tee /etc/sv/powertop/run
+sudo chmod +x /etc/sv/powertop/run
+
+
+##############
+# fstrim setup
+
+echo '#!/bin/sh
+fstrim /' | sudo tee /etc/cron.weekly/fstrim
+
+##############
 # markdown lsp
 mkdir -p ~/.local/bin
 curl \
@@ -123,6 +140,11 @@ SERVICES=(
     "stop-plymouth"
     "smbd"
     "nmbd"
+    "socklog-unix"
+    "nanoklogd"
+    "cronie"
+    "cupsd"
+    "avahi-daemon"
 )
 
 for service in ${SERVICES[@]};
