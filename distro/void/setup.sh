@@ -149,5 +149,7 @@ SERVICES=(
 
 for service in ${SERVICES[@]};
 do
-    sudo ln -s /etc/sv/$service /var/service
+    if ! test -L /var/service/$service; then
+        sudo ln -s /etc/sv/$service /var/service
+    fi
 done
