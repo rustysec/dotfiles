@@ -56,6 +56,7 @@ bindsym Mod4+Shift+l move right
 bindsym Mod4+Shift+p exec foot -T python -e python3 --command python
 bindsym Mod4+Shift+q kill
 bindsym Mod4+Shift+t floating toggle
+bindsym Mod4+Shift+v exec bash ~/.config/virt-helper/launch-vm.sh
 bindsym Mod4+Shift+x move scratchpad
 bindsym Mod4+Space exec fuzzel
 bindsym Mod4+Up focus up
