@@ -9,7 +9,7 @@ sudo xbps-install -Sy \
     swtpm pipewire wireplumber \
     elogind seatd greetd wlgreet plymouth ripgrep grim slurp \
     sway swaylock swayidle Waybar mako fuzzel kanshi foot light mesa-dri wl-clipboard \
-    pavucontrol pamixer Thunar \
+    pavucontrol pamixer Thunar libavcodec ffmpeg \
     psmisc powertop \
     zip unzip jq \
     xdg-desktop-portal-wlr xdg-desktop-portal-gtk mate-polkit \
