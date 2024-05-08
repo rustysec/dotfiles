@@ -26,8 +26,10 @@ echo "/dev/void/swap    swap        swap    defaults              0       0" >> 
 uuid=`blkid -o value -s UUID /dev/nvme0n1p3`
 cmdline="GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash rd.lvm.vg=void rd.luks.uuid=$uuid rd.luks.allow-discards\""
 sed -i "s/GRUB_CMDLINE_LINUX_DEFAULT.*/$cmdline/" /etc/default/grub
-sed -i "s/#GRUB_GFXMODE/GRUB_GFXMODE/" /etc/default/grub
 echo "GRUB_ENABLE_CRYPTODISK=y" >> /etc/default/grub
+echo "GRUB_GFXMODE=1024x768x32" >> /etc/default/grub
+echo "GRUB_GFXPAYLOAD=keep" >> /etc/default/grub
+echo "GRUB_TERMINAL=gfxterm" >> /etc/default/grub
 
 sed -i "s/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/" /etc/sudoers
 echo "Defaults pwfeedback" > /etc/sudoers.d/feedback

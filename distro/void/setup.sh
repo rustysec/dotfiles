@@ -8,7 +8,7 @@ sudo xbps-install -Sy \
     dbus tlp polkit ntpd-rs socklog-void cronie \
     swtpm pipewire wireplumber \
     elogind seatd greetd wlgreet plymouth ripgrep grim slurp \
-    sway swaylock swayidle Waybar mako fuzzel kanshi foot light mesa-dri wl-clipboard \
+    sway swaylock swayidle Waybar mako fuzzel kanshi foot brightnessctl mesa-dri wl-clipboard \
     pavucontrol pamixer Thunar libavcodec ffmpeg \
     psmisc powertop \
     zip unzip jq \
@@ -66,9 +66,9 @@ curl \
     -L https://w.wallhaven.cc/full/5w/wallhaven-5wwqg3.jpg
     -o /etc/greetd/background.jpg
 
-echo #!/bin/sh
-eval $(ssh-agent -s)
-dbus-run-session sway' | sudo tee /etc/greetd/sway.sh
+echo '#!/bin/sh
+eval $(ssh-agent -s) 2>/dev/null >/dev/null
+dbus-run-session sway 2>/dev/null >/dev/null' | sudo tee /etc/greetd/sway.sh
 sudo chmod +x /etc/greetd/sway.sh
 
 echo "exec swaybg -m fill --image /etc/greetd/background.jpg
