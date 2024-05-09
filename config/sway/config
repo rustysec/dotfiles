@@ -11,13 +11,6 @@ workspace_layout default
 workspace_auto_back_and_forth no
 seat seat0 xcursor_theme Catppuccin-Mocha-Dark-Cursors 24
 
-client.focused #4c7899 #285577 #ffffff #2e9ef4 #285577
-client.focused_inactive #333333 #5f676a #ffffff #484e50 #5f676a
-client.unfocused #333333 #222222 #888888 #292d2e #222222
-client.urgent #2f343a #900000 #ffffff #900000 #900000
-client.placeholder #000000 #0c0c0c #ffffff #000000 #0c0c0c
-client.background #ffffff
-
 bindsym Mod4+0 workspace number 10
 bindsym Mod4+1 workspace number 1
 bindsym Mod4+2 workspace number 2
@@ -130,6 +123,8 @@ exec gsettings set org.gnome.desktop.interface cursor-theme 'Catppuccin-Mocha-Da
 
 exec "dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE"
 
+exec_always python3 ~/pkgs/autotiling/autotiling/main.py
+
 set $rosewater #f5e0dc
 set $flamingo  #f2cdcd
 set $pink      #f5c2e7
@@ -157,7 +152,8 @@ set $base      #1e1e2e
 set $mantle    #181825
 set $crust     #11111b
 
-client.focused           $teal     $base $text  $mauve $teal
+#                        border    bg    text   indic     child_border
+client.focused           $teal     $base $text  $teal     $teal
 client.focused_inactive  $overlay0 $base $text  $overlay0 $overlay0
 client.unfocused         $overlay0 $base $text  $overlay0 $overlay0
 client.urgent            $peach    $base $peach $peach    $peach

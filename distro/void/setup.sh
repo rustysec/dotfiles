@@ -11,7 +11,7 @@ sudo xbps-install -Sy \
     sway swaylock swayidle Waybar mako fuzzel kanshi foot brightnessctl mesa-dri wl-clipboard \
     pavucontrol pamixer Thunar libavcodec ffmpeg \
     psmisc powertop \
-    zip unzip jq \
+    zip unzip jq python3-i3ipc \
     xdg-desktop-portal-wlr xdg-desktop-portal-gtk mate-polkit \
     font-hack-ttf nerd-fonts font-awesome6 papirus-icon-theme gsfonts \
     blueman libspa-bluetooth bluez \
@@ -101,6 +101,12 @@ echo '#!/bin/sh
 powertop --auto-tune || exit 1' | sudo tee /etc/sv/powertop/run
 sudo chmod +x /etc/sv/powertop/run
 
+##############
+# lock before sleep
+
+echo '#!/usr/bin/env bash
+pkill -USR1 swayidle' | sudo tee /etc/zzz.d/suspend/90-swayidle.sh
+sudo chmod +x /etc/zzz.d/suspend/90-swayidle.sh
 
 ##############
 # fstrim setup

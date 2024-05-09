@@ -115,3 +115,7 @@ echo "source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/
 git config --global user.email  "russ@infocyte.com"
 git config --global user.name   "rustysec"
 echo 'AddKeysToAgent yes' > ~/.ssh/config
+
+##############
+# sway auto tiling
+git clone https://github.com/nwg-piotr/autotiling ~/pkgs/autotiling
