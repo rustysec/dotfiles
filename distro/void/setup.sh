@@ -6,7 +6,7 @@ sudo xbps-install -Sy \
     void-repo-multilib \
     zsh tmux wget curl \
     dbus tlp polkit ntpd-rs socklog-void cronie \
-    swtpm pipewire wireplumber \
+    swtpm pipewire wireplumber vulkan-loader \
     elogind seatd greetd wlgreet plymouth ripgrep grim slurp \
     sway swaylock swayidle Waybar mako fuzzel kanshi foot brightnessctl mesa-dri wl-clipboard \
     pavucontrol pamixer Thunar libavcodec ffmpeg \
