@@ -62,8 +62,8 @@ sudo chmod +x /etc/sv/stop-plymouth/run
 
 ##############
 # greetd/wlgreet
-curl \
-    -L https://w.wallhaven.cc/full/5w/wallhaven-5wwqg3.jpg
+sudo curl \
+    -L https://w.wallhaven.cc/full/5w/wallhaven-5wwqg3.jpg \
     -o /etc/greetd/background.jpg
 
 echo '#!/bin/sh

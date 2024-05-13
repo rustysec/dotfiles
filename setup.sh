@@ -57,11 +57,11 @@ if [ ! -e ~/.icons/Catppuccin-Mocha-Dark-Cursors ]; then \
 fi
 
 curl \
-    -L https://w.wallhaven.cc/full/5w/wallhaven-5wwqg3.jpg
+    -L https://w.wallhaven.cc/full/5w/wallhaven-5wwqg3.jpg \
     -o ~/.config/sway/lockscreen.jpg
 
 curl \
-    -L https://w.wallhaven.cc/full/5w/wallhaven-5wwqg3.jpg
+    -L https://w.wallhaven.cc/full/5w/wallhaven-5wwqg3.jpg \
     -o ~/.config/sway/background.jpg
 
 ##############

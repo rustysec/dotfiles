@@ -8,7 +8,7 @@ case $OPT in
     systemctl reboot || loginctl reboot
     ;;
   "󰩈 Logout")
-    hyprctl dispatch exit 0 || swaymsg exit
+    hyprctl dispatch exit 0 || swaymsg exit || niri msg action quit -s
     ;;
   " Lock")
     swaylock
