@@ -1,1 +1,4 @@
 config/sway/*.jpg
+config/ags/style.css*
+config/ags/tsconfig.json
+config/ags/types

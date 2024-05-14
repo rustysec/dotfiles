@@ -76,15 +76,19 @@ exec \"wlgreet --command /etc/greetd/sway.sh; swaymsg exit\"
 bindsym Mod4+shift+e exec swaynag \
 	-t warning \
 	-m 'What do you want to do?' \
-	-b 'Poweroff' 'systemctl poweroff' \
-	-b 'Reboot' 'systemctl reboot'
+	-b 'Poweroff' 'loginctl poweroff' \
+	-b 'Reboot' 'loginctl reboot'
 include /etc/sway/config.d/*" | sudo tee /etc/greetd/sway-config
 
 echo '[terminal]
 vt = 7
 [default_session]
 command = "sway --config /etc/greetd/sway-config"
-user = "_greeter"' | sudo tee /etc/greetd/config.toml
+user = "_greeter"
+
+[initial_session]
+command = "/etc/greetd/sway.sh"
+user = "russ"' | sudo tee /etc/greetd/config.toml
 
 echo '[border]
 red = 0.45
