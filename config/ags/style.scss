@@ -26,55 +26,92 @@ $mantle:    #181825;
 $crust:     #11111b;
 
 window {
-    padding: 20px;
     font-family: "Hack";
 }
 
-.outside {
-    background-color: $teal;
-    padding: 5px;
+.bar-left {
+    padding-left: 16px;
 }
 
-.inside {
+.bar-right {
+    padding-right: 16px;
+}
+
+box.bar-notes {
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 16px;
+}
+
+.bar-notes {
+    background-color: $mauve;
+    color: $mantle;
+}
+
+button {
+    background-color: transparent;
+}
+
+levelbar block,
+highlight {
+    min-height: 10px;
+}
+
+/***/
+
+window.notification-popups box.notifications {
+    padding: .5em;
+}
+
+.icon {
+    min-width: 68px;
+    min-height: 68px;
+    margin-right: 1em;
+}
+
+.icon image {
+    font-size: 58px;
+    margin: 5px;
+    color: $text;
+}
+
+.icon box {
+    min-width: 68px;
+    min-height: 68px;
+    border-radius: 7px;
+}
+
+.notification {
+    min-width: 350px;
+    border-radius: 11px;
+    padding: 1em;
+    margin: .5em;
+    border: 4px solid $mauve;
     background-color: $mantle;
 }
 
-.top-bar {
-    font-size: 2em;
-    min-width: 200px;
-    padding-left: 1em;
-    padding-right: 1em;
-    margin: 0.5em;
+.notification.critical {
+    border: 1px solid lightcoral;
 }
 
-.systray {
-    padding-left: 2em;
+.title {
+    color: $text;
+    font-size: 1.4em;
 }
 
-.item-box {
-    font-size: 2em;
-    min-width: 200px;
-    padding-left: 4em;
-    padding-right: 4em;
-    margin: 0.5em;
+.body {
+    color: $text;
+}
 
-    &--top {
-        @extend .item-box;
-        padding-top: 2em;
-    }
+.actions .action-button {
+    margin: 0 .4em;
+    margin-top: .8em;
+}
 
-    &--bottom {
-        @extend .item-box;
-        padding-bottom: 2em;
-    }
+.actions .action-button:first-child {
+    margin-left: 0;
+}
 
-    &--charging {
-        @extend .item-box;
-        color: $green;
-    }
-
-    &--discharging {
-        @extend .item-box;
-        color: $red;
-    }
+.actions .action-button:last-child {
+    margin-right: 0;
 }

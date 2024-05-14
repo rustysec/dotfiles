@@ -106,7 +106,7 @@ spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "'C
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "'Papirus'"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-theme" "'Catppuccin-Mocha-Dark-Cursors'"
 spawn-at-startup "blueman-applet"
-spawn-at-startup "ags" "-c" "~/.config/ags/config.kdl"
+// spawn-at-startup "ags" "-c" "~/.config/ags/config.js"
 
 prefer-no-csd
 
