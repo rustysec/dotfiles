@@ -39,7 +39,7 @@ output "eDP-1" {
 output "DP-3" {
     // off
     mode "3840x2160"
-    scale 1.0
+    scale 2.0
 
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
@@ -48,7 +48,7 @@ output "DP-3" {
 }
 
 layout {
-    gaps 16
+    gaps 8
     // "never"
     // "always"
     // "on-overflow"
@@ -79,7 +79,7 @@ layout {
 
     border {
         // off
-        width 4
+        width 2
         active-color "#94e2d5"
         // inactive-color "#b4befe"
         // active-gradient from="#f5c2e7" to="#89b4fa" angle=90 relative-to="workspace-view"

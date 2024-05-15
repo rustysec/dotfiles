@@ -27,14 +27,15 @@ $crust:     #11111b;
 
 window {
     font-family: "Hack";
+    font-size: 1em;
 }
 
 .bar-left {
-    padding-left: 16px;
+    padding-left: 8px;
 }
 
 .bar-right {
-    padding-right: 16px;
+    padding-right: 8px;
 }
 
 box.bar-notes {
@@ -60,7 +61,7 @@ button {
 
 levelbar block,
 highlight {
-    min-height: 10px;
+    min-height: 2px;
 }
 
 /***/
