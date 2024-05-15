@@ -4,11 +4,12 @@ const audio = await Service.import("audio")
 const battery = await Service.import("battery")
 const systemtray = await Service.import("systemtray")
 import brightness from "./brightness.js";
+import { NotificationPopups } from "./notificationPopups.js";
 
 notifications.clear();
 
 const date = Variable("", {
-    poll: [1000, 'date "+%H:%M:%S | %e %b %Y"'],
+    poll: [1000, 'date "+%H:%M | %e %b %Y"'],
 })
 
 function Clock() {
@@ -18,50 +19,53 @@ function Clock() {
     })
 }
 
-// we don't need dunst or any other notification daemon
-// because the Notifications module is a notification daemon itself
-function Notification() {
+function Notification(monitor = 0) {
     const notes = notifications.bind("notifications")
 
-    return Widget.Box({
-        visible: notes.as(p => p.length > 0),
-        spacing: 10,
-        class_name: "bar-notes",
-        children: [
-            Widget.Icon({
-                icon: "preferences-system-notifications-symbolic",
-            }),
-            Widget.Label({
-                label: notes.as(p => `${p.length || 0}`),
-                class_name: "bar-notes",
-            }),
-        ],
+    return Widget.Button({
+        class_name: notes.as(p => p.length > 0 ? "bar-notes" : "bar-notes--empty"),
+        onPrimaryClick: () => {
+            if (notifications.notifications.length > 0) {
+                NotificationPopups(monitor, true)
+            }
+        },
+        child: Widget.Box({
+            spacing: 10,
+            children: [
+                Widget.Icon({
+                    icon: "preferences-system-notifications-symbolic",
+                }),
+                Widget.Label({
+                    label: notes.as(p => `${p.length || 0}`),
+                }),
+            ],
+        })
     })
 }
 
 function Media() {
-    const label = Utils.watch("", mpris, "player-changed", () => {
-        if (mpris.players[0] && mpris.players[0].track_title) {
-            const { track_artists, track_title } = mpris.players[0]
-            return `${track_artists.join(", ")} - ${track_title}`.substring(0, 20)
-        } else {
-            return ""
-        }
+    /** @param {import('types/service/mpris').MprisPlayer} player */
+    const Player = player => Widget.Button({
+        onClicked: () => player.playPause(),
+        child: Widget.Label().hook(player, label => {
+            const { track_artists, track_title } = player;
+            let title = `${track_artists.join(', ')} - ${track_title}`
+
+            if (title.length > 40) {
+                title = `${title.substring(0, 40)}...`;
+            }
+
+            label.label = title;
+        }),
     })
 
     return Widget.Box({
         class_name: "media",
-        visible: !!mpris.players[0] && !!label,
-        children: [Widget.Label({ label })],
+        children: mpris.bind('players').as(p => p.map(Player)),
     })
 }
 
 function Brightness() {
-    /*
-    const icon = brightness.bind("screen_value").as(p =>
-        `display-brightness-symbolic`)
-    */
-
     let icon = `display-brightness-symbolic`;
 
     const slider = Widget.Slider({
@@ -196,13 +200,13 @@ function SysTray() {
     })
 }
 
-function Left() {
+function Left(monitor = 0) {
     return Widget.Box({
         hpack: "start",
         class_name: "bar-left",
         spacing: 10,
         children: [
-            Notification(),
+            Notification(monitor),
             Media(),
         ],
     })
@@ -241,7 +245,7 @@ export function Bar(monitor = 0) {
         anchor: ["top", "left", "right"],
         exclusivity: "exclusive",
         child: Widget.CenterBox({
-            start_widget: Left(),
+            start_widget: Left(monitor),
             center_widget: Center(),
             end_widget: Right(),
         }),

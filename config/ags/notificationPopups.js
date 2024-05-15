@@ -23,7 +23,9 @@ function NotificationIcon({ app_entry, app_icon, image }) {
     })
 }
 
-function Notification(n) {
+/** @param {import('resource:///com/github/Aylur/ags/service/notifications.js').Notification} n */
+export function Notification(n) {
+
     const icon = Widget.Box({
         vpack: "start",
         class_name: "icon",
@@ -68,7 +70,10 @@ function Notification(n) {
     return Widget.EventBox(
         {
             attribute: { id: n.id },
-            on_primary_click: n.dismiss,
+            on_primary_click: () => {
+                n.dismiss()
+                n.close()
+            },
         },
         Widget.Box(
             {
@@ -88,10 +93,10 @@ function Notification(n) {
     )
 }
 
-export function NotificationPopups() {
+export function NotificationPopups(monitor = 0, onDemand = false) {
     const list = Widget.Box({
         vertical: true,
-        children: notifications.popups.map(Notification),
+        children: onDemand ? notifications.notifications.map(Notification) : notifications.popups.map(Notification),
     })
 
     function onNotified(_, /** @type {number} */ id) {
@@ -107,13 +112,18 @@ export function NotificationPopups() {
         }
     }
 
-    list.hook(notifications, onNotified, "notified")
-        .hook(notifications, onDismissed, "dismissed")
+    list.hook(notifications, onDismissed, "dismissed")
+
+    if (!onDemand) {
+        list.hook(notifications, onNotified, "notified")
+    }
 
     return Widget.Window({
-        name: `notifications`,
+        name: onDemand ? `od-notes` : `notifications`,
         class_name: "notification-popups",
-        anchor: ["top", "right"],
+        anchor: onDemand ? ["top", "left"] : ["top"],
+        margins: [16, 16],
+        monitor,
         child: Widget.Box({
             css: "min-width: 2px; min-height: 2px;",
             class_name: "notifications",

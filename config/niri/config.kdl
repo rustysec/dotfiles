@@ -52,7 +52,7 @@ layout {
     // "never"
     // "always"
     // "on-overflow"
-    center-focused-column "on-overflow"
+    center-focused-column "never"
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
@@ -99,6 +99,7 @@ layout {
     }
 }
 
+spawn-at-startup "~/.config/niri/ags.sh"
 spawn-at-startup "~/.config/niri/swayidle.sh"
 spawn-at-startup "~/.config/niri/background.sh"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "'prefer-dark'"
@@ -106,7 +107,6 @@ spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "'C
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "'Papirus'"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-theme" "'Catppuccin-Mocha-Dark-Cursors'"
 spawn-at-startup "blueman-applet"
-// spawn-at-startup "ags" "-c" "~/.config/ags/config.js"
 
 prefer-no-csd
 
@@ -141,7 +141,6 @@ binds {
     Mod+Shift+Return { spawn "foot"; }
     Mod+Space { spawn "fuzzel"; }
     Mod+Alt+L { spawn "swaylock"; }
-    Mod+Shift+Space { spawn "ags" "-t" "applauncher"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }

@@ -46,6 +46,12 @@ box.bar-notes {
 .bar-notes {
     background-color: $mauve;
     color: $mantle;
+
+    &--empty {
+        @extend .bar-notes;
+        color: $text;
+        background-color: $mantle;
+    }
 }
 
 button {
