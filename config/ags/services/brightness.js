@@ -72,7 +72,7 @@ class BrightnessService extends Service {
 
     // overwriting the connect method, let's you
     // change the default event that widgets connect to
-    connect(event = 'screen-changed', callback) {
+    connect(event = 'screen-changed', /** @type {any} */ callback) {
         return super.connect(event, callback);
     }
 }

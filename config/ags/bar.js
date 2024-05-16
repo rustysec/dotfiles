@@ -3,10 +3,8 @@ const mpris = await Service.import("mpris")
 const audio = await Service.import("audio")
 const battery = await Service.import("battery")
 const systemtray = await Service.import("systemtray")
-import brightness from "./brightness.js";
+import brightness from "./services/brightness.js";
 import { NotificationPopups } from "./notificationPopups.js";
-
-notifications.clear();
 
 const date = Variable("", {
     poll: [1000, 'date "+%H:%M | %e %b %Y"'],
@@ -80,7 +78,7 @@ function Brightness() {
 
     return Widget.Box({
         class_name: "volume",
-        css: "min-width: 140px",
+        css: "min-width: 100px",
         children: [
             Widget.Icon({ icon }),
             slider,
@@ -119,7 +117,7 @@ function MicVolume() {
 
     return Widget.Box({
         class_name: "volume",
-        css: "min-width: 140px",
+        css: "min-width: 100px",
         spacing: 10,
         children: [
             icon,
@@ -159,29 +157,23 @@ function Volume() {
 
     return Widget.Box({
         class_name: "volume",
-        css: "min-width: 140px",
+        css: "min-width: 100px",
         children: [icon, slider],
     })
 }
 
 function Battery() {
-    const value = battery.bind("percent").as(p => p > 0 ? p / 100 : 0)
     const icon = battery.bind("percent").as(p =>
         `battery-level-${Math.floor(p / 10) * 10}-symbolic`)
 
     return Widget.Box({
         class_name: "battery",
-        css: "min-width: 140px",
         spacing: 10,
         visible: battery.bind("available"),
         tooltip_text: battery.bind("percent").as(p => `${p}%`),
         children: [
             Widget.Icon({ icon }),
-            Widget.LevelBar({
-                hexpand: true,
-                vpack: "center",
-                value,
-            }),
+            Widget.Label({ label: battery.bind("percent").as(p => `${p}%`) }),
         ],
     })
 }
@@ -190,8 +182,8 @@ function SysTray() {
     const items = systemtray.bind("items")
         .as(items => items.map(item => Widget.Button({
             child: Widget.Icon({ icon: item.bind("icon") }),
-            on_primary_click: (_, event) => item.activate(event),
-            on_secondary_click: (_, event) => item.openMenu(event),
+            on_secondary_click: (_, event) => item.activate(event),
+            // on_primary_click: (_, event) => item.openMenu(event),
             tooltip_markup: item.bind("tooltip_markup"),
         })))
 

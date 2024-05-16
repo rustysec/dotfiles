@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
-#
+
+sudo xbps-install -Sy \
+    pkg-config glib-devel eudev-libudev-devel libudev0-shim \
+    gdk-pixbuf-devel cairo-devel libseat-devel pango-devel \
+    pipewire-devel libinput-devel libgbm-devel libxkbcommon-devel \
+    xdg-desktop-portal-gtk xdg-desktop-portal-gnome gnome-keyring
+
 echo '#!/bin/sh
 eval $(ssh-agent -s) 2>/dev/null >/dev/null
-niri- --session 2>/dev/null >/dev/null' | sudo tee /etc/greetd/niri.sh
+niri --session 2>/dev/null >/dev/null' | sudo tee /etc/greetd/niri.sh
 sudo chmod +x /etc/greetd/niri.sh
 
 echo "exec swaybg -m fill --image /etc/greetd/background.jpg

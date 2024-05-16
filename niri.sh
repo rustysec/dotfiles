@@ -4,6 +4,14 @@ DISTRO=`lsb_release -a | grep Description | awk '{print $2}' | tr A-Z a-z`
 
 $current_dir=`pwd`
 
+if [ -e ./distro/$DISTRO/niri.sh ];
+then
+    echo "- Running $DISTRO niri setup"
+    ./distro/$DISTRO/niri.sh
+else
+    echo "- Generic niri $DISTRO"
+fi
+
 mkbir -p ~/pkgs
 git clone https::/github.com/yalter/niri ~/pkgs/niri
 cd ~/pkgs/niri
@@ -21,12 +29,3 @@ sudo cp target/release/niri /usr/bin/
 sudo cp resources/niri-session /usr/bin/
 sudo cp resources/niri.desktop /usr/share/wayland-sessions/
 sudo cp resources/niri-portals.conf /usr/share/xdg-desktop-portal/
-
-
-if [ -e ./distro/$DISTRO/niri.sh ];
-then
-    echo "- Running $DISTRO niri setup"
-    ./distro/$DISTRO/setup.sh
-else
-    echo "- Generic niri $DISTRO"
-fi

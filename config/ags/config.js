@@ -16,7 +16,6 @@ Utils.monitorFile(
     },
 )
 
-
 function range(length = 1, start = 1) {
     return Array.from({ length }, (_, i) => i + start)
 }
