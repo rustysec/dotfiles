@@ -5,10 +5,17 @@ const battery = await Service.import("battery")
 const systemtray = await Service.import("systemtray")
 import brightness from "./services/brightness.js";
 import { NotificationPopups } from "./notificationPopups.js";
+import { SystemMenu } from "./systemMenu.js";
 
 const date = Variable("", {
     poll: [1000, 'date "+%H:%M | %e %b %Y"'],
 })
+
+var systemMenu = null;
+
+function padNumber(n = 0, length = 3) {
+    return `${n}`.padStart(length)
+}
 
 function Clock() {
     return Widget.Label({
@@ -66,22 +73,19 @@ function Media() {
 function Brightness() {
     let icon = `display-brightness-symbolic`;
 
-    const slider = Widget.Slider({
-        hexpand: true,
-        draw_value: false,
-        value: brightness.bind("screen_value"),
-        on_change: ({ value }) => brightness.screen_value = value,
-        setup: self => self.hook(brightness, (self, screenValue) => {
-            self.value = screenValue || 0
-        }),
+    const label = Widget.Label({
+        label: brightness.bind("screen_value").as(p => `${padNumber(Math.floor(p * 100))}%`),
     })
 
+
     return Widget.Box({
-        class_name: "volume",
-        css: "min-width: 100px",
+        class_name: "indicator",
+        spacing: 10,
+        hpack: "center",
+        hexpand: true,
         children: [
             Widget.Icon({ icon }),
-            slider,
+            label,
         ],
     })
 }
@@ -106,22 +110,18 @@ function MicVolume() {
         icon: Utils.watch(getIcon(), audio.microphone, getIcon),
     })
 
-    const slider = Widget.Slider({
-        hexpand: true,
-        draw_value: false,
-        on_change: ({ value }) => audio.microphone.volume = value,
-        setup: self => self.hook(audio.microphone, () => {
-            self.value = audio.microphone.volume || 0
-        }),
+    const label = Widget.Label({
+        label: audio.microphone.bind("volume").as(p => `${padNumber(Math.floor(p * 100))}%`)
     })
 
     return Widget.Box({
-        class_name: "volume",
-        css: "min-width: 100px",
+        class_name: "indicator",
         spacing: 10,
+        hpack: "center",
+        hexpand: true,
         children: [
             icon,
-            slider,
+            label,
         ],
     })
 }
@@ -146,19 +146,17 @@ function Volume() {
         icon: Utils.watch(getIcon(), audio.speaker, getIcon),
     })
 
-    const slider = Widget.Slider({
+    const label = Widget.Label({
         hexpand: true,
-        draw_value: false,
-        on_change: ({ value }) => audio.speaker.volume = value,
-        setup: self => self.hook(audio.speaker, () => {
-            self.value = audio.speaker.volume || 0
-        }),
+        label: audio.speaker.bind("volume").as(p => `${padNumber(Math.floor(p * 100))}%`)
     })
 
     return Widget.Box({
-        class_name: "volume",
-        css: "min-width: 100px",
-        children: [icon, slider],
+        class_name: "indicator",
+        spacing: 10,
+        hpack: "center",
+        hexpand: true,
+        children: [icon, label,],
     })
 }
 
@@ -167,23 +165,32 @@ function Battery() {
         `battery-level-${Math.floor(p / 10) * 10}-symbolic`)
 
     return Widget.Box({
-        class_name: "battery",
+        class_name: "indicator",
+        hexpand: true,
+        hpack: "center",
         spacing: 10,
         visible: battery.bind("available"),
-        tooltip_text: battery.bind("percent").as(p => `${p}%`),
+        tooltip_text: battery.bind("percent").as(p => `${padNumber(p)}%`),
         children: [
             Widget.Icon({ icon }),
-            Widget.Label({ label: battery.bind("percent").as(p => `${p}%`) }),
+            Widget.Label({ label: battery.bind("percent").as(p => `${padNumber(p)}%`) }),
         ],
     })
 }
 
-function SysTray() {
+function SysTray(monitor = 0) {
     const items = systemtray.bind("items")
         .as(items => items.map(item => Widget.Button({
             child: Widget.Icon({ icon: item.bind("icon") }),
             on_secondary_click: (_, event) => item.activate(event),
-            // on_primary_click: (_, event) => item.openMenu(event),
+            on_primary_click: (_, _event) => {
+                if (!systemMenu) {
+                    systemMenu = SystemMenu(monitor);
+                } else {
+                    systemMenu.close()
+                    systemMenu = null;
+                }
+            },
             tooltip_markup: item.bind("tooltip_markup"),
         })))
 
@@ -214,17 +221,27 @@ function Center() {
     })
 }
 
-function Right() {
-    return Widget.Box({
-        hpack: "end",
-        class_name: "bar-right",
+function Right(monitor = 0) {
+    const indicators = Widget.Box({
+        vertical: false,
+        hexpand: true,
+        // hpack: "center",
+        // homogeneous: true,
         spacing: 10,
         children: [
             Brightness(),
             MicVolume(),
             Volume(),
             Battery(),
-            SysTray(),
+        ]
+    })
+
+    return Widget.Box({
+        hpack: "end",
+        class_name: "bar-right",
+        children: [
+            indicators,
+            SysTray(monitor),
         ],
     })
 }
@@ -239,7 +256,7 @@ export function Bar(monitor = 0) {
         child: Widget.CenterBox({
             start_widget: Left(monitor),
             center_widget: Center(),
-            end_widget: Right(),
+            end_widget: Right(monitor),
         }),
     })
 }

@@ -70,7 +70,7 @@ highlight {
 
 /***/
 
-window.notification-popups box.notifications {
+window.notification-popups box.notifications window.system-menu {
     padding: .5em;
 }
 
@@ -126,3 +126,43 @@ window.notification-popups box.notifications {
 .actions .action-button:last-child {
     margin-right: 0;
 }
+
+.sys-menu-item {
+    &--selected {
+        @extend .sys-menu-item;
+        background-color: $mauve;
+        color: $mantle;
+    }
+}
+
+icon.sys-menu-item:hover button.sys-menu-item:hover label.sys-menu-item:hover {
+    background-color: $mauve;
+    color: $mantle;
+}
+
+.sys-menu-item:hover {
+    background-color: $mauve;
+    color: $mantle;
+}
+
+.system-menu {
+    min-width: 350px;
+    border-radius: 11px 0px 11px 11px;
+    padding: 1em;
+    margin: .5em;
+    border: 2px solid $mauve;
+    background-color: $mantle;
+}
+
+.indicator{
+    background-color: $lavender;
+    color: $mantle;
+    border-radius: 11px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.test {
+    background-color: $pink;
+}
+

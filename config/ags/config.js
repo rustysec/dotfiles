@@ -1,5 +1,6 @@
 import { NotificationPopups } from "./notificationPopups.js";
 import { Bar } from "./bar.js";
+// import { SystemMenu } from "./systemMenu.js";
 import Gdk from "gi://Gdk"
 
 const scss = `${App.configDir}/style.scss`
@@ -30,6 +31,7 @@ App.config({
     windows: [
         ...allMonitors(Bar),
         ...allMonitors(NotificationPopups),
+        // ...allMonitors(SystemMenu),
     ],
 })
 

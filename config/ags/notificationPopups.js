@@ -99,13 +99,13 @@ export function NotificationPopups(monitor = 0, onDemand = false) {
         children: onDemand ? notifications.notifications.map(Notification) : notifications.popups.map(Notification),
     })
 
-    function onNotified(_, /** @type {number} */ id) {
+    function onNotified(/** @type {any} */ _, /** @type {number} */ id) {
         const n = notifications.getNotification(id)
         if (n)
             list.children = [Notification(n), ...list.children]
     }
 
-    function onDismissed(_, /** @type {number} */ id) {
+    function onDismissed(/** @type {any} */ _, /** @type {number} */ id) {
         let item = list.children.find(n => n.attribute.id === id);
         if (item?.destroy) {
             item?.destroy()
