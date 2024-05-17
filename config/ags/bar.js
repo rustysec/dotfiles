@@ -205,23 +205,36 @@ function Battery() {
 }
 
 function SysTray(monitor = 0) {
+    const ignorePrimary = ["nm-applet"]
+
     const items = systemtray.bind("items")
         .as(items => items.map(item => Widget.Button({
             child: Widget.Icon({ icon: item.bind("icon") }),
-            on_secondary_click: (_, event) => item.activate(event),
-            on_primary_click: (_, _event) => {
-                if (!systemMenu) {
-                    systemMenu = SystemMenu(monitor);
-                } else {
-                    systemMenu.close()
-                    systemMenu = null;
+            on_primary_click: (_, event) => {
+                if (!ignorePrimary.includes(item.id)) {
+                    item.activate(event)
                 }
+            },
+            on_secondary_click: (_, event) => {
+                item.openMenu(event)
             },
             tooltip_markup: item.bind("tooltip_markup"),
         })))
 
+    let settings = Widget.Button({
+        child: Widget.Icon({ icon: "system-shutdown-symbolic" }),
+        on_primary_click: (_, _event) => {
+            if (!systemMenu) {
+                systemMenu = SystemMenu(monitor);
+            } else {
+                systemMenu.close()
+                systemMenu = null;
+            }
+        }
+    })
+
     return Widget.Box({
-        children: items,
+        children: items.as(items => [...items, settings]),
     })
 }
 
