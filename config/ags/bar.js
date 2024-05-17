@@ -11,6 +11,10 @@ const date = Variable("", {
     poll: [1000, 'date "+%H:%M | %e %b %Y"'],
 })
 
+const workspaces = Variable("", {
+    poll: [500, 'niri msg -j workspaces'],
+})
+
 var systemMenu = null;
 
 function padNumber(n = 0, length = 3) {
@@ -21,6 +25,26 @@ function Clock() {
     return Widget.Label({
         class_name: "clock",
         label: date.bind(),
+    })
+}
+
+function Workspaces(monitor = 0) {
+    let children = workspaces.bind().as(data =>
+        JSON.parse(data)
+            .filter(/** @param {object} item */ item => item.monitor == monitor)
+            .map(/** @param {object} item */ item => Widget.Box({
+                class_name: item.active ? "workspace--active" : "workspace",
+                child: Widget.Button({
+                    class_name: item.active ? "workspace--active" : "workspace",
+                    label: `${item.id}`
+                })
+            })))
+
+
+    return Widget.Box({
+        homogeneous: true,
+        spacing: 10,
+        children
     })
 }
 
@@ -206,6 +230,7 @@ function Left(monitor = 0) {
         spacing: 10,
         children: [
             Notification(monitor),
+            Workspaces(monitor),
             Media(),
         ],
     })
@@ -225,8 +250,6 @@ function Right(monitor = 0) {
     const indicators = Widget.Box({
         vertical: false,
         hexpand: true,
-        // hpack: "center",
-        // homogeneous: true,
         spacing: 10,
         children: [
             Brightness(),

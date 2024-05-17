@@ -166,3 +166,14 @@ icon.sys-menu-item:hover button.sys-menu-item:hover label.sys-menu-item:hover {
     background-color: $pink;
 }
 
+.workspace {
+    border: 1px solid $lavender;
+    border-radius: 0px 11px 0 11px;
+    background-color: rgba($lavender, 0.4);
+
+    &--active {
+        @extend .workspace;
+        background-color: $lavender;
+        color: $mantle;
+    }
+}
