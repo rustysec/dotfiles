@@ -94,41 +94,38 @@ export function Notification(n) {
 }
 
 export function NotificationPopups(monitor = 0, onDemand = false) {
-    const list = Widget.Box({
+    var child = Widget.Box({
         vertical: true,
+        css: "min-width: 2px; min-height: 2px;",
+        class_name: "notifications",
         children: onDemand ? notifications.notifications.map(Notification) : notifications.popups.map(Notification),
     })
 
     function onNotified(/** @type {any} */ _, /** @type {number} */ id) {
         const n = notifications.getNotification(id)
         if (n)
-            list.children = [Notification(n), ...list.children]
+            child.children = [Notification(n), ...child.children]
     }
 
     function onDismissed(/** @type {any} */ _, /** @type {number} */ id) {
-        let item = list.children.find(n => n.attribute.id === id);
+        let item = child?.children.find(n => n.attribute.id === id);
         if (item?.destroy) {
             item?.destroy()
         }
     }
 
-    list.hook(notifications, onDismissed, "dismissed")
+    child.hook(notifications, onDismissed, "dismissed")
 
     if (!onDemand) {
-        list.hook(notifications, onNotified, "notified")
+        child.hook(notifications, onNotified, "notified")
     }
 
     return Widget.Window({
-        name: onDemand ? `od-notes` : `notifications`,
+        name: onDemand ? `od-notes-${monitor}` : `notifications-${monitor}`,
         class_name: "notification-popups",
-        anchor: onDemand ? ["top", "left"] : ["top"],
+        anchor: ["top", "left"],
         margins: [16, 16],
         monitor,
-        child: Widget.Box({
-            css: "min-width: 2px; min-height: 2px;",
-            class_name: "notifications",
-            vertical: true,
-            child: list,
-        }),
+        child,
     })
 }

@@ -57,7 +57,7 @@ function Notification(monitor = 0) {
         class_name: notes.as(p => p.length > 0 ? "bar-notes" : "bar-notes--empty"),
         onPrimaryClick: () => {
             if (notifications.notifications.length > 0) {
-                NotificationPopups(monitor, true)
+                NotificationPopups([monitor], true)
             }
         },
         child: Widget.Box({

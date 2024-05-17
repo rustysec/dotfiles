@@ -23,7 +23,7 @@ function range(length = 1, start = 1) {
 
 function allMonitors(/** @type {any} */ widget) {
     const n = Gdk.Display.get_default()?.get_n_monitors() || 1
-    return range(n, 0).map(widget).flat(1)
+    return range(n, 0).map(monitor => widget(monitor))
 }
 
 App.config({
