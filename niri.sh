@@ -19,10 +19,10 @@ cd ~/pkgs/niri
 if command -v systemctl;
 then
     cargo build --release
-else
-    cargo build --no-default-features --features=dbus,xdp-gnome-screencast
     sudo cp resources/niri.service /usr/lib/systemd/user/
     sudo cp resources/niri-shutdown.service /usr/lib/systemd/user/
+else
+    cargo build --no-default-features --features=dbus,xdp-gnome-screencast --release
 fi
 
 sudo cp target/release/niri /usr/bin/

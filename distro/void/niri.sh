@@ -4,7 +4,8 @@ sudo xbps-install -Sy \
     pkg-config glib-devel eudev-libudev-devel libudev0-shim \
     gdk-pixbuf-devel cairo-devel libseat-devel pango-devel \
     pipewire-devel libinput-devel libgbm-devel libxkbcommon-devel \
-    xdg-desktop-portal-gtk xdg-desktop-portal-gnome gnome-keyring
+    xdg-desktop-portal-gtk xdg-desktop-portal-gnome gnome-keyring \
+    gobject-introspection gjs gjs-devel gtk+3-devel pulseaudio-devel pam-devel
 
 echo '#!/bin/sh
 eval $(ssh-agent -s) 2>/dev/null >/dev/null

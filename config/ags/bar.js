@@ -11,9 +11,11 @@ const date = Variable("", {
     poll: [1000, 'date "+%H:%M | %e %b %Y"'],
 })
 
+/*
 const workspaces = Variable("", {
     poll: [500, 'niri msg -j workspaces'],
 })
+*/
 
 var systemMenu = null;
 
@@ -186,7 +188,7 @@ function Volume() {
 
 function Battery() {
     const icon = battery.bind("percent").as(p =>
-        `battery-level-${Math.floor(p / 10) * 10}-symbolic`)
+        `battery-level-${Math.abs(Math.floor(p / 10) * 10)}-symbolic`)
 
     return Widget.Box({
         class_name: "indicator",
@@ -230,7 +232,7 @@ function Left(monitor = 0) {
         spacing: 10,
         children: [
             Notification(monitor),
-            Workspaces(monitor),
+            // Workspaces(monitor),
             Media(),
         ],
     })
