@@ -45,7 +45,7 @@ output "DP-2" {
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
     transform "normal"
-    position x=1350 y=0
+    position x=2160 y=0
 }
 
 output "DP-3" {
@@ -56,7 +56,7 @@ output "DP-3" {
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
     transform "normal"
-    position x=1350 y=0
+    position x=2160 y=0
 }
 
 layout {
@@ -111,9 +111,12 @@ layout {
     }
 }
 
+spawn-at-startup "~/.config/niri/background.sh"
 spawn-at-startup "~/.config/niri/ags.sh"
 spawn-at-startup "~/.config/niri/swayidle.sh"
-spawn-at-startup "~/.config/niri/background.sh"
+spawn-at-startup "~/.config/niri/pipewire.sh"
+spawn-at-startup "/usr/libexec/xdg-desktop-portal-gtk"
+spawn-at-startup "/usr/libexec/xdg-desktop-portal-gnome"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "'prefer-dark'"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "'Catppuccin-Mocha-Standard-Blue-Dark'"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "'Papirus'"

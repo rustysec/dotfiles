@@ -42,7 +42,8 @@
 }
 
 window#waybar {
-  background-color: @mantle;
+  /* background-color: @mantle; */
+  background-color: transparent;
   color: #ffffff;
   transition-property: background-color;
   transition-duration: .5s;
@@ -112,7 +113,6 @@ pulseaudio#waybar.empty #window {
   background-color: @mantle;
 }
 
-#clock,
 #battery,
 #bluetooth,
 #cpu,
@@ -137,6 +137,23 @@ pulseaudio#waybar.empty #window {
   padding-right: 10px;
   padding-left: 10px;
   margin-left: 5px;
+}
+
+#clock {
+  color: #ffffff;
+  border-bottom: 2px solid @mauve;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+#power-profiles-daemon {
+  color: #ffffff;
+  border-bottom: 2px solid @mauve;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 #mpris {
