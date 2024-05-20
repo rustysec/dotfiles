@@ -111,18 +111,21 @@ layout {
     }
 }
 
+// spawn-at-startup "~/.config/niri/ags.sh"
+spawn-at-startup "waybar"
 spawn-at-startup "~/.config/niri/background.sh"
-spawn-at-startup "~/.config/niri/ags.sh"
 spawn-at-startup "~/.config/niri/swayidle.sh"
 spawn-at-startup "~/.config/niri/pipewire.sh"
 spawn-at-startup "/usr/libexec/xdg-desktop-portal-gtk"
 spawn-at-startup "/usr/libexec/xdg-desktop-portal-gnome"
+spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "'prefer-dark'"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "'Catppuccin-Mocha-Standard-Blue-Dark'"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "'Papirus'"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-theme" "'Catppuccin-Mocha-Dark-Cursors'"
 spawn-at-startup "blueman-applet"
 spawn-at-startup "nm-applet"
+spawn-at-startup "mako"
 
 prefer-no-csd
 

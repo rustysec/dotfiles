@@ -24,6 +24,7 @@ bindsym Mod4+9 workspace number 9
 bindsym Mod4+Down focus down
 bindsym Mod4+Left focus left
 bindsym Mod4+Return exec foot -e tmux new
+bindsym Mod4+Ctrl+Return exec foot -c ~/.config/foot/light.ini -e tmux new
 bindsym Mod4+Right focus right
 bindsym Mod4+Shift+0 move container to workspace number 10
 bindsym Mod4+Shift+1 move container to workspace number 1
@@ -101,7 +102,7 @@ exec /usr/libexec/polkit-mate-authentication-agent-1
 
 exec_always kanshi
 
-exec waybar
+exec waybar -c ~/.config/waybar/config.sway
 
 exec swaybg -m fill --image ~/.config/sway/background.jpg
 

@@ -11,4 +11,9 @@ profile sucellus {
   output "Chimei Innolux Corporation 0x1301 Unknown" scale 1.250000
 }
 
+profile sucellus_docked {
+  output "Chimei Innolux Corporation 0x1301 Unknown" position 0,400 scale 1.250000
+  output "LG Electronics LG Ultra HD 0x00072EE9" position 1728,0 scale 1.5
+}
+
 
