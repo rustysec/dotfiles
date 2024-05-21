@@ -2,7 +2,7 @@
 
 sudo zypper install -y \
     sway swayidle swaylock mako fuzzel kanshi foot waybar grim slurp brightnessctl \
-    greetd wlgreet \
+    greetd wlgreet mate-polkit \
     pipewire wireplumber \
     zip unzip jq \
     hack-fonts fontawesome-fonts \
