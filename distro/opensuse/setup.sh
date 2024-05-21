@@ -19,3 +19,12 @@ curl \
     -o ~/.local/share/fonts/hack.zip
 unzip ~/.local/share/fonts/hack.zip -d ~/.local/share/fonts
 rm ~/.local/share/fonts/hack.zip
+
+echo '[terminal]
+vt = 1
+[default_session]
+command = "sway --config /etc/greetd/sway-config"
+user = "greeter"
+[initial_session]
+command = "/etc/greetd/sway.sh"
+user = "russ"' | sudo tee /etc/greetd/config.toml

@@ -37,6 +37,7 @@ mkdir ~/.zsh 2>/dev/null || true
 # tmux plugins
 git clone https://github.com/tmux-plugins/tmux-sensible ~/.config/tmux/plugins/sensible
 git clone https://github.com/catppuccin/tmux ~/.config/tmux/plugins/catppuccin
+git clone https://github.com/tmux-plugins/tmux-battery ~/.config/tmux/plugins/tmux-battery
 
 ##############
 # UI Themes
@@ -104,8 +105,9 @@ git clone https://github.com/catppuccin/zsh-syntax-highlighting.git \
 git clone https://github.com/zsh-users/zsh-autosuggestions \
     ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-echo "alias xi='sudo xbps-install'" >> ~/.zshrc
-echo "alias xr='sudo xbps-remove'" >> ~/.zshrc
+
+echo "ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'" >> ~/.zshrc
+
 echo "source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
 echo "source ~/.zsh/catppuccin/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh" >> ~/.zshrc
 echo "source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
@@ -119,3 +121,28 @@ echo 'AddKeysToAgent yes' > ~/.ssh/config
 ##############
 # sway auto tiling
 git clone https://github.com/nwg-piotr/autotiling ~/pkgs/autotiling
+
+##############
+# greetd/wlgreet
+sudo curl \
+    -L https://w.wallhaven.cc/full/5w/wallhaven-5wwqg3.jpg \
+    -o /etc/greetd/background.jpg
+
+echo '#!/bin/sh
+eval $(ssh-agent -s) 2>/dev/null >/dev/null
+dbus-run-session sway 2>/dev/null >/dev/null' | sudo tee /etc/greetd/sway.sh
+sudo chmod +x /etc/greetd/sway.sh
+
+echo "exec swaybg -m fill --image /etc/greetd/background.jpg
+exec \"wlgreet --command /etc/greetd/sway.sh; swaymsg exit\"
+bindsym Mod4+shift+e exec swaynag \
+	-t warning \
+	-m 'What do you want to do?' \
+	-b 'Poweroff' 'loginctl poweroff' \
+	-b 'Reboot' 'loginctl reboot'" | sudo tee /etc/greetd/sway-config
+
+echo '[border]
+red = 0.45
+green = 0.78
+blue = 0.925
+opacity = 1.0' | sudo tee /etc/greetd/wlgreet.toml

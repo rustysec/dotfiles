@@ -19,8 +19,7 @@ bindsym Mod4+shift+e exec swaynag \
 	-t warning \
 	-m 'What do you want to do?' \
 	-b 'Poweroff' 'loginctl poweroff' \
-	-b 'Reboot' 'loginctl reboot'
-include /etc/sway/config.d/*" | sudo tee /etc/greetd/niri-config
+	-b 'Reboot' 'loginctl reboot'" | sudo tee /etc/greetd/niri-config
 
 echo '[terminal]
 vt = 7
@@ -31,9 +30,3 @@ user = "_greeter"
 [initial_session]
 command = "/etc/greetd/niri.sh"
 user = "russ"' | sudo tee /etc/greetd/config.toml
-
-echo '[border]
-red = 0.45
-green = 0.78
-blue = 0.925
-opacity = 1.0' | sudo tee /etc/greetd/wlgreet.toml

@@ -62,26 +62,6 @@ echo '#!/bin/sh
 plymouth quit || exit 1' | sudo tee /etc/sv/stop-plymouth/run
 sudo chmod +x /etc/sv/stop-plymouth/run
 
-##############
-# greetd/wlgreet
-sudo curl \
-    -L https://w.wallhaven.cc/full/5w/wallhaven-5wwqg3.jpg \
-    -o /etc/greetd/background.jpg
-
-echo '#!/bin/sh
-eval $(ssh-agent -s) 2>/dev/null >/dev/null
-dbus-run-session sway 2>/dev/null >/dev/null' | sudo tee /etc/greetd/sway.sh
-sudo chmod +x /etc/greetd/sway.sh
-
-echo "exec swaybg -m fill --image /etc/greetd/background.jpg
-exec \"wlgreet --command /etc/greetd/sway.sh; swaymsg exit\"
-bindsym Mod4+shift+e exec swaynag \
-	-t warning \
-	-m 'What do you want to do?' \
-	-b 'Poweroff' 'loginctl poweroff' \
-	-b 'Reboot' 'loginctl reboot'
-include /etc/sway/config.d/*" | sudo tee /etc/greetd/sway-config
-
 echo '[terminal]
 vt = 7
 [default_session]
@@ -100,7 +80,6 @@ opacity = 1.0' | sudo tee /etc/greetd/wlgreet.toml
 
 ##############
 # powertop setup
-
 sudo mkdir -p /etc/sv/powertop/log
 sudo ln -s /run/runit/supervise.powertop /etc/sv/powertop/supervise
 echo '#!/bin/sh
@@ -109,14 +88,12 @@ sudo chmod +x /etc/sv/powertop/run
 
 ##############
 # lock before sleep
-
 echo '#!/usr/bin/env bash
 pkill -USR1 swayidle' | sudo tee /etc/zzz.d/suspend/90-swayidle.sh
 sudo chmod +x /etc/zzz.d/suspend/90-swayidle.sh
 
 ##############
 # fstrim setup
-
 echo '#!/bin/sh
 fstrim /' | sudo tee /etc/cron.weekly/fstrim
 
@@ -137,8 +114,12 @@ cd ~/pkgs/osslsigncode/build && cmake -S .. && cmake --build . && mv osslsigncod
 cd $current_dir
 
 ##############
-# finish up!
+# shell aliases 
+echo "alias xi='sudo xbps-install'" >> ~/.zshrc
+echo "alias xr='sudo xbps-remove'" >> ~/.zshrc
 
+##############
+# finish up!
 SERVICES=(
     "acpid"
     "dbus"
