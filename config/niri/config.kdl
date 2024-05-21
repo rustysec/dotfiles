@@ -123,7 +123,7 @@ layout {
 }
 
 // spawn-at-startup "~/.config/niri/ags.sh"
-spawn-at-startup "waybar"
+spawn-at-startup "~/.config/niri/waybar.sh"
 spawn-at-startup "~/.config/niri/background.sh"
 spawn-at-startup "~/.config/niri/swayidle.sh"
 spawn-at-startup "~/.config/niri/pipewire.sh"
