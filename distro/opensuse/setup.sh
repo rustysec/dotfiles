@@ -6,7 +6,10 @@ sudo zypper install -y \
     pipewire wireplumber \
     zip unzip jq \
     hack-fonts fontawesome-fonts \
-    zsh tmux wget curl pavucontrol
+    zsh tmux wget curl pavucontrol \
+    make cmake power-profiles-daemon powertop \
+    NetworkManager-applet NetworkManager-applet-openconnect NetworkManager-openconnect \
+    blueman papirus-icon-theme
 
 ##############
 # Hack Nerd Fonts

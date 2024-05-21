@@ -131,7 +131,8 @@ pulseaudio#waybar.empty #window {
 #mpd,
 #mpris,
 #custom-updates,
-#window {
+#window,
+#custom-niri {
   color: #ffffff;
   border-bottom: 2px solid @mauve;
   padding-right: 10px;
