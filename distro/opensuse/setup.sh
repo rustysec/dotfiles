@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
+sudo zypper remove -y tlp
+
 sudo zypper install -y \
     sway swayidle swaylock mako fuzzel kanshi foot waybar grim slurp brightnessctl \
-    greetd wlgreet mate-polkit \
-    pipewire wireplumber \
-    zip unzip jq \
-    hack-fonts fontawesome-fonts \
-    zsh tmux wget curl pavucontrol \
-    make cmake power-profiles-daemon powertop \
+    greetd wlgreet mate-polkit pipewire wireplumber powertop libvirt \
+    zip unzip jq hack-fonts fontawesome-fonts mingw64-gcc \
+    zsh tmux wget curl pavucontrol make cmake power-profiles-daemon powertop \
     NetworkManager-applet NetworkManager-applet-openconnect NetworkManager-openconnect \
-    blueman papirus-icon-theme
+    blueman papirus-icon-theme zsh ripgrep greetd wlgreet \
+    gcc power-profiles-daemon virt-manager qemu podman
 
 ##############
 # Hack Nerd Fonts

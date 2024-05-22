@@ -78,13 +78,11 @@ cargo install -f cargo-make
 cargo install -f cargo-tree
 cargo install cross --git https://github.com/cross-rs/cross
 
-##############
-# npm stuff
-mkdir ~/.npm-global
-npm config set prefix '~/.npm-global'
-echo 'export PATH=~/.npm-global/bin:~/.local/bin:$PATH' >> ~/.zshrc
-PATH=~/.npm-global/bin:$PATH
-npm install -g typescript typescript-language-server
+current=`pwd`
+git clone https://github.com/cross-rs/cross ~/pkgs/cross
+cd ~/pkgs/cross
+git submodule update --init --remote
+cd $current
 
 ##############
 # Oh-My-Zsh
@@ -113,9 +111,18 @@ echo "source ~/.zsh/catppuccin/themes/catppuccin_mocha-zsh-syntax-highlighting.z
 echo "source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
 
 ##############
+# npm stuff
+mkdir ~/.npm-global
+npm config set prefix '~/.npm-global'
+echo 'export PATH=~/.npm-global/bin:~/.local/bin:$PATH' >> ~/.zshrc
+PATH=~/.npm-global/bin:$PATH
+npm install -g typescript typescript-language-server
+
+##############
 # git
 git config --global user.email  "russ@infocyte.com"
 git config --global user.name   "rustysec"
+mkdir -p ~/.ssh
 echo 'AddKeysToAgent yes' > ~/.ssh/config
 
 ##############

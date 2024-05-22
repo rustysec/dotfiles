@@ -95,9 +95,9 @@ mode "resize" {
 gaps inner 5
 gaps outer 5
 
-exec pipewire
-exec pipewire-pulse
-exec wireplumber
+# exec pipewire
+# exec pipewire-pulse
+# exec wireplumber
 exec /usr/libexec/polkit-mate-authentication-agent-1
 
 exec_always kanshi
