@@ -3,6 +3,7 @@
 if command -v systemctl;
 then
     # systemd should handle this
+    echo "systemd, do your thing"
 else
     ITEMS=("pipewire" "pipewire-pulse" "wireplumber")
 

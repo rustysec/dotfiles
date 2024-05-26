@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-OUTPUTS=$(niri msg -j outputs | jq 'keys[]' | sed 's/"//g')
-
-for output in "${OUTPUTS[@]}";
+for output in `niri msg -j outputs | jq 'keys[]' | sed 's/"//g'`;
 do
     input="$PWD/config.niri.template"
     file="$HOME/.config/waybar/config.niri-$output"
