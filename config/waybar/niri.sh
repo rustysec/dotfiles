@@ -10,11 +10,11 @@ let items = JSON.parse(stdout.toString())
     .filter(item => item.output == output)
     .map(item => {
         if (item.is_active) {
-            return `(${item.idx})`
+            return ''
         } else {
-            return ` ${item.idx} `
+            return ''
         }
     })
-    .join(' | ');
+    .join('  ');
 
 console.log(`${items}`)

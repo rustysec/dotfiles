@@ -126,7 +126,7 @@
         },
         "custom/niri": {
             "exec": "~/.config/waybar/niri.sh __OUTPUT__",
-            "interval": 1,
+            "signal": 8,
         },
     }
 ]
