@@ -88,7 +88,7 @@ layout {
         // fixed 1920
     }
 
-    default-column-width { proportion 0.5; }
+    default-column-width { proportion 1.0; }
     // `draw-border-with-background`.
 
     focus-ring {
@@ -289,6 +289,8 @@ binds {
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
     Mod+C { center-column; }
+    Ctrl+Alt+Q { set-column-width "25%"; }
+    Ctrl+Alt+H { set-column-width "50%"; }
 
     Mod+Minus { set-column-width "-10%"; }
     Mod+Equal { set-column-width "+10%"; }
