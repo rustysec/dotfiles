@@ -5,7 +5,6 @@
         "modules-left": [
           "power-profiles-daemon",
           "sway/workspaces",
-          "mpris",
         ],
         "modules-center": [
           "clock",
