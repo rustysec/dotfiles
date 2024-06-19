@@ -8,10 +8,10 @@ else
     ITEMS=("pipewire" "pipewire-pulse" "wireplumber")
 
     for item in ${ITEMS[@]}; do
-        killall -9 $item
+        killall -9 $item 2>&1 >/dev/null
     done
 
     for item in ${ITEMS[@]}; do
-        $item &
+        $item 2>&1 >/dev/null &
     done
 fi

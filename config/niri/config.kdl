@@ -1,4 +1,12 @@
 input {
+    // keyboard "AT Translated Set 2 keyboard" {
+    //     xkb {
+    //         layout "us(colemak),us"
+    //         options "caps:escape_shifted_capslock,lv3:menu_switch,lv3:ralt_alt"
+    //     }
+    //     track-layout "window"
+    // }
+
     keyboard {
         xkb {
             layout "us(colemak),us"
@@ -33,6 +41,7 @@ output "eDP-1" {
     // mode "1920x1080"
     // mode "2160x1350"
     // scale 1.0
+    scale 1.25
     transform "normal"
     position x=0 y=0
 }
@@ -83,6 +92,7 @@ layout {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
+        proportion 0.75
         proportion 1.0
         // Fixed sets the width in logical pixels exactly.
         // fixed 1920
@@ -104,9 +114,9 @@ layout {
         // off
         width 2
         active-color "#94e2d5"
-        // inactive-color "#b4befe"
+        inactive-color "#181825"
         // active-gradient from="#f5c2e7" to="#89b4fa" angle=90 relative-to="workspace-view"
-        inactive-gradient from="#cdd6f4" to="#181825" angle=90 relative-to="workspace-view"
+        // inactive-gradient from="#cdd6f4" to="#181825" angle=90 relative-to="workspace-view"
     }
 
     // Struts shrink the area occupied by windows, similarly to layer-shell panels.
