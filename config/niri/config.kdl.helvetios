@@ -1,42 +1,52 @@
+input {
+    keyboard {
+        xkb {
+            layout "us(colemak),us"
+            options "caps:escape_shifted_capslock,lv3:menu_switch,lv3:ralt_alt"
+        }
+    }
+
+    touchpad {
+        dwt
+        natural-scroll
+        click-method "clickfinger"
+        // tap
+        // dwtp
+        // accel-speed 0.2
+        // accel-profile "flat"
+    }
+
+    mouse {
+        // natural-scroll
+        // accel-speed 0.2
+        // accel-profile "flat"
+    }
+
+    // warp-mouse-to-focus
+    focus-follows-mouse
+}
+
 output "eDP-1" {
-    // off
-    // mode "1920x1080"
-    // mode "2160x1350"
-    // scale 1.0
     scale 1.75
     transform "normal"
     position x=0 y=0
 }
 
 output "DP-1" {
-    // off
-    // mode "3840x2160"
     scale 2.0
-
-    // Transform allows to rotate the output counter-clockwise, valid values are:
-    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
     transform "normal"
     position x=1920 y=0
 }
 
 output "DP-2" {
-    // off
-    // mode "3840x2160"
     scale 2.0
-
-    // Transform allows to rotate the output counter-clockwise, valid values are:
-    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
     transform "normal"
     position x=2160 y=0
 }
 
 output "DP-3" {
     // off
-    mode "3840x2160"
     scale 2.0
-
-    // Transform allows to rotate the output counter-clockwise, valid values are:
-    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
     transform "normal"
     position x=2160 y=0
 }
