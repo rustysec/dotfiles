@@ -31,12 +31,14 @@ vim.o.mouse = 'a'
 
 require('lazy').setup('plugins')
 
-vim.cmd.colorscheme('catppuccin')
 require('focus').setup({})
 require("ibl").setup()
 require('gitsigns').setup()
 require('mini.surround').setup()
 require('lsp-inlayhints').setup()
+require('notify').setup({
+    background_colour = "#00000000"
+})
 
 local cmp = require('cmp')
 
