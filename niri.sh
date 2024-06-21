@@ -12,9 +12,10 @@ else
     echo "- Generic niri $DISTRO"
 fi
 
-mkdir -p ~/pkgs
-git clone https://github.com/yalter/niri ~/pkgs/niri
-cd ~/pkgs/niri
+mkdir -p ~/pkgs || true
+git clone https://github.com/yalter/niri ~/pkgs/niri || true
+cd ~/pkgs/niri || true
+git pull
 
 if command -v systemctl;
 then
