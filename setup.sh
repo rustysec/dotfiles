@@ -36,34 +36,21 @@ mkdir ~/.zsh 2>/dev/null || true
 ##############
 # tmux plugins
 git clone https://github.com/tmux-plugins/tmux-sensible ~/.config/tmux/plugins/sensible
-git clone https://github.com/catppuccin/tmux ~/.config/tmux/plugins/catppuccin
+git clone https://github.com/Nybkox/tmux-kanagawa ~/.config/tmux/plugins/kanagawa
 git clone https://github.com/tmux-plugins/tmux-battery ~/.config/tmux/plugins/tmux-battery
 
 ##############
 # UI Themes
-CTP_VERSION="v0.7.3"
-if [ ! -e ~/.themes/Catppuccin-Mocha-Standard-Blue-Dark ]; then \
-  mkdir -p ~/.themes \
-  && curl -L https://github.com/catppuccin/gtk/releases/download/$CTP_VERSION/Catppuccin-Mocha-Standard-Blue-Dark.zip -o ~/.themes/catppuccin.zip \
-  && unzip ~/.themes/catppuccin.zip -d ~/.themes/ \
-  && rm -rf ~/.themes/catppuccin.zip;
-fi
-
-CTP_CURSOR_VERSION="v0.2.0"
-if [ ! -e ~/.icons/Catppuccin-Mocha-Dark-Cursors ]; then \
-  mkdir -p ~/.icons \
-  && curl -L https://github.com/catppuccin/cursors/releases/download/$CTP_CURSOR_VERSION/Catppuccin-Mocha-Dark-Cursors.zip -o ~/.themes/catppuccin.zip \
-  && unzip ~/.themes/catppuccin.zip -d ~/.icons/ \
-  && rm -rf ~/.themes/catppuccin.zip;
-fi
 
 curl \
-    -L https://w.wallhaven.cc/full/5w/wallhaven-5wwqg3.jpg \
-    -o ~/.config/sway/lockscreen.jpg
+    -L https://raw.githubusercontent.com/openSUSE/branding/ad4557bc2a9b5e1ed56556eac9685ee8a3211719/raw-theme-drop/desktop-1920x1080.svg \
+    -o ~/.config/sway/lockscreen.svg
+magick ~/.config/sway/lockscreen.svg ~/.config/sway/lockscreen.jpg
 
 curl \
-    -L https://w.wallhaven.cc/full/5w/wallhaven-5wwqg3.jpg \
-    -o ~/.config/sway/background.jpg
+    -L https://raw.githubusercontent.com/openSUSE/branding/ad4557bc2a9b5e1ed56556eac9685ee8a3211719/raw-theme-drop/desktop-1920x1080.svg \
+    -o ~/.config/sway/background.svg
+magick ~/.config/sway/background.svg ~/.config/sway/background.jpg
 
 ##############
 # rust
