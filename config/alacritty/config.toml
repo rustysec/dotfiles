@@ -1,0 +1,10 @@
+[scrolling]
+history = 0
+
+[font]
+normal = { family = "Hack Nerd Font" }
+size = 10
+
+[window]
+padding = { x = 3, y = 3 }
+dynamic_padding = true

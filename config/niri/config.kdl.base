@@ -32,8 +32,8 @@ layout {
     border {
         // off
         width 2
-        active-color "#94e2d5"
-        inactive-color "#181825"
+        active-color "#6A9589"
+        inactive-color "#727169"
         // active-gradient from="#f5c2e7" to="#89b4fa" angle=90 relative-to="workspace-view"
         // inactive-gradient from="#cdd6f4" to="#181825" angle=90 relative-to="workspace-view"
     }
@@ -75,11 +75,6 @@ animations {
 }
 
 window-rule {
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
-}
-
-window-rule {
     match app-id=r#"^xdg-desktop-portal-gnome$"#
     match title=r#"^All Files$"#
     default-column-width { proportion 0.5; }
@@ -108,11 +103,10 @@ window-rule {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+Return { spawn "foot" "tmux" "new"; }
-    Mod+Shift+Return { spawn "foot"; }
-    Mod+Ctrl+Return { spawn "foot" "-c" "/home/russ/.config/foot/light.ini" "tmux" "new"; }
+    Mod+Return { spawn "alacritty" "-e" "tmux" "new"; }
+    Mod+Shift+Return { spawn "alacritty"; }
+    Mod+Ctrl+Return { spawn "alacritty" "-c" "/home/russ/.config/alacritty/light.toml" "tmux" "new"; }
     Mod+Space { spawn "fuzzel"; }
-    Mod+Alt+L { spawn "swaylock"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
