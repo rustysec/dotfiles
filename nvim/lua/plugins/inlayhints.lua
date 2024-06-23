@@ -1,3 +1,6 @@
 return {
-    { 'lvimuser/lsp-inlayhints.nvim' },
+    {
+        'lvimuser/lsp-inlayhints.nvim',
+        enable = false
+    },
 }

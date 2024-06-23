@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo zypper remove -y tlp
+sudo zypper remove -y tlp || echo "TLP is not installed"
 
 sudo zypper install -y \
     sway swayidle swaylock mako fuzzel kanshi foot waybar grim slurp brightnessctl \
@@ -9,7 +9,8 @@ sudo zypper install -y \
     zsh tmux wget curl pavucontrol make cmake power-profiles-daemon powertop \
     NetworkManager-applet NetworkManager-applet-openconnect NetworkManager-openconnect \
     blueman papirus-icon-theme zsh ripgrep greetd wlgreet \
-    gcc power-profiles-daemon virt-manager qemu podman
+    gcc power-profiles-daemon virt-manager qemu podman \
+    neovim nodejs npm lua-language-server acpi
 
 ##############
 # Hack Nerd Fonts
