@@ -10,7 +10,6 @@
         "modules-left": [
           "power-profiles-daemon",
           "custom/niri",
-          "mpris",
         ],
         "modules-center": [
           "clock",

@@ -57,7 +57,7 @@ spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "'prefer-dark'"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "'Adwaita-dark'"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "'Papirus'"
-spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-theme" "'Adwaita'"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-theme" "'__CURSOR_THEME__'"
 spawn-at-startup "blueman-applet"
 spawn-at-startup "nm-applet"
 spawn-at-startup "mako"
@@ -254,7 +254,7 @@ binds {
 }
 
 cursor {
-    xcursor-theme "Catppuccin-Mocha-Dark-Cursors"
+    xcursor-theme "__CURSOR_THEME__"
     xcursor-size 24
 }
 
