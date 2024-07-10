@@ -32,8 +32,8 @@ layout {
     border {
         // off
         width 2
-        active-color "#6A9589"
-        inactive-color "#727169"
+        active-color "#63cdcf"
+        inactive-color "#39506d"
         // active-gradient from="#f5c2e7" to="#89b4fa" angle=90 relative-to="workspace-view"
         // inactive-gradient from="#cdd6f4" to="#181825" angle=90 relative-to="workspace-view"
     }
@@ -110,7 +110,7 @@ binds {
 
     Mod+Return { spawn "alacritty" "-e" "tmux" "new"; }
     Mod+Shift+Return { spawn "alacritty"; }
-    Mod+Ctrl+Return { spawn "alacritty" "-c" "/home/russ/.config/alacritty/light.toml" "tmux" "new"; }
+    Mod+Ctrl+Return { spawn "alacritty" "--config" "/home/russ/.config/alacritty/light.toml" "tmux" "new"; }
     Mod+Space { spawn "fuzzel"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
