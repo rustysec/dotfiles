@@ -148,6 +148,10 @@ lspconfig.nil_ls.setup({
     },
 })
 
+lspconfig.csharp_ls.setup({
+    capabilities = capabilities,
+})
+
 vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
     group = 'YankHighlight',
