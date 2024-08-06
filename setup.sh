@@ -36,7 +36,6 @@ mkdir ~/.zsh 2>/dev/null || true
 ##############
 # tmux plugins
 git clone https://github.com/tmux-plugins/tmux-sensible ~/.config/tmux/plugins/sensible
-git clone https://github.com/Nybkox/tmux-kanagawa ~/.config/tmux/plugins/kanagawa
 git clone https://github.com/tmux-plugins/tmux-battery ~/.config/tmux/plugins/tmux-battery
 
 ##############
