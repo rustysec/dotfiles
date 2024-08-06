@@ -32,8 +32,8 @@ layout {
     border {
         // off
         width 2
-        active-color "#94e2d5"
-        inactive-color "#181825"
+        active-color "#63cdcf"
+        inactive-color "#39506d"
         // active-gradient from="#f5c2e7" to="#89b4fa" angle=90 relative-to="workspace-view"
         // inactive-gradient from="#cdd6f4" to="#181825" angle=90 relative-to="workspace-view"
     }
@@ -55,9 +55,9 @@ spawn-at-startup "/usr/libexec/xdg-desktop-portal-gtk"
 spawn-at-startup "/usr/libexec/xdg-desktop-portal-gnome"
 spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "'prefer-dark'"
-spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "'Catppuccin-Mocha-Standard-Blue-Dark'"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "'Adwaita-dark'"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "'Papirus'"
-spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-theme" "'Catppuccin-Mocha-Dark-Cursors'"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-theme" "'__CURSOR_THEME__'"
 spawn-at-startup "blueman-applet"
 spawn-at-startup "nm-applet"
 spawn-at-startup "mako"
@@ -75,11 +75,6 @@ animations {
 }
 
 window-rule {
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
-}
-
-window-rule {
     match app-id=r#"^xdg-desktop-portal-gnome$"#
     match title=r#"^All Files$"#
     default-column-width { proportion 0.5; }
@@ -88,6 +83,11 @@ window-rule {
 window-rule {
     match app-id=r#"^Firefox$"#
     match title=r#"^Enter name of file to save to"#
+    default-column-width { proportion 0.5; }
+}
+
+window-rule {
+    match app-id=r#"^google-chrome$"#
     default-column-width { proportion 0.5; }
 }
 
@@ -108,11 +108,10 @@ window-rule {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+Return { spawn "foot" "tmux" "new"; }
-    Mod+Shift+Return { spawn "foot"; }
-    Mod+Ctrl+Return { spawn "foot" "-c" "/home/russ/.config/foot/light.ini" "tmux" "new"; }
+    Mod+Return { spawn "alacritty" "-e" "tmux" "new"; }
+    Mod+Shift+Return { spawn "alacritty"; }
+    Mod+Ctrl+Return { spawn "alacritty" "--config" "/home/russ/.config/alacritty/light.toml" "tmux" "new"; }
     Mod+Space { spawn "fuzzel"; }
-    Mod+Alt+L { spawn "swaylock"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
@@ -255,7 +254,7 @@ binds {
 }
 
 cursor {
-    xcursor-theme "Catppuccin-Mocha-Dark-Cursors"
+    xcursor-theme "__CURSOR_THEME__"
     xcursor-size 24
 }
 
