@@ -6,5 +6,6 @@ normal = { family = "Hack Nerd Font" }
 size = 10
 
 [window]
+decorations = "None"
 padding = { x = 10, y = 10 }
 dynamic_padding = true
