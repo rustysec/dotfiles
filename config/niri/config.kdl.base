@@ -4,6 +4,7 @@ layout {
     // "always"
     // "on-overflow"
     center-focused-column "never"
+    always-center-single-column
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
@@ -39,10 +40,10 @@ layout {
     }
 
     struts {
-        // left 64
-        // right 64
-        // top 64
-        // bottom 64
+        left 8
+        right 8 
+        top 8
+        bottom 8
     }
 }
 
@@ -192,16 +193,16 @@ binds {
     Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
     Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
 
-    Mod+1 { spawn "~/.config/niri/cmd-waybar-signal.sh" "8" "focus-workspace 1"; }
-    Mod+2 { spawn "~/.config/niri/cmd-waybar-signal.sh" "8" "focus-workspace 2"; }
-    Mod+3 { spawn "~/.config/niri/cmd-waybar-signal.sh" "8" "focus-workspace 3"; }
-    Mod+4 { spawn "~/.config/niri/cmd-waybar-signal.sh" "8" "focus-workspace 4"; }
-    Mod+5 { spawn "~/.config/niri/cmd-waybar-signal.sh" "8" "focus-workspace 5"; }
-    Mod+6 { spawn "~/.config/niri/cmd-waybar-signal.sh" "8" "focus-workspace 6"; }
-    Mod+7 { spawn "~/.config/niri/cmd-waybar-signal.sh" "8" "focus-workspace 7"; }
-    Mod+8 { spawn "~/.config/niri/cmd-waybar-signal.sh" "8" "focus-workspace 8"; }
-    Mod+9 { spawn "~/.config/niri/cmd-waybar-signal.sh" "8" "focus-workspace 9"; }
-    Mod+0 { spawn "~/.config/niri/cmd-waybar-signal.sh" "8" "focus-workspace 10"; }
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+0 { focus-workspace 10; }
 
     Mod+Ctrl+1 { move-column-to-workspace 1; }
     Mod+Ctrl+2 { move-column-to-workspace 2; }
