@@ -39,37 +39,36 @@ pulseaudio#waybar.empty #window {
 }
 
 #workspaces button:hover {
-  background: @mantle;
-  background-color: @mantle;
-  border-bottom: 2px solid @mauve;
-  border-top: 2px solid @mauve;
+  background-color: @background;
+  border-bottom: 2px solid @green;
+  border-top: 2px solid @green;
   margin-right: 5px;
 }
 
 #workspaces button.visible {
-  border-bottom: 2px solid @mauve;
+  border-bottom: 2px solid @green;
   margin-right: 5px;
 }
 
 #workspaces button.active {
-  border-top: 2px solid @teal;
-  border-bottom: 2px solid @teal;
+  border-top: 2px solid @green;
+  border-bottom: 2px solid @green;
   margin-right: 5px;
 }
 
 #workspaces button.active:hover {
-  border-top: 2px solid @teal;
+  border-top: 2px solid @purple;
   margin-right: 5px;
 }
 
 #workspaces button.focused {
-  border-top: 2px solid @teal;
-  border-bottom: 2px solid @teal;
+  border-top: 2px solid @comment;
+  border-bottom: 2px solid @comment;
   margin-right: 5px;
 }
 
 #workspaces button.focused:hover {
-  border-top: 2px solid @teal;
+  border-top: 2px solid @comment;
   margin-right: 5px;
 }
 
