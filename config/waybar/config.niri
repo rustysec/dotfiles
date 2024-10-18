@@ -1,6 +1,5 @@
 [
     {
-        "output": "__OUTPUT__",
         "layer": "top",
         "position": "top",
         "spacing": 4,
@@ -9,7 +8,7 @@
         },
         "modules-left": [
           "power-profiles-daemon",
-          "custom/niri",
+          "niri/workspaces",
         ],
         "modules-center": [
           "clock",
@@ -122,11 +121,6 @@
             "format-source": "{volume}% ",
             "format-source-muted": "",
             "on-click": "pavucontrol"
-        },
-        "custom/niri": {
-            "exec": "~/.config/waybar/niri.sh __OUTPUT__",
-            "signal": 8,
-            "interval": 1,
         },
     }
 ]
