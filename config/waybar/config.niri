@@ -2,25 +2,26 @@
     {
         "layer": "top",
         "position": "top",
-        "spacing": 4,
+        "spacing": 0,
         "tray": {
             "spacing": 10
         },
         "modules-left": [
-          "power-profiles-daemon",
-          "niri/workspaces",
+            "power-profiles-daemon",
+            "niri/workspaces",
         ],
         "modules-center": [
-          "clock",
-          "clock#utc"
+            "clock",
+            "custom/clock",
+            "clock#utc"
         ],
         "modules-right": [
-          "pulseaudio",
-          "battery",
-          "backlight",
-          "cpu",
-          "memory",
-          "tray",
+            "pulseaudio",
+            "battery",
+            "backlight",
+            "cpu",
+            "memory",
+            "tray",
         ],
         "power-profiles-daemon": {
             "format": "{icon}",
@@ -122,5 +123,8 @@
             "format-source-muted": "",
             "on-click": "pavucontrol"
         },
+        "custom/clock": {
+            "format": "",
+        }
     }
 ]

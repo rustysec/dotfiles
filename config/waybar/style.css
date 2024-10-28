@@ -6,8 +6,7 @@
 }
 
 window#waybar {
-  /* background-color: @mantle; */
-  background-color: transparent;
+  background-color: @background;
   color: #ffffff;
   transition-property: background-color;
   transition-duration: .5s;
@@ -32,7 +31,7 @@ pulseaudio#waybar.empty #window {
 #workspaces button {
   color: #ffffff;
   border: 2px solid @background;
-  border-bottom: 2px solid @green;
+  border: 2px solid @green;
   margin-right: 5px;
   border-radius: 0px;
   min-width: 0;
@@ -40,35 +39,32 @@ pulseaudio#waybar.empty #window {
 
 #workspaces button:hover {
   background-color: @background;
-  border-bottom: 2px solid @green;
-  border-top: 2px solid @green;
+  border: 2px solid @green;
   margin-right: 5px;
 }
 
 #workspaces button.visible {
-  border-bottom: 2px solid @green;
+  border: 2px solid @green;
   margin-right: 5px;
 }
 
 #workspaces button.active {
-  border-top: 2px solid @green;
-  border-bottom: 2px solid @green;
+  border: 2px solid @green;
   margin-right: 5px;
 }
 
 #workspaces button.active:hover {
-  border-top: 2px solid @purple;
+  border: 2px solid @comment;
   margin-right: 5px;
 }
 
 #workspaces button.focused {
-  border-top: 2px solid @comment;
-  border-bottom: 2px solid @comment;
+  border: 2px solid @comment;
   margin-right: 5px;
 }
 
 #workspaces button.focused:hover {
-  border-top: 2px solid @comment;
+  border: 2px solid @comment;
   margin-right: 5px;
 }
 
@@ -106,11 +102,13 @@ pulseaudio#waybar.empty #window {
 #clock {
   color: #ffffff;
   border-bottom: 2px solid @comment;
-  margin-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
-  margin-left: 3px;
-  margin-right: 3px;
+}
+
+#custom-clock {
+  color: #ffffff;
+  border-bottom: 2px solid @comment;
 }
 
 #power-profiles-daemon {

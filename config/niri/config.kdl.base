@@ -1,5 +1,5 @@
 layout {
-    gaps 8
+    gaps 4
     // "never"
     // "always"
     // "on-overflow"
@@ -18,7 +18,7 @@ layout {
         // fixed 1920
     }
 
-    default-column-width { proportion 1.0; }
+    default-column-width { proportion 0.5; }
     // `draw-border-with-background`.
 
     focus-ring {
@@ -40,10 +40,8 @@ layout {
     }
 
     struts {
-        left 2
-        right 2 
-        // top 8
-        // bottom 8
+        left 6
+        right 6 
     }
 }
 
@@ -94,6 +92,12 @@ window-rule {
 
 window-rule {
     match app-id=r#"^thunar$"#
+    default-column-width { proportion 0.5; }
+}
+
+window-rule {
+    match app-id=r#"^virt-manager$"#
+    match title=r#"^Virtual Machine Manager"#
     default-column-width { proportion 0.5; }
 }
 

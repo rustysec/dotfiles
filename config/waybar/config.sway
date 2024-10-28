@@ -8,6 +8,7 @@
         ],
         "modules-center": [
           "clock",
+          "separator",
           "clock#utc"
         ],
         "modules-right": [
@@ -118,7 +119,7 @@
             "format-source-muted": "",
             "on-click": "pavucontrol"
         },
-        "spacing": 4,
+        "spacing": 0,
         "tray": {
             "spacing": 10
         }
