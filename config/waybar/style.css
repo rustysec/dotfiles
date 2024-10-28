@@ -1,156 +1,151 @@
 @import url("./colors.css");
 
 * {
-  font-family: "Hack", "Font Awesome 6 Free";
-  font-size: 13px;
+    font-family: "Hack", "Font Awesome 6 Free";
+    font-size: 13px;
 }
 
 window#waybar {
-  background-color: @background;
-  color: #ffffff;
-  transition-property: background-color;
-  transition-duration: .5s;
+    background-color: @background;
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
 }
 
 button { }
 
 window#waybar.empty #window {
-  padding: 0px;
-  margin: 0px;
-  border: 0px;
-  background-color: transparent;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    background-color: transparent;
 }
 
 pulseaudio#waybar.empty #window {
-  padding: 0px;
-  margin: 0px;
-  border: 0px;
-  background-color: transparent;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    background-color: transparent;
 }
 
 #workspaces button {
-  color: #ffffff;
-  border: 2px solid @green;
-  margin-right: 5px;
-  border-radius: 0px;
-  min-width: 0;
+    color: #ffffff;
+    border: 2px solid @green;
+    margin-right: 5px;
+    border-radius: 0px;
+    min-width: 0;
 }
 
 #workspaces button:hover {
-  border: 2px solid @green;
-  margin-right: 5px;
+    border: 2px solid @green;
+    margin-right: 5px;
 }
 
 #workspaces button.visible {
-  background-color: @selection;
-  border: 2px solid @comment;
-  margin-right: 5px;
+    background-color: @selection;
+    border: 2px solid @comment;
+    margin-right: 5px;
 }
 
 #workspaces button.active {
-  border: 2px solid @comment;
-  margin-right: 5px;
+    border: 2px solid @comment;
+    margin-right: 5px;
 }
 
 #workspaces button.active:hover {
-  border: 2px solid @comment;
-  margin-right: 5px;
+    border: 2px solid @comment;
+    margin-right: 5px;
 }
 
 #workspaces button.focused {
-  background-color: @comment-lighter;
-  border: 2px solid @comment;
-  margin-right: 5px;
+    background-color: @comment-lighter;
+    border: 2px solid @comment;
+    margin-right: 5px;
 }
 
 #workspaces button.focused:hover {
-  border: 2px solid @comment;
-  margin-right: 5px;
+    border: 2px solid @comment;
+    margin-right: 5px;
 }
 
 #mode {
-  background-color: @green;
+    background-color: @green;
 }
 
 #battery,
 #bluetooth,
+#clock,
 #cpu,
+#custom-clock,
 #memory,
 #disk,
 #temperature,
 #backlight,
 #network,
+#power-profiles-daemon,
 #pulseaudio,
 #wireplumber,
-#custom-media,
 #tray,
 #mode,
 #idle_inhibitor,
 #scratchpad,
 #mpd,
 #mpris,
-#custom-updates,
-#window,
-#custom-niri {
-  color: #ffffff;
-  border-bottom: 2px solid @comment;
-  padding-right: 10px;
-  padding-left: 10px;
-  margin-left: 5px;
+#window {
+    color: #ffffff;
+    border-bottom: 2px solid @comment;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-left: 5px;
 }
 
 #clock {
-  color: #ffffff;
-  border-bottom: 2px solid @comment;
-  padding-left: 10px;
-  padding-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #custom-clock {
-  color: #ffffff;
-  border-bottom: 2px solid @comment;
-}
-
-#power-profiles-daemon {
-  color: #ffffff;
-  border-bottom: 2px solid @comment;
-  padding-left: 10px;
-  padding-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #mpris {
-  margin-left: 0px;
+    margin-left: 0px;
 }
 
 .modules-left {
-  margin-left: 10px;
+    margin-left: 10px;
 }
 
 .modules-right {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 .modules-left > widget:first-child > #workspaces {
-  margin-left: 0px;
-  margin-right: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 .modules-right > widget:last-child > #workspaces {
-  margin-right: 0px;
+    margin-right: 0px;
 }
 
 @keyframes blink {
-  to {
-    background-color: #ffffff;
-    color: #000000;
-  }
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
 }
 
 #battery.critical:not(.charging) {
-  color: #ffffff;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }

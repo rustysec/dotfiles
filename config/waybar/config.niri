@@ -7,7 +7,6 @@
             "spacing": 10
         },
         "modules-left": [
-            "power-profiles-daemon",
             "niri/workspaces",
         ],
         "modules-center": [
@@ -21,6 +20,7 @@
             "backlight",
             "cpu",
             "memory",
+            "power-profiles-daemon",
             "tray",
         ],
         "power-profiles-daemon": {
