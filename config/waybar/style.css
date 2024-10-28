@@ -30,7 +30,6 @@ pulseaudio#waybar.empty #window {
 
 #workspaces button {
   color: #ffffff;
-  border: 2px solid @background;
   border: 2px solid @green;
   margin-right: 5px;
   border-radius: 0px;
@@ -38,18 +37,18 @@ pulseaudio#waybar.empty #window {
 }
 
 #workspaces button:hover {
-  background-color: @background;
   border: 2px solid @green;
   margin-right: 5px;
 }
 
 #workspaces button.visible {
-  border: 2px solid @green;
+  background-color: @selection;
+  border: 2px solid @comment;
   margin-right: 5px;
 }
 
 #workspaces button.active {
-  border: 2px solid @green;
+  border: 2px solid @comment;
   margin-right: 5px;
 }
 
@@ -59,6 +58,7 @@ pulseaudio#waybar.empty #window {
 }
 
 #workspaces button.focused {
+  background-color: @comment-lighter;
   border: 2px solid @comment;
   margin-right: 5px;
 }

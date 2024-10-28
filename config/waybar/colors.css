@@ -3,6 +3,7 @@
 @define-color selection #2D4F67;
 @define-color foreground #DCD7BA;
 @define-color comment #6272a4;
+@define-color comment-lighter rgba(98, 114, 164, 0.25);
 @define-color cyan #6A9589;
 @define-color green #7AA89F;
 @define-color orange #FFA066;
