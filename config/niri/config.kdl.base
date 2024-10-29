@@ -1,5 +1,5 @@
 layout {
-    gaps 4
+    gaps 5
     center-focused-column "never"
     always-center-single-column
 
@@ -27,8 +27,8 @@ layout {
     }
 
     struts {
-        left 6
-        right 6 
+        left 5
+        right 5
     }
 }
 
@@ -53,6 +53,11 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 animations {
     // off
     // slowdown 3.0
+}
+
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
 }
 
 window-rule {
@@ -215,6 +220,13 @@ binds {
     Mod+F { maximize-column; }
     Mod+Q { set-column-width "25%"; }
     Mod+W { set-column-width "50%"; }
+
+    Mod+Alt+1 { set-column-width "25%"; }
+    Mod+Alt+2 { set-column-width "33.333%"; }
+    Mod+Alt+3 { set-column-width "50%"; }
+    Mod+Alt+4 { set-column-width "66.667%"; }
+    Mod+Alt+5 { set-column-width "75%"; }
+    Mod+Alt+6 { maximize-column; }
 
     Mod+R { switch-preset-column-width; }
     Mod+Shift+F { fullscreen-window; }
