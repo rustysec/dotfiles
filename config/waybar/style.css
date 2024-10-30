@@ -7,9 +7,10 @@
 
 window#waybar {
     background-color: @background;
-    color: #ffffff;
+    color: @foreground;
     transition-property: background-color;
     transition-duration: .5s;
+    border-bottom: 2px solid @comment;
 }
 
 window#waybar.empty #window {
@@ -27,10 +28,9 @@ pulseaudio#waybar.empty #window {
 }
 
 #workspaces button {
-    color: #ffffff;
+    color: @foreground;
     border: 2px solid @green;
     margin-right: 5px;
-    border-radius: 0px;
     min-width: 0;
     margin-bottom: 5px;
     border-radius: 12px;
@@ -63,6 +63,11 @@ pulseaudio#waybar.empty #window {
     margin-right: 5px;
 }
 
+#workspaces button.focused label {
+    font-weight: bold;
+    font-style: italic;
+}
+
 #workspaces button.focused:hover {
     border: 2px solid @comment;
     margin-right: 5px;
@@ -75,6 +80,7 @@ pulseaudio#waybar.empty #window {
 #battery,
 #bluetooth,
 #clock,
+#custom-clock,
 #cpu,
 #custom-clock,
 #memory,
@@ -86,36 +92,43 @@ pulseaudio#waybar.empty #window {
 #pulseaudio,
 #wireplumber,
 #tray,
+#wireplumber,
 #mode,
 #idle_inhibitor,
 #scratchpad,
 #mpd,
 #mpris,
 #window {
-    color: #ffffff;
-    border-bottom: 2px solid @comment;
+    color: @foreground;
     padding-right: 10px;
     padding-left: 10px;
+    margin-top: 5px;
     margin-left: 5px;
     margin-bottom: 5px;
 }
 
+#power-profiles-daemon {
+    color: @orange;
+}
+
+#memory {
+    color: @cyan;
+}
+
+#cpu {
+    color: @purple;
+}
+
+#pulseaudio {
+    color: @pink;
+}
+
 #clock {
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-left: 0px;
-    margin-right: 0px;
+    color: @foreground;
 }
 
 #custom-clock {
-    padding-left: 5px;
-    padding-right: 5px;
-    margin-left: 0px;
-    margin-right: 0px;
-}
-
-#mpris {
-    margin-left: 0px;
+    color: @pink;
 }
 
 .modules-left {
@@ -137,13 +150,13 @@ pulseaudio#waybar.empty #window {
 
 @keyframes blink {
     to {
-        background-color: #ffffff;
-        color: #000000;
+        background-color: @purple;
+        color: @foreground;
     }
 }
 
 #battery.critical:not(.charging) {
-    color: #ffffff;
+    color: @red;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;

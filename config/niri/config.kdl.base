@@ -55,7 +55,7 @@ animations {
     // slowdown 3.0
 }
 
-window-rule {
+/-window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }
