@@ -125,10 +125,14 @@ pulseaudio#waybar.empty #window {
 
 #clock {
     color: @foreground;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #custom-clock {
     color: @pink;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 .modules-left {
