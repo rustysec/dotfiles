@@ -16,10 +16,10 @@
         ],
         "modules-right": [
             "pulseaudio",
-            "battery",
             "backlight",
             "cpu",
             "memory",
+            "battery",
             "power-profiles-daemon",
             "tray",
         ],

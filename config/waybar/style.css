@@ -111,6 +111,10 @@ pulseaudio#waybar.empty #window {
     color: @orange;
 }
 
+#battery {
+    color: @magenta;
+}
+
 #memory {
     color: @cyan;
 }
@@ -121,6 +125,10 @@ pulseaudio#waybar.empty #window {
 
 #pulseaudio {
     color: @pink;
+}
+
+#backlight {
+    color: @green;
 }
 
 #clock {
