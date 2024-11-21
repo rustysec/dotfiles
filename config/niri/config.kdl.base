@@ -100,7 +100,7 @@ window-rule {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+Return { spawn "alacritty" "-e" "tmux" "new"; }
+    Mod+Return { spawn "alacritty" "-e" "toolbox" "run" "tmux" "new"; }
     Mod+Shift+Return { spawn "alacritty"; }
     Mod+Ctrl+Return { spawn "alacritty" "--config" "/home/russ/.config/alacritty/light.toml" "tmux" "new"; }
     Mod+Space { spawn "fuzzel"; }

@@ -1,5 +1,6 @@
+[general]
 import = [
-"~/.config/alacritty/config.toml"
+    "~/.config/alacritty/config.toml"
 ]
 
 # Nightfox Alacritty Colors
