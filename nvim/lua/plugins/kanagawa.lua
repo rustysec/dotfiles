@@ -111,8 +111,47 @@ return {
                 groups = {},
             })
 
-            vim.cmd("colorscheme nightfox")
+            -- vim.cmd("colorscheme nightfox")
         end
 
+    },
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {
+            transparent = true,
+        },
+    },
+    {
+        "navarasu/onedark.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {
+            transparent = true,
+        },
+        config = function()
+            require('onedark').setup({
+                transparent = true,
+            })
+
+            -- vim.cmd("colorscheme onedark")
+        end
+    },
+    {
+        "Mofiqul/dracula.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {
+            transparent = true,
+        },
+        config = function()
+            require('dracula').setup({
+                transparent_bg = true,
+                italic_comment = true,
+            })
+
+            vim.cmd("colorscheme dracula")
+        end
     }
 }

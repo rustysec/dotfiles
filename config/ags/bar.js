@@ -6,16 +6,16 @@ const systemtray = await Service.import("systemtray")
 import brightness from "./services/brightness.js";
 import { NotificationPopups } from "./notificationPopups.js";
 import { SystemMenu } from "./systemMenu.js";
+import Gdk from "gi://Gdk";
+import { App } from "astal/gtk3"
 
 const date = Variable("", {
     poll: [1000, 'date "+%H:%M | %e %b %Y"'],
 })
 
-/*
 const workspaces = Variable("", {
     poll: [500, 'niri msg -j workspaces'],
 })
-*/
 
 var systemMenu = null;
 
@@ -245,7 +245,7 @@ function Left(monitor = 0) {
         spacing: 10,
         children: [
             Notification(monitor),
-            // Workspaces(monitor),
+            Workspaces(monitor),
             Media(),
         ],
     })
@@ -284,7 +284,22 @@ function Right(monitor = 0) {
     })
 }
 
-export function Bar(monitor = 0) {
+export function MonitorName(id) {
+    let thing = Gdk.Display.get_default()?.get_monitor(id);
+    console.log(`thing: ${thing.model}`);
+    let qdata = thing.qdata;
+    console.log(`thing: ${qdata}`);
+
+    const monitors = JSON.parse(Utils.exec('niri msg -j outputs'));
+    let monitorFromId = Object.values(monitors)[id];
+    console.log(`${id} monitor name: ${monitorFromId.name}`);
+}
+
+
+export function Bar(monitor) {
+    console.log(`starting bar on ${monitor}`);
+    MonitorName(monitor);
+
     return Widget.Window({
         name: `bar-${monitor}`, // name has to be unique
         class_name: "bar",

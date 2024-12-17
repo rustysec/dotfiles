@@ -172,6 +172,7 @@ end
 
 local keymaps = {
     { mode = 'n', key = '<C-S>',      action = ':w<cr>' },
+    { mode = 'n', key = '<C-]>',      action = ':w<cr>' },
     { mode = 'i', key = '<C-S>',      action = '<esc>:w<cr>' },
 
     { mode = 'n', key = '<leader>e',  action = ':Oil<cr>' },
