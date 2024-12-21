@@ -11,10 +11,12 @@ config.color_scheme = 'Dracula (Official)'
 config.font = wezterm.font('Hack Nerd Font')
 config.font_size = 10.0
 config.enable_tab_bar = false
+config.show_tabs_in_tab_bar = false
 config.enable_scroll_bar = false
 config.enable_wayland = true
 config.disable_default_mouse_bindings = true
 config.swallow_mouse_click_on_window_focus = true
+-- config.window_decorations = "RESIZE"
 
 config.window_padding = {
     --[[
