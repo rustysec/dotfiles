@@ -1,0 +1,18 @@
+theme = "dracula"
+
+[editor]
+line-number = "relative"
+
+[keys.normal]
+"{" = "page_cursor_half_up"
+"}" = "page_cursor_half_down"
+C-j = "jump_view_down"
+C-k = "jump_view_up"
+C-h = "jump_view_left"
+C-l = "jump_view_right"
+"C-down" = "jump_view_down"
+"C-up" = "jump_view_up"
+"C-left" = "jump_view_left"
+"C-right" = "jump_view_right"
+"L" = ":bnext"
+"H" = ":bprev"
