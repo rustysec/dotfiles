@@ -8,11 +8,10 @@
         },
         "modules-left": [
             "niri/workspaces",
+            "custom/niri",
         ],
         "modules-center": [
             "clock",
-            "custom/clock",
-            "clock#utc"
         ],
         "modules-right": [
             "pulseaudio",
@@ -70,12 +69,39 @@
             "format-connected": " {device_alias}",
             "format-connected-battery": " {device_alias} {device_battery_percentage}%"
         },
-        "clock": {
+        "clock#old": {
             "format": "{:%a | %b %d | %H:%M %Z}"
         },
         "clock#utc": {
             "format": "{:%a | %b %d | %H:%M %Z}",
             "timezone": "Etc/UTC"
+        },
+        "clock": {
+            "format": "{:%a | %b %d | %H:%M %Z}",
+            "tooltip-format": "<tt><small>{calendar}</small></tt>",
+            "calendar": {
+                "mode"          : "year",
+                "mode-mon-col"  : 3,
+                "weeks-pos"     : "right",
+                "on-scroll"     : 1,
+                "format": {
+                    "months":     "<span color='#f8f8f2'><b>{}</b></span>",
+                    "days":       "<span color='#ff79c6'><b>{}</b></span>",
+                    "weeks":      "<span color='#8be9fd'><b>W{}</b></span>",
+                    "weekdays":   "<span color='#f1fa8c'><b>{}</b></span>",
+                    "today":      "<span color='#50fa7b'><b><u>{}</u></b></span>"
+                }
+            },
+            "actions":  {
+                "on-click": "tz_up",
+                "on-click-right": "shift_up",
+                "on-scroll-up": "shift_reset",
+            },
+            "timezones": [
+                "America/Los_Angeles",
+                "America/New_York",
+                "Etc/UTC",
+            ]
         },
         "cpu": {
             "format": "{usage}% ",
@@ -125,6 +151,12 @@
         },
         "custom/clock": {
             "format": "",
+        },
+        "custom/niri": {
+            "exec": "~/.config/waybar/niri.sh",
+            "interval": 1,
+            "format": " {}",
+            "hide-empty-text": true,
         }
     }
 ]

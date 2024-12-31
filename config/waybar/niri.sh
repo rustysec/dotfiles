@@ -1,27 +1,16 @@
-#!/usr/bin/env node
+#!/usr/bin/env python3
 
-const { spawnSync } = require('child_process');
+import json
+import os
+import subprocess
 
-let output = process.argv[2]
+output = os.environ.get('WAYBAR_OUTPUT_NAME', 'whoops')
 
-let { stdout, stderr } = spawnSync('niri', ['msg', '-j', 'workspaces'])
+workspaces = json.loads(subprocess.run(['niri', 'msg', '-j', 'workspaces'], stdout=subprocess.PIPE).stdout)
+workspace = list(filter(lambda x: x['output'] == output and x['is_active'] == True, workspaces))
+workspace_id = workspace.pop()['id']
 
-let items = JSON.parse(stdout.toString())
-    .filter(item => item.output == output)
-    .sort((a, b) => {
-        if (a.idx < b.idx) {
-            return -1;
-        } else {
-            return 1;
-        }
-    })
-    .map(item => {
-        if (item.is_active) {
-            return ''
-        } else {
-            return ''
-        }
-    })
-    .join('  ');
-
-console.log(`${items}`)
+windows = json.loads(subprocess.run(['niri', 'msg', '-j', 'windows'], stdout=subprocess.PIPE).stdout)
+count = len(list(filter(lambda x: x['workspace_id'] == workspace_id, windows)))
+if count > 0:
+    print(count)

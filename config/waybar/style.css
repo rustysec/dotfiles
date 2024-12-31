@@ -1,8 +1,10 @@
 @import url("./colors.css");
 
 * {
-    font-family: "Hack", "Font Awesome 6 Free";
-    font-size: 13px;
+    font-family: "Hack Nerd Font", "Font Awesome 6 Free";
+    font-size: 9pt;
+    padding: 0pt;
+    margin: 0pt;
 }
 
 window#waybar {
@@ -29,37 +31,35 @@ pulseaudio#waybar.empty #window {
 
 #workspaces button {
     color: @foreground;
-    border: 2px solid @green;
+    border: 2px solid @comment;
     margin-right: 5px;
-    min-width: 0;
+    min-width: 20px;
     margin-bottom: 5px;
     border-radius: 12px;
 }
 
 #workspaces button:hover {
-    border: 2px solid @green;
+    border: 2px solid @purple;
     margin-right: 5px;
 }
 
 #workspaces button.visible {
-    background-color: @selection;
-    border: 2px solid @comment;
+    border: 2px solid @green;
     margin-right: 5px;
 }
 
 #workspaces button.active {
-    border: 2px solid @comment;
+    border: 2px solid @green;
     margin-right: 5px;
 }
 
 #workspaces button.active:hover {
-    border: 2px solid @comment;
+    border: 2px solid @green;
     margin-right: 5px;
 }
 
 #workspaces button.focused {
-    background-color: @comment-lighter;
-    border: 2px solid @comment;
+    border: 2px solid @green;
     margin-right: 5px;
 }
 
@@ -69,7 +69,7 @@ pulseaudio#waybar.empty #window {
 }
 
 #workspaces button.focused:hover {
-    border: 2px solid @comment;
+    border: 2px solid @green;
     margin-right: 5px;
 }
 
@@ -81,8 +81,8 @@ pulseaudio#waybar.empty #window {
 #bluetooth,
 #clock,
 #custom-clock,
+#custom-niri,
 #cpu,
-#custom-clock,
 #memory,
 #disk,
 #temperature,
@@ -135,9 +135,19 @@ pulseaudio#waybar.empty #window {
     color: @foreground;
     margin-left: 0px;
     margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 #custom-clock {
+    color: @pink;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#custom-niri {
     color: @pink;
     margin-left: 0px;
     margin-right: 0px;
@@ -156,8 +166,9 @@ pulseaudio#waybar.empty #window {
     margin-right: 0px;
 }
 
-.modules-right > widget:last-child > #workspaces {
+.modules-left> widget:last-child > #workspaces {
     margin-right: 0px;
+    padding-right: 0px;
 }
 
 @keyframes blink {
