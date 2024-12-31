@@ -1,12 +1,12 @@
 layout {
-    gaps 5
+    gaps 4
     center-focused-column "never"
     always-center-single-column
 
     preset-column-widths {
+        proportion 0.5
         proportion 0.25
         proportion 0.33333
-        proportion 0.5
         proportion 0.66667
         proportion 0.75
         proportion 1.0
@@ -20,15 +20,17 @@ layout {
 
     border {
         width 2
-        active-color "#63cdcf"
-        inactive-color "#39506d"
+        active-color "#bd93f9"                                                                    22:33:08 [45/61]
+        inactive-color "#6272a4"
         // active-gradient from="#f5c2e7" to="#89b4fa" angle=90 relative-to="workspace-view"
         // inactive-gradient from="#cdd6f4" to="#181825" angle=90 relative-to="workspace-view"
     }
 
     struts {
-        left 5
-        right 5
+        left -2
+        right -2
+        bottom -4
+        top 0
     }
 }
 
@@ -37,10 +39,10 @@ spawn-at-startup "~/.config/niri/background.sh"
 spawn-at-startup "~/.config/niri/swayidle.sh"
 spawn-at-startup "/usr/libexec/xdg-desktop-portal-gtk"
 spawn-at-startup "/usr/libexec/xdg-desktop-portal-gnome"
-spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
+spawn-at-startup "/usr/libexec/kf6/polkit-kde-authentication-agent-1"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "'prefer-dark'"
-spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "'Adwaita-dark'"
-spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "'Papirus'"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "'Breeze-Dark'"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "'breeze-dark'"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-theme" "'__CURSOR_THEME__'"
 spawn-at-startup "blueman-applet"
 spawn-at-startup "nm-applet"
@@ -56,7 +58,7 @@ animations {
 }
 
 /-window-rule {
-    geometry-corner-radius 12
+    geometry-corner-radius 8
     clip-to-geometry true
 }
 
@@ -234,11 +236,11 @@ binds {
     Ctrl+Alt+Q { set-column-width "25%"; }
     Ctrl+Alt+H { set-column-width "50%"; }
 
-    Mod+Minus { set-column-width "-10%"; }
-    Mod+Equal { set-column-width "+10%"; }
+    Mod+Minus { set-column-width "-5%"; }
+    Mod+Equal { set-column-width "+5%"; }
 
-    Mod+Shift+Minus { set-window-height "-10%"; }
-    Mod+Shift+Equal { set-window-height "+10%"; }
+    Mod+Shift+Minus { set-window-height "-5%"; }
+    Mod+Shift+Equal { set-window-height "+5%"; }
 
     Mod+Ctrl+Space { switch-layout "prev"; }
 
@@ -259,4 +261,8 @@ cursor {
 
 hotkey-overlay {
     skip-at-startup
+}
+
+environment {
+    QT_QPA_PLATFORMTHEME "kde"
 }
