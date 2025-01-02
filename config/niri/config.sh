@@ -3,8 +3,8 @@
 dir=`dirname $0`
 hostname=`hostname`
 distro=`lsb_release -a 2>/dev/null | grep Description | awk '{print $2}' | tr A-Z a-z || "Unknown"`
-# cursor_theme='breeze_cursors'
-cursor_theme='Adwaita'
+cursor_theme='breeze_cursors'
+# cursor_theme='Adwaita'
 
 cat $dir/config.kdl.base > ~/.config/niri/config.kdl
 cat $dir/config.kdl.$hostname >> ~/.config/niri/config.kdl 2>/dev/null

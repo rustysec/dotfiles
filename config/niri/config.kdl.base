@@ -20,7 +20,7 @@ layout {
 
     border {
         width 2
-        active-color "#bd93f9"                                                                    22:33:08 [45/61]
+        active-color "#bd93f9"
         inactive-color "#6272a4"
         // active-gradient from="#f5c2e7" to="#89b4fa" angle=90 relative-to="workspace-view"
         // inactive-gradient from="#cdd6f4" to="#181825" angle=90 relative-to="workspace-view"
@@ -57,7 +57,7 @@ animations {
     // slowdown 3.0
 }
 
-/-window-rule {
+window-rule {
     geometry-corner-radius 8
     clip-to-geometry true
 }
