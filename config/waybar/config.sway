@@ -3,7 +3,6 @@
         "layer": "top",
         "position": "top",
         "modules-left": [
-          "power-profiles-daemon",
           "sway/workspaces",
         ],
         "modules-center": [
@@ -12,11 +11,13 @@
           "clock#utc"
         ],
         "modules-right": [
+          "sway/mode",
           "pulseaudio",
           "battery",
           "backlight",
           "cpu",
           "memory",
+          "power-profiles-daemon",
           "tray",
         ],
         "power-profiles-daemon": {

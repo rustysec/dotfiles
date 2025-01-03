@@ -9,9 +9,8 @@ focus_on_window_activation smart
 mouse_warping output
 workspace_layout default
 workspace_auto_back_and_forth no
-seat seat0 xcursor_theme Catppuccin-Mocha-Dark-Cursors 24
+seat seat0 xcursor_theme breeze_cursors 24
 
-bindsym Mod4+0 workspace number 10
 bindsym Mod4+1 workspace number 1
 bindsym Mod4+2 workspace number 2
 bindsym Mod4+3 workspace number 3
@@ -21,12 +20,12 @@ bindsym Mod4+6 workspace number 6
 bindsym Mod4+7 workspace number 7
 bindsym Mod4+8 workspace number 8
 bindsym Mod4+9 workspace number 9
+bindsym Mod4+0 workspace number 10
 bindsym Mod4+Down focus down
 bindsym Mod4+Left focus left
-bindsym Mod4+Return exec foot -e tmux new
-bindsym Mod4+Ctrl+Return exec foot -c ~/.config/foot/light.ini -e tmux new
+bindsym Mod4+Return exec alacritty -e tmux new
+bindsym Mod4+Ctrl+Return exec alacritty -c ~/.config/alacritty/light.toml -e tmux new
 bindsym Mod4+Right focus right
-bindsym Mod4+Shift+0 move container to workspace number 10
 bindsym Mod4+Shift+1 move container to workspace number 1
 bindsym Mod4+Shift+2 move container to workspace number 2
 bindsym Mod4+Shift+3 move container to workspace number 3
@@ -36,6 +35,7 @@ bindsym Mod4+Shift+6 move container to workspace number 6
 bindsym Mod4+Shift+7 move container to workspace number 7
 bindsym Mod4+Shift+8 move container to workspace number 8
 bindsym Mod4+Shift+9 move container to workspace number 9
+bindsym Mod4+Shift+0 move container to workspace number 10
 bindsym Mod4+Shift+Down move down
 bindsym Mod4+Shift+Left move left
 bindsym Mod4+Shift+Return exec foot
@@ -50,7 +50,7 @@ bindsym Mod4+Shift+l move right
 bindsym Mod4+Shift+p exec foot -T python -e python3 --command python
 bindsym Mod4+Shift+q kill
 bindsym Mod4+Shift+t floating toggle
-bindsym Mod4+Shift+v exec bash ~/.config/virt-helper/launch-vm.sh
+bindsym Mod4+Shift+v exec bash ~/dotfiles/config/virt-helper/launch-vm.sh
 bindsym Mod4+Shift+x move scratchpad
 bindsym Mod4+Space exec fuzzel
 bindsym Mod4+Up focus up
@@ -93,13 +93,15 @@ mode "resize" {
 }
 
 gaps inner 5
-gaps outer 5
+gaps outer 0
 
-# exec pipewire
+exec ~/.config/sway/pipewire.sh
 # exec pipewire-pulse
-| exec wireplumber
+# exec wireplumber
 exec /usr/libexec/xdg-desktop-portal-wlr
-exec /usr/libexec/polkit-mate-authentication-agent-1
+exec /usr/libexec/xdg-desktop-portal-gtk
+exec /usr/libexec/xdg-desktop-portal-kde
+exec /usr/libexec/polkit-kde-authentication-agent-1
 
 exec_always kanshi
 
@@ -107,7 +109,7 @@ exec waybar -c ~/.config/waybar/config.sway
 
 exec swaybg -m fill --image ~/.config/sway/background.jpg
 
-exec swayidle -w timeout 300 'swaylock' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock' 
+exec swayidle -w timeout 300 'gtklock' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'gtklock' 
 
 exec blueman-applet
 
@@ -117,50 +119,38 @@ exec nm-applet --indicator
 
 exec gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
-exec gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita'
+exec gsettings set org.gnome.desktop.interface gtk-theme 'Breeze-Dark'
 
-exec gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
+exec gsettings set org.gnome.desktop.interface icon-theme 'breeze-dark'
 
-exec gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
+exec gsettings set org.gnome.desktop.interface cursor-theme 'breeze_cursors'
 
 exec "dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE"
 
 exec_always python3 ~/pkgs/autotiling/autotiling/main.py
 
-set $rosewater #f5e0dc
-set $flamingo  #f2cdcd
-set $pink      #f5c2e7
-set $mauve     #cba6f7
-set $red       #f38ba8
-set $maroon    #eba0ac
-set $peach     #fab387
-set $yellow    #f9e2af
-set $green     #a6e3a1
-set $teal      #94e2d5
-set $sky       #89dceb
-set $sapphire  #74c7ec
-set $blue      #89b4fa
-set $lavender  #b4befe
-set $text      #cdd6f4
-set $subtext1  #bac2de
-set $subtext0  #a6adc8
-set $overlay2  #9399b2
-set $overlay1  #7f849c
-set $overlay0  #6c7086
-set $surface2  #585b70
-set $surface1  #45475a
-set $surface0  #313244
-set $base      #1e1e2e
-set $mantle    #181825
-set $crust     #11111b
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 
-#                        border    bg    text   indic     child_border
-client.focused           $teal     $base $text  $teal     $teal
-client.focused_inactive  $overlay0 $base $text  $overlay0 $overlay0
-client.unfocused         $overlay0 $base $text  $overlay0 $overlay0
-client.urgent            $peach    $base $peach $peach    $peach
-client.placeholder       $overlay0 $base $text  $overlay0 $overlay0
-client.background        $base
+client.background       #F8F8F2
+
+# bar {
+#   colors {
+#     background #282A36
+#     statusline #F8F8F2
+#     separator  #44475A
+# 
+#     focused_workspace  #44475A #44475A #F8F8F2
+#     active_workspace   #282A36 #44475A #F8F8F2
+#     inactive_workspace #282A36 #282A36 #BFBFBF
+#     urgent_workspace   #FF5555 #FF5555 #F8F8F2
+#     binding_mode       #FF5555 #FF5555 #F8F8F2
+#   }
+# }
 
 input "1267:12624:ELAN0670:00_04F3:3150_Touchpad" {
   dwt enabled
@@ -186,7 +176,14 @@ input "1452:613:Apple_Inc._Magic_Trackpad" {
   click_method clickfinger
 }
 
-exec_always swaymsg input "1:1:AT_Translated_Set_2_keyboard" {
+
+input "1739:52643:CUST0001:00_06CB:CDA3_Touchpad" {
+  dwt enabled
+  natural_scroll enabled
+  click_method clickfinger
+}
+
+input "1:1:AT_Translated_Set_2_keyboard" {
   xkb_layout "us"
   xkb_variant "colemak"
   xkb_options caps:swapescape
@@ -196,6 +193,12 @@ input "1452:834:Apple_Internal_Keyboard_/_Trackpad" {
   dwt enabled
   natural_scroll enabled
   click_method clickfinger
+  xkb_layout "us"
+  xkb_variant "colemak"
+  xkb_options caps:swapescape
+}
+
+input "5426:586:Razer_Razer_Blade" {
   xkb_layout "us"
   xkb_variant "colemak"
   xkb_options caps:swapescape
@@ -213,3 +216,14 @@ for_window [window_role="dialog"] floating enable
 for_window [app_id="thunar" title="^Confirm to replace files"] floating enable
 for_window [app_id="thunar" title="File Operation Progress"] floating enable
 for_window [app_id="foot" title="python"] floating enable
+
+corner_radius 8
+blur enable
+blur_passes 5
+# blur_noise 0.5
+# blur_brightness 1
+# blur_contrast 1
+# blur_saturation 1
+
+# layer_effects 'launcher' 'blur enable ; blur_passes 5'
+# layer_effects 'gtk-layer-shell' 'blur enable ; blur_passes 5'
