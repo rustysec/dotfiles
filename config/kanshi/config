@@ -3,8 +3,8 @@ profile helvetios {
 }
 
 profile quoth {
-  output "LG Electronics LG Ultra HD 0x00072EE9" position 0,0 scale 1.500000
-  output "HP Inc. HP Z27q G3 CN4112035R" position 0,1440 scale 1.000000
+  output "LG Electronics LG Ultra HD 0x00072EE9" position 0,440 scale 1.500000
+  output "HP Inc. HP Z27q G3 CN4112035R" position 2560,0 scale 1.000000 transform 90
 }
 
 profile sucellus {

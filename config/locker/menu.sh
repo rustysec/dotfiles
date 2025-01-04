@@ -11,7 +11,7 @@ case $OPT in
     hyprctl dispatch exit 0 || swaymsg exit || niri msg action quit -s
     ;;
   " Lock")
-    niri msg action do-screen-transition 2>&1 ; gtklock
+    niri msg action do-screen-transition 2>&1 ; gtklock || swaylock
     ;;
   *)
     echo "Doing Nothing!"

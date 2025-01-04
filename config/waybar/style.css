@@ -35,7 +35,9 @@ pulseaudio#waybar.empty #window {
     margin-right: 5px;
     min-width: 20px;
     margin-bottom: 5px;
-    border-radius: 12px;
+    border-radius: 8;
+    padding-left: 1px;
+    padding-right: 1px;
 }
 
 #workspaces button:hover {
