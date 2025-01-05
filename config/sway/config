@@ -23,8 +23,9 @@ bindsym Mod4+9 workspace number 9
 bindsym Mod4+0 workspace number 10
 bindsym Mod4+Down focus down
 bindsym Mod4+Left focus left
-bindsym Mod4+Return exec alacritty -e toolbox run tmux new
-bindsym Mod4+Ctrl+Return exec alacritty --config-file ~/.config/alacritty/light.toml -e toolbox run tmux new
+bindsym Mod4+Return exec ~/.config/sway/terminal.sh
+bindsym Mod4+Ctrl+Return exec ~/.config/sway/terminal.sh --light
+bindsym Mod4+Shift+Return exec ~/.config/sway/terminal.sh --vanilla
 bindsym Mod4+Right focus right
 bindsym Mod4+Shift+1 move container to workspace number 1
 bindsym Mod4+Shift+2 move container to workspace number 2
@@ -38,7 +39,6 @@ bindsym Mod4+Shift+9 move container to workspace number 9
 bindsym Mod4+Shift+0 move container to workspace number 10
 bindsym Mod4+Shift+Down move down
 bindsym Mod4+Shift+Left move left
-bindsym Mod4+Shift+Return exec foot
 bindsym Mod4+Shift+Right move right
 bindsym Mod4+Shift+Up move up
 bindsym Mod4+Shift+e exec bash ~/.config/locker/menu.sh
@@ -47,7 +47,6 @@ bindsym Mod4+Shift+h move left
 bindsym Mod4+Shift+j move down
 bindsym Mod4+Shift+k move up
 bindsym Mod4+Shift+l move right
-bindsym Mod4+Shift+p exec foot -T python -e python3 --command python
 bindsym Mod4+Shift+q kill
 bindsym Mod4+Shift+t floating toggle
 bindsym Mod4+Shift+v exec bash ~/dotfiles/config/virt-helper/launch-vm.sh
@@ -96,9 +95,7 @@ mode "resize" {
 gaps inner 5
 gaps outer 0
 
-# exec ~/.config/sway/pipewire.sh
-# exec pipewire-pulse
-# exec wireplumber
+exec ~/.config/sway/pipewire.sh
 exec /usr/libexec/xdg-desktop-portal-wlr
 exec /usr/libexec/xdg-desktop-portal-gtk
 exec /usr/libexec/xdg-desktop-portal-kde
@@ -129,6 +126,8 @@ exec gsettings set org.gnome.desktop.interface cursor-theme 'breeze_cursors'
 exec "dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE"
 
 exec_always python3 ~/pkgs/autotiling/autotiling/main.py
+
+exec_always ~/.config/sway/fx.sh
 
 # class                 border  bground text    indicator child_border
 client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
@@ -218,13 +217,3 @@ for_window [app_id="thunar" title="^Confirm to replace files"] floating enable
 for_window [app_id="thunar" title="File Operation Progress"] floating enable
 for_window [app_id="foot" title="python"] floating enable
 
-corner_radius 8
-blur enable
-blur_passes 5
-# blur_noise 0.5
-# blur_brightness 1
-# blur_contrast 1
-# blur_saturation 1
-
-# layer_effects 'launcher' 'blur enable ; blur_passes 5'
-# layer_effects 'gtk-layer-shell' 'blur enable ; blur_passes 5'
