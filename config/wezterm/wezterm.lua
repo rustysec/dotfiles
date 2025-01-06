@@ -16,7 +16,7 @@ config.enable_scroll_bar = false
 config.enable_wayland = true
 config.disable_default_mouse_bindings = true
 config.swallow_mouse_click_on_window_focus = true
-config.window_background_opacity = 0.9
+config.window_background_opacity = 1.0
 -- config.window_decorations = "RESIZE"
 
 config.window_padding = {

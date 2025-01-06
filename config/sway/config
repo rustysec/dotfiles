@@ -1,4 +1,4 @@
-font pango:Hack, Font Awesome 6 Free 13.000000
+font pango:Hack, Font Awesome 6 Free 11.000000
 floating_modifier Mod4
 default_border pixel 2
 default_floating_border normal 2
@@ -10,6 +10,8 @@ mouse_warping output
 workspace_layout default
 workspace_auto_back_and_forth no
 seat seat0 xcursor_theme breeze_cursors 24
+smart_gaps on
+smart_borders on
 
 bindsym Mod4+1 workspace number 1
 bindsym Mod4+2 workspace number 2
@@ -62,17 +64,20 @@ bindsym Mod4+j focus down
 bindsym Mod4+k focus up
 bindsym Mod4+l focus right
 bindsym Mod4+minus splitv
+bindsym Mod4+r mode resize
 bindsym Mod4+s layout stacking
 bindsym Mod4+t focus mode_toggle
 bindsym Mod4+w layout tabbed
 bindsym Mod4+x scratchpad show
 bindsym Mod4+p exec grim -g "$(slurp -d)" - | wl-copy -t image/png
+bindsym Mod4+Shift+Space floating toggle
+bindsym Mod4+Ctrl+Space focus mode_toggle
 bindsym Print exec grim -g "$(slurp -d)" - | wl-copy -t image/png
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPrev exec playerctl previous
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
-bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%- ; brightnessctl -s
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+; brightnessctl -s
 bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+
 bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-
 bindsym XF86AudioMute        exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
@@ -86,28 +91,30 @@ mode "resize" {
   bindsym Return mode default
   bindsym Right resize grow width 10 px
   bindsym Up resize shrink height 10 px
-  bindsym h resize shrink width 10 px
+  bindsym h resize grow width 10 px
   bindsym j resize grow height 10 px
   bindsym k resize shrink height 10 px
-  bindsym l resize grow width 10 px
+  bindsym l resize shrink width 10 px
 }
 
 gaps inner 5
 gaps outer 0
 
 exec ~/.config/sway/pipewire.sh
-exec /usr/libexec/xdg-desktop-portal-wlr
-exec /usr/libexec/xdg-desktop-portal-gtk
-exec /usr/libexec/xdg-desktop-portal-kde
+# exec /usr/libexec/xdg-desktop-portal-wlr
+# exec /usr/libexec/xdg-desktop-portal-gtk
+# exec /usr/libexec/xdg-desktop-portal-kde
 exec /usr/libexec/polkit-kde-authentication-agent-1
 
 exec_always kanshi
+
+exec brightnessctl -r
 
 exec waybar -c ~/.config/waybar/config.sway
 
 exec swaybg -m fill --image ~/.config/sway/background.jpg
 
-exec swayidle -w timeout 300 'swaylock' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock' 
+exec swayidle -w timeout 300 '~/.config/sway/lock.sh' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep '~/.config/sway/lock.sh' 
 
 exec blueman-applet
 
@@ -117,7 +124,7 @@ exec nm-applet --indicator
 
 exec gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
-exec gsettings set org.gnome.desktop.interface gtk-theme 'Breeze-Dark'
+exec gsettings set org.gnome.desktop.interface gtk-theme 'Breeze'
 
 exec gsettings set org.gnome.desktop.interface icon-theme 'breeze-dark'
 
@@ -127,10 +134,11 @@ exec "dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CU
 
 exec_always python3 ~/pkgs/autotiling/autotiling/main.py
 
-exec_always ~/.config/sway/fx.sh
+exec ~/.config/sway/fx.sh
 
 # class                 border  bground text    indicator child_border
-client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+# client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused          #6272A4 #6272A4 #F8F8F2 #FF79C6   #6272A4
 client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
 client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
 client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
@@ -216,4 +224,3 @@ for_window [window_role="dialog"] floating enable
 for_window [app_id="thunar" title="^Confirm to replace files"] floating enable
 for_window [app_id="thunar" title="File Operation Progress"] floating enable
 for_window [app_id="foot" title="python"] floating enable
-

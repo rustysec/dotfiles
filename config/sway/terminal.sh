@@ -3,15 +3,13 @@ terminal=""
 extra=""
 cmd="-e toolbox run tmux new"
 
-for t in alacritty wezterm konsole
+for t in wezterm alacritty konsole
 do
     if command -v $t >/dev/null; then
         terminal=$t
         break
     fi
 done
-
-echo "using $t"
 
 if ! command -v toolbox >/dev/null; then
    cmd="-e tmux new"
