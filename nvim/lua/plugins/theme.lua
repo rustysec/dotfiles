@@ -3,7 +3,7 @@ return {
         "rebelot/kanagawa.nvim",
         lazy = false,
         priority = 1000,
-        enabled = true,
+        enabled = false,
         config = function()
             require('kanagawa').setup({
                 compile = false,
@@ -59,7 +59,7 @@ return {
     {
         "rose-pine/neovim",
         name = "rose-pine",
-        enabled = true,
+        enabled = false,
         config = function()
             require('rose-pine').setup({})
         end
@@ -117,6 +117,7 @@ return {
     },
     {
         "folke/tokyonight.nvim",
+        enabled = false,
         lazy = false,
         priority = 1000,
         opts = {
@@ -125,6 +126,7 @@ return {
     },
     {
         "navarasu/onedark.nvim",
+        enabled = false,
         lazy = false,
         priority = 1000,
         opts = {
