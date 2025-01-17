@@ -33,11 +33,9 @@ vim.lsp.inlay_hint.enable(true)
 
 require('lazy').setup('plugins')
 
-require('focus').setup({})
 require("ibl").setup()
 require('gitsigns').setup()
 require('mini.surround').setup()
--- require('lsp-inlayhints').setup()
 require('render-markdown').setup()
 require('notify').setup({
     background_colour = "#00000000"
@@ -162,7 +160,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
-vim.cmd [[autocmd BufEnter * set nocursorline]]
 
 local navic = require("nvim-navic")
 local function on_attach(client, bufnr)
