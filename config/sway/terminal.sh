@@ -3,7 +3,7 @@ terminal=""
 extra=""
 cmd="-e toolbox run tmux new"
 
-for t in wezterm alacritty konsole
+for t in alacritty wezterm konsole
 do
     if command -v $t >/dev/null; then
         terminal=$t
@@ -24,7 +24,11 @@ if [ "$1" = "--light" ]; then
         extra="--config-file $HOME/.config/alacritty/light.toml"
     fi
 elif [ "$1" = "--vanilla" ]; then
-    cmd=""
+    if [ "$terminal" = "alacritty" ]; then
+        cmd="--class Alacritty-Vanilla"
+    else
+        cmd=""
+    fi
 fi
 
 $terminal $extra $cmd

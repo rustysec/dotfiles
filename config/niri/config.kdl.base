@@ -1,6 +1,6 @@
 layout {
     gaps 4
-    center-focused-column "never"
+    center-focused-column "on-overflow"
     always-center-single-column
 
     preset-column-widths {
@@ -27,10 +27,10 @@ layout {
     }
 
     struts {
-        left -2
-        right -2
+        left -4
+        right -4
         bottom -4
-        top 0
+        top -2
     }
 }
 
@@ -39,6 +39,7 @@ spawn-at-startup "~/.config/niri/background.sh"
 spawn-at-startup "~/.config/niri/swayidle.sh"
 spawn-at-startup "/usr/libexec/xdg-desktop-portal-gtk"
 spawn-at-startup "/usr/libexec/xdg-desktop-portal-gnome"
+spawn-at-startup "/usr/libexec/xdg-desktop-portal-kde"
 spawn-at-startup "/usr/libexec/kf6/polkit-kde-authentication-agent-1"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "'prefer-dark'"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "'Breeze-Dark'"
@@ -58,7 +59,7 @@ animations {
 }
 
 window-rule {
-    geometry-corner-radius 8
+    // geometry-corner-radius 8
     clip-to-geometry true
 }
 
@@ -76,7 +77,12 @@ window-rule {
 
 window-rule {
     match app-id=r#"^google-chrome$"#
-    default-column-width { proportion 0.5; }
+    default-column-width { proportion 1.0; }
+}
+
+window-rule {
+    match app-id=r#"^org.mozilla.firefox$"#
+    default-column-width { proportion 1.0; }
 }
 
 window-rule {
@@ -88,6 +94,11 @@ window-rule {
     match app-id=r#"^virt-manager$"#
     match title=r#"^Virtual Machine Manager"#
     default-column-width { proportion 0.5; }
+}
+
+window-rule {
+    match app-id=r#"^Alacritty$"#
+    default-column-width { proportion 1.0; }
 }
 
 /-window-rule {
@@ -102,9 +113,9 @@ window-rule {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+Return { spawn "alacritty" "-e" "toolbox" "run" "tmux" "new"; }
-    Mod+Shift+Return { spawn "alacritty"; }
-    Mod+Ctrl+Return { spawn "alacritty" "--config" "/home/russ/.config/alacritty/light.toml" "tmux" "new"; }
+    Mod+Return { spawn "~/.config/sway/terminal.sh"; }
+    Mod+Shift+Return { spawn "~/.config/sway/terminal.sh" "--vanilla"; }
+    Mod+Ctrl+Return { spawn "~/.config/sway/terminal.sh" "--light"; }
     Mod+Space { spawn "fuzzel"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
