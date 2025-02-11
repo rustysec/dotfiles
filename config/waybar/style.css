@@ -5,6 +5,7 @@
     font-size: 9pt;
     padding: 0pt;
     margin: 0pt;
+    border-radius: 0px;
 }
 
 window#waybar {
@@ -30,49 +31,59 @@ pulseaudio#waybar.empty #window {
 }
 
 #workspaces button {
-    color: @foreground;
-    border: 2px solid @comment;
+    /* color: @foreground; */
+    border: 2px solid transparent;
+    border-top: 2px solid @comment;
     margin-right: 5px;
     min-width: 20px;
     margin-bottom: 5px;
-    border-radius: 8;
+    border-radius: 0;
     padding-left: 1px;
     padding-right: 1px;
 }
 
 #workspaces button:hover {
-    border: 2px solid @purple;
+    border-top: 2px solid @purple;
+    border-bottom: 2px solid @purple;
     margin-right: 5px;
 }
 
 #workspaces button.visible {
-    border: 2px solid @green;
+    border-top: 2px solid @green;
     margin-right: 5px;
 }
 
 #workspaces button.active {
-    border: 2px solid @green;
+    border-top: 2px solid @green;
     margin-right: 5px;
 }
 
 #workspaces button.active:hover {
-    border: 2px solid @green;
+    border-top: 2px solid @green;
+    border-bottom: 2px solid @green;
     margin-right: 5px;
 }
 
 #workspaces button.focused {
-    border: 2px solid @green;
+    border-top: 2px solid @green;
     margin-right: 5px;
 }
 
 #workspaces button.focused label {
+    /*
     font-weight: bold;
     font-style: italic;
+    */
 }
 
 #workspaces button.focused:hover {
-    border: 2px solid @green;
+    border-top: 2px solid @green;
+    border-bottom: 2px solid @green;
+    /*
+    border: 0px solid transparent;
+    border-top: 2px solid @green;
     margin-right: 5px;
+    */
 }
 
 #mode {

@@ -101,9 +101,9 @@ gaps inner 5
 gaps outer 0
 
 exec ~/.config/sway/pipewire.sh
-# exec /usr/libexec/xdg-desktop-portal-wlr
-# exec /usr/libexec/xdg-desktop-portal-gtk
-# exec /usr/libexec/xdg-desktop-portal-kde
+exec /usr/libexec/xdg-desktop-portal-wlr
+exec /usr/libexec/xdg-desktop-portal-gtk
+exec /usr/libexec/xdg-desktop-portal-kde
 exec /usr/libexec/polkit-kde-authentication-agent-1
 
 exec_always kanshi
