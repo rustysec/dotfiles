@@ -8,7 +8,7 @@ local config = wezterm.config_builder()
 
 -- For example, changing the color scheme:
 config.color_scheme = 'Dracula (Official)'
-config.font = wezterm.font('VictorMono Nerd Font')
+config.font = wezterm.font('Hack Nerd Font')
 config.font_size = 10.0
 config.enable_tab_bar = false
 config.show_tabs_in_tab_bar = false
