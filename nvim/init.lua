@@ -65,9 +65,7 @@ cmp.setup({
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local lspconfig = require('lspconfig')
-
-lspconfig.rust_analyzer.setup({
+vim.lsp.config("rust_analyzer", {
     capabilities = capabilities,
     settings = {
         ['rust-analyzer'] = {
@@ -89,15 +87,15 @@ lspconfig.rust_analyzer.setup({
     },
 })
 
-lspconfig.clangd.setup({
+vim.lsp.config("clangd", {
     capabilities = capabilities,
 })
 
-lspconfig.ts_ls.setup({
+vim.lsp.config("ts_ls", {
     capabilities = capabilities,
 })
 
-lspconfig.lua_ls.setup({
+vim.lsp.config("lua_ls", {
     capabilities = capabilities,
     on_init = function(client)
         local path = client.workspace_folders[1].name
@@ -132,11 +130,11 @@ lspconfig.lua_ls.setup({
     }
 })
 
-lspconfig.marksman.setup({
+vim.lsp.config("marksman", {
     capabilities = capabilities,
 })
 
-lspconfig.nil_ls.setup({
+vim.lsp.config("nil_ls", {
     capabilities = capabilities,
     settings = {
         ['nil'] = {
@@ -147,8 +145,17 @@ lspconfig.nil_ls.setup({
     },
 })
 
-lspconfig.csharp_ls.setup({
+vim.lsp.config("csharp_ls", {
     capabilities = capabilities,
+})
+
+vim.lsp.enable({
+    "rust_analyzer",
+    "clangd",
+    "ts_ls",
+    "lua_ls",
+    "marksman",
+    "nil_ls",
 })
 
 vim.api.nvim_create_augroup('YankHighlight', { clear = true })
