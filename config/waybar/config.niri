@@ -1,6 +1,8 @@
 [
     {
-        "layer": "top",
+        "start_hidden": true,
+        "layer": "overlay",
+        "exclusive": false,
         "position": "top",
         "spacing": 0,
         "tray": {
@@ -8,7 +10,6 @@
         },
         "modules-left": [
             "niri/workspaces",
-            "custom/niri",
         ],
         "modules-center": [
             "clock",
@@ -19,7 +20,6 @@
             "cpu",
             "memory",
             "battery",
-            "power-profiles-daemon",
             "tray",
         ],
         "power-profiles-daemon": {

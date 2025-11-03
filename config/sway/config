@@ -112,7 +112,8 @@ exec brightnessctl -r
 
 exec waybar -c ~/.config/waybar/config.sway
 
-exec swaybg -m fill --image ~/.config/sway/background.jpg
+# exec swaybg -m fill --image ~/.config/sway/background.jpg
+exec swaybg -c 282a36
 
 exec swayidle -w timeout 300 '~/.config/sway/lock.sh' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep '~/.config/sway/lock.sh' 
 
@@ -124,9 +125,9 @@ exec nm-applet --indicator
 
 exec gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
-exec gsettings set org.gnome.desktop.interface gtk-theme 'Breeze'
+exec gsettings set org.gnome.desktop.interface gtk-theme 'Dracula'
 
-exec gsettings set org.gnome.desktop.interface icon-theme 'breeze-dark'
+exec gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'
 
 exec gsettings set org.gnome.desktop.interface cursor-theme 'breeze_cursors'
 
@@ -137,7 +138,6 @@ exec_always python3 ~/pkgs/autotiling/autotiling/main.py
 exec ~/.config/sway/fx.sh
 
 # class                 border  bground text    indicator child_border
-# client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
 client.focused          #6272A4 #6272A4 #F8F8F2 #FF79C6   #6272A4
 client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
 client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
@@ -184,7 +184,6 @@ input "1452:613:Apple_Inc._Magic_Trackpad" {
   click_method clickfinger
 }
 
-
 input "1739:52643:CUST0001:00_06CB:CDA3_Touchpad" {
   dwt enabled
   natural_scroll enabled
@@ -206,7 +205,7 @@ input "1452:834:Apple_Internal_Keyboard_/_Trackpad" {
   xkb_options caps:swapescape
 }
 
-input "5426:586:Razer_Razer_Blade" {
+input "5426:586:Razer_Razer_Blade_Keyboard" {
   xkb_layout "us"
   xkb_variant "colemak"
   xkb_options caps:swapescape

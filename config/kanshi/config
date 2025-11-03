@@ -1,5 +1,10 @@
-profile helvetios {
-  output "Sharp Corporation 0x14FA Unknown" scale 2.000000
+profile razer {
+  output "Sharp Corporation 0x14B8 Unknown" scale 1.000000
+}
+
+profile razer_docked {
+  output "LG Electronics LG Ultra HD 0x00072EE9" position 0,0 scale 1.5
+  output "Sharp Corporation 0x14B8 Unknown" position 360,1440 scale 1.000000
 }
 
 profile quoth {

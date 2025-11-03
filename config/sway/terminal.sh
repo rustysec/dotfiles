@@ -3,7 +3,7 @@ terminal=""
 extra=""
 cmd="-e toolbox run tmux new"
 
-for t in alacritty wezterm konsole
+for t in foot alacritty wezterm konsole
 do
     if command -v $t >/dev/null; then
         terminal=$t

@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-waybar -c ~/.config/waybar/config.niri & 
+sleep 2
+waybar -c ~/.config/waybar/config.niri > ~/waybar.log 2>&1 &
