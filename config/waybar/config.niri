@@ -1,8 +1,8 @@
 [
     {
-        "start_hidden": true,
-        "layer": "overlay",
-        "exclusive": false,
+        "start_hidden": false,
+        "layer": "top",
+        "exclusive": true,
         "position": "top",
         "spacing": 0,
         "tray": {

@@ -13,7 +13,7 @@ window#waybar {
     color: @foreground;
     transition-property: background-color;
     transition-duration: .5s;
-    border-bottom: 2px solid @comment;
+    /* border-bottom: 2px solid @comment; */
 }
 
 window#waybar.empty #window {

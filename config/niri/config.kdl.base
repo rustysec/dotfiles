@@ -30,7 +30,15 @@ layout {
         left -4
         right -4
         bottom -4
-        top -2
+        top -4
+    }
+
+    background-color "transparent"
+}
+
+gestures {
+    hot-corners {
+        off
     }
 }
 
@@ -42,8 +50,8 @@ spawn-at-startup "/usr/libexec/xdg-desktop-portal-gnome"
 spawn-at-startup "/usr/libexec/xdg-desktop-portal-kde"
 spawn-at-startup "/usr/libexec/kf6/polkit-kde-authentication-agent-1"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "'prefer-dark'"
-spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "'Breeze'"
-spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "'breeze-dark'"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "'Dracula'"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "'Dracula'"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-theme" "'__CURSOR_THEME__'"
 spawn-at-startup "blueman-applet"
 spawn-at-startup "nm-applet"
@@ -51,7 +59,8 @@ spawn-at-startup "mako"
 
 prefer-no-csd
 
-screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+// screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+screenshot-path null
 
 animations {
     // off
@@ -59,46 +68,8 @@ animations {
 }
 
 window-rule {
-    // geometry-corner-radius 8
+    geometry-corner-radius 5
     clip-to-geometry true
-}
-
-window-rule {
-    match app-id=r#"^xdg-desktop-portal-gnome$"#
-    match title=r#"^All Files$"#
-    default-column-width { proportion 0.5; }
-}
-
-window-rule {
-    match app-id=r#"^Firefox$"#
-    match title=r#"^Enter name of file to save to"#
-    default-column-width { proportion 0.5; }
-}
-
-window-rule {
-    match app-id=r#"^google-chrome$"#
-    default-column-width { proportion 1.0; }
-}
-
-window-rule {
-    match app-id=r#"^org.mozilla.firefox$"#
-    default-column-width { proportion 1.0; }
-}
-
-window-rule {
-    match app-id=r#"^thunar$"#
-    default-column-width { proportion 0.5; }
-}
-
-window-rule {
-    match app-id=r#"^virt-manager$"#
-    exclude title=r#"^Virtual Machine Manager"#
-    default-column-width { proportion 1.0; }
-}
-
-window-rule {
-    match app-id=r#"^Alacritty$"#
-    default-column-width { proportion 1.0; }
 }
 
 /-window-rule {
@@ -275,5 +246,12 @@ hotkey-overlay {
 }
 
 environment {
-    QT_QPA_PLATFORMTHEME "kde"
+    GTK_THEME "Dracula"
+    QT_QPA_PLATFORMTHEME "gtk3"
+    QT_QPA_PLATFORMTHEME_QT6 "gtk3"
+    DMS_DISABLE_MATUGEN "1"
+}
+
+switch-events {
+    lid-close { spawn "gtklock"; }
 }

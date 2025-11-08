@@ -3,7 +3,7 @@ terminal=""
 extra=""
 cmd="-e toolbox run tmux new"
 
-for t in foot alacritty wezterm konsole
+for t in alacritty foot wezterm konsole
 do
     if command -v $t >/dev/null; then
         terminal=$t
@@ -20,6 +20,8 @@ if [ "$1" = "--light" ]; then
         extra="--config color_scheme='dayfox'"
     elif [ "$terminal" = "konsole" ]; then
         extra="--profile Russ-Light"
+    elif [ "$terminal" = "foot" ]; then
+        extra="-c $HOME/.config/foot/light.ini"
     else
         extra="--config-file $HOME/.config/alacritty/light.toml"
     fi

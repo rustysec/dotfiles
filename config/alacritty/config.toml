@@ -3,7 +3,7 @@ history = 0
 
 [font]
 # normal = { family = "VictorMono Nerd Font" }
-normal = { family = "FiraCode Nerd Font" }
+normal = { family = "Hack Nerd Font" }
 size = 10
 
 [window]
