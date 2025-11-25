@@ -4,3 +4,4 @@ config/ags/tsconfig.json
 config/ags/types
 nvim/lazy-lock.json
 config/niri/config.kdl
+config/tmux/plugins

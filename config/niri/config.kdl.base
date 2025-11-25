@@ -255,3 +255,13 @@ environment {
 switch-events {
     lid-close { spawn "gtklock"; }
 }
+
+layer-rule {
+    match namespace="^awww-daemonoverview$"
+    place-within-backdrop true
+}
+
+layer-rule {
+    match namespace="^swww-daemonoverview$"
+    place-within-backdrop true
+}
