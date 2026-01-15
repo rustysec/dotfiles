@@ -4,4 +4,8 @@ config/ags/tsconfig.json
 config/ags/types
 nvim/lazy-lock.json
 config/niri/config.kdl
+config/niri/dms
 config/tmux/plugins
+config/pinnacle/target
+config/alacritty/dank-theme.toml
+config/foot/dank-colors.ini

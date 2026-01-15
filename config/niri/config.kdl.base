@@ -52,10 +52,12 @@ spawn-at-startup "/usr/libexec/kf6/polkit-kde-authentication-agent-1"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "'prefer-dark'"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "'Dracula'"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "'Dracula'"
-spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-theme" "'__CURSOR_THEME__'"
-spawn-at-startup "blueman-applet"
-spawn-at-startup "nm-applet"
-spawn-at-startup "mako"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-theme" "'breeze_cursors'"
+// spawn-at-startup "blueman-applet"
+// spawn-at-startup "nm-applet"
+// spawn-at-startup "mako"
+spawn-at-startup "kanshi"
+spawn-at-startup "dms" "run"
 
 prefer-no-csd
 
@@ -84,10 +86,11 @@ window-rule {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+Return { spawn "~/.config/sway/terminal.sh"; }
-    Mod+Shift+Return { spawn "~/.config/sway/terminal.sh" "--vanilla"; }
+    Mod+Return { spawn "foot" "tmux" "new"; }
+    Mod+Shift+Return { spawn "foot"; }
     Mod+Ctrl+Return { spawn "~/.config/sway/terminal.sh" "--light"; }
-    Mod+Space { spawn "fuzzel"; }
+    // Mod+Space { spawn "fuzzel"; }
+    Mod+Space { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
@@ -237,7 +240,7 @@ binds {
 }
 
 cursor {
-    xcursor-theme "__CURSOR_THEME__"
+    xcursor-theme "breeze_cursors"
     xcursor-size 24
 }
 
@@ -253,15 +256,5 @@ environment {
 }
 
 switch-events {
-    lid-close { spawn "gtklock"; }
-}
-
-layer-rule {
-    match namespace="^awww-daemonoverview$"
-    place-within-backdrop true
-}
-
-layer-rule {
-    match namespace="^swww-daemonoverview$"
-    place-within-backdrop true
+    // lid-close { spawn "gtklock"; }
 }

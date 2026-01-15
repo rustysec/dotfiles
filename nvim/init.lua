@@ -183,6 +183,7 @@ local keymaps = {
     { mode = 'n', key = '<leader>e',  action = ':Oil<cr>' },
     { mode = 'n', key = '<leader>|',  action = ':vsplit<cr>' },
     { mode = 'n', key = '<leader>-',  action = ':split<cr>' },
+    --[[
     { mode = 'n', key = '<leader>fb', action = ':Telescope buffers<cr>' },
     { mode = 'n', key = '<leader>fd', action = ':Telescope diagnostics<cr>' },
     { mode = 'n', key = '<leader>ff', action = ':Telescope find_files<cr>' },
@@ -191,6 +192,7 @@ local keymaps = {
     { mode = 'n', key = '<leader>fs', action = ':Telescope lsp_document_symbols<cr>' },
     { mode = 'n', key = '<leader>fS', action = ':Telescope lsp_dynamic_workspace_symbols<cr>' },
     { mode = 'n', key = '<leader>fw', action = ':Telescope grep_string<cr>' },
+    ]]--
 
     { mode = 'n', key = 'gd',         action = ':lua vim.lsp.buf.definition()<cr>' },
     { mode = 'n', key = '<leader>ca', action = ':lua vim.lsp.buf.actions()<cr>' },

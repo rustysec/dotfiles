@@ -1,26 +1,22 @@
 [
     {
-        "start_hidden": false,
-        "layer": "bottom",
-        "exclusive": true,
+        "layer": "top",
         "position": "top",
-        "spacing": 0,
-        "tray": {
-            "spacing": 10
-        },
         "modules-left": [
-            "niri/workspaces",
+          "ext/workspaces",
         ],
         "modules-center": [
-            "clock",
+          "clock",
         ],
         "modules-right": [
-            "pulseaudio",
-            "backlight",
-            "cpu",
-            "memory",
-            "battery",
-            "tray",
+          "sway/mode",
+          "pulseaudio",
+          "battery",
+          "backlight",
+          "cpu",
+          "memory",
+          "power-profiles-daemon",
+          "tray",
         ],
         "power-profiles-daemon": {
             "format": "{icon}",
@@ -68,13 +64,6 @@
             "format": " {status}",
             "format-connected": " {device_alias}",
             "format-connected-battery": " {device_alias} {device_battery_percentage}%"
-        },
-        "clock#old": {
-            "format": "{:%a | %b %d | %H:%M %Z}"
-        },
-        "clock#utc": {
-            "format": "{:%a | %b %d | %H:%M %Z}",
-            "timezone": "Etc/UTC"
         },
         "clock": {
             "format": "{:%a | %b %d | %H:%M %Z}",
@@ -149,14 +138,9 @@
             "format-source-muted": "",
             "on-click": "pavucontrol"
         },
-        "custom/clock": {
-            "format": "",
-        },
-        "custom/niri": {
-            "exec": "~/.config/waybar/niri.sh",
-            "interval": 1,
-            "format": " {}",
-            "hide-empty-text": true,
+        "spacing": 0,
+        "tray": {
+            "spacing": 10
         }
     }
 ]
