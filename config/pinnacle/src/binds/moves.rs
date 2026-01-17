@@ -89,4 +89,98 @@ pub fn binds(mod_key: Mod) {
         })
         .group("Navigation")
         .description("Swap window down");
+
+    // Between Monitors
+
+    input::keybind(mod_key | Mod::SHIFT | Mod::CTRL, Keysym::Left)
+        .on_press(move || {
+            if let Some(other_output) = pinnacle_api::output::get_focused()
+                .and_then(|output| output.in_direction(Direction::Left).next())
+                && let Some(focused) = get_focused()
+            {
+                focused.move_to_output(&other_output);
+            }
+        })
+        .group("Navigation")
+        .description("Move window to monitor left");
+    input::keybind(mod_key | Mod::SHIFT | Mod::CTRL, 'h')
+        .on_press(move || {
+            if let Some(output) = pinnacle_api::output::get_focused()
+                && let Some(other_output) = output.in_direction(Direction::Left).next()
+                && let Some(focused) = get_focused()
+            {
+                focused.move_to_output(&other_output);
+            }
+        })
+        .group("Navigation")
+        .description("Move window to monitor left");
+
+    input::keybind(mod_key | Mod::SHIFT | Mod::CTRL, Keysym::Right)
+        .on_press(move || {
+            if let Some(output) = pinnacle_api::output::get_focused()
+                && let Some(other_output) = output.in_direction(Direction::Right).next()
+                && let Some(focused) = get_focused()
+            {
+                focused.move_to_output(&other_output);
+            }
+        })
+        .group("Navigation")
+        .description("Move window to monitor right");
+    input::keybind(mod_key | Mod::SHIFT | Mod::CTRL, 'l')
+        .on_press(move || {
+            if let Some(output) = pinnacle_api::output::get_focused()
+                && let Some(other_output) = output.in_direction(Direction::Right).next()
+                && let Some(focused) = get_focused()
+            {
+                focused.move_to_output(&other_output);
+            }
+        })
+        .group("Navigation")
+        .description("Move window to monitor right");
+
+    input::keybind(mod_key | Mod::SHIFT | Mod::CTRL, Keysym::Up)
+        .on_press(move || {
+            if let Some(output) = pinnacle_api::output::get_focused()
+                && let Some(other_output) = output.in_direction(Direction::Up).next()
+                && let Some(focused) = get_focused()
+            {
+                focused.move_to_output(&other_output);
+            }
+        })
+        .group("Navigation")
+        .description("Move window to monitor up");
+    input::keybind(mod_key | Mod::SHIFT | Mod::CTRL, 'k')
+        .on_press(move || {
+            if let Some(output) = pinnacle_api::output::get_focused()
+                && let Some(other_output) = output.in_direction(Direction::Up).next()
+                && let Some(focused) = get_focused()
+            {
+                focused.move_to_output(&other_output);
+            }
+        })
+        .group("Navigation")
+        .description("Move window to monitor up");
+
+    input::keybind(mod_key | Mod::SHIFT | Mod::CTRL, Keysym::Down)
+        .on_press(move || {
+            if let Some(output) = pinnacle_api::output::get_focused()
+                && let Some(other_output) = output.in_direction(Direction::Down).next()
+                && let Some(focused) = get_focused()
+            {
+                focused.move_to_output(&other_output);
+            }
+        })
+        .group("Navigation")
+        .description("Move window to monitor down");
+    input::keybind(mod_key | Mod::SHIFT | Mod::CTRL, 'j')
+        .on_press(move || {
+            if let Some(output) = pinnacle_api::output::get_focused()
+                && let Some(other_output) = output.in_direction(Direction::Down).next()
+                && let Some(focused) = get_focused()
+            {
+                focused.move_to_output(&other_output);
+            }
+        })
+        .group("Navigation")
+        .description("Move window to monitor down");
 }

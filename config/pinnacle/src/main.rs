@@ -30,7 +30,6 @@ use pinnacle_api::signal::OutputSignal;
 use pinnacle_api::signal::WindowSignal;
 use pinnacle_api::util::{Axis, Batch};
 use pinnacle_api::window::connect_signal;
-use pinnacle_api::window::get_all;
 
 async fn config() {
     // Change the mod key to `Alt` when running as a nested window.
@@ -177,7 +176,7 @@ async fn config() {
         use pinnacle_api::{snowcap::FocusBorder, window::add_window_rule};
 
         // Add borders to already existing windows.
-        for win in get_all() {
+        for win in pinnacle_api::window::get_all() {
             let _ = FocusBorder::new(&win).decorate();
         }
 
@@ -213,3 +212,10 @@ async fn config() {
 }
 
 pinnacle_api::main!(config);
+
+pub fn expand<S: AsRef<str>>(input: S) -> String {
+    match std::env::var("HOME") {
+        Ok(home) => input.as_ref().replace("~", &home),
+        Err(_) => input.as_ref().to_string(),
+    }
+}

@@ -10,6 +10,7 @@ pub fn configure() {
     input::libinput::for_each_device(|device| {
         if device.device_type().is_touchpad() {
             device.set_natural_scroll(true);
+            device.set_click_method(input::libinput::ClickMethod::Clickfinger);
         }
     });
 }

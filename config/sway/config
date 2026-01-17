@@ -10,8 +10,8 @@ mouse_warping output
 workspace_layout default
 workspace_auto_back_and_forth no
 seat seat0 xcursor_theme breeze_cursors 24
-smart_gaps on
-smart_borders on
+smart_gaps off
+smart_borders off
 
 bindsym Mod4+1 workspace number 1
 bindsym Mod4+2 workspace number 2
@@ -110,7 +110,7 @@ exec_always kanshi
 
 exec brightnessctl -r
 
-exec dms run
+exec ~/.config/sway/dms.sh
 
 # exec waybar -c ~/.config/waybar/config.sway
 

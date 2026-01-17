@@ -8,10 +8,10 @@ case $OPT in
     systemctl reboot || loginctl reboot
     ;;
   "󰩈 Logout")
-    hyprctl dispatch exit 0 || swaymsg exit || niri msg action quit -s
+    pinnacle-ctl quit || swaymsg exit || niri msg action quit -s
     ;;
   " Lock")
-    niri msg action do-screen-transition 2>&1 ; gtklock || swaylock
+    gtklock || swaylock
     ;;
   *)
     echo "Doing Nothing!"
