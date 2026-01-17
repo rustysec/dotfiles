@@ -9,3 +9,4 @@ config/tmux/plugins
 config/pinnacle/target
 config/alacritty/dank-theme.toml
 config/foot/dank-colors.ini
+config/mango/dms
