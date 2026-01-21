@@ -14,21 +14,15 @@ use pinnacle_api::layout;
 use pinnacle_api::layout::LayoutGenerator;
 use pinnacle_api::layout::LayoutNode;
 use pinnacle_api::layout::LayoutResponse;
-use pinnacle_api::layout::generators::Corner;
-use pinnacle_api::layout::generators::CornerLocation;
 use pinnacle_api::layout::generators::Cycle;
-use pinnacle_api::layout::generators::Dwindle;
-use pinnacle_api::layout::generators::Fair;
-use pinnacle_api::layout::generators::Floating;
 use pinnacle_api::layout::generators::MasterSide;
 use pinnacle_api::layout::generators::MasterStack;
-use pinnacle_api::layout::generators::Spiral;
 use pinnacle_api::output;
 use pinnacle_api::pinnacle;
 use pinnacle_api::pinnacle::Backend;
 use pinnacle_api::signal::OutputSignal;
 use pinnacle_api::signal::WindowSignal;
-use pinnacle_api::util::{Axis, Batch};
+use pinnacle_api::util::Batch;
 use pinnacle_api::window::connect_signal;
 
 async fn config() {
@@ -85,7 +79,10 @@ async fn config() {
 
     // Create a cycling layout generator that can cycle between layouts on different tags.
     let cycler = Arc::new(Mutex::new(Cycle::new([
-        into_box(MasterStack::default()),
+        into_box(MasterStack {
+            master_side: MasterSide::Left,
+            ..Default::default()
+        }),
         into_box(MasterStack {
             master_side: MasterSide::Right,
             ..Default::default()
@@ -98,27 +95,6 @@ async fn config() {
             master_side: MasterSide::Bottom,
             ..Default::default()
         }),
-        into_box(Dwindle::default()),
-        into_box(Spiral::default()),
-        into_box(Corner::default()),
-        into_box(Corner {
-            corner_loc: CornerLocation::TopRight,
-            ..Default::default()
-        }),
-        into_box(Corner {
-            corner_loc: CornerLocation::BottomLeft,
-            ..Default::default()
-        }),
-        into_box(Corner {
-            corner_loc: CornerLocation::BottomRight,
-            ..Default::default()
-        }),
-        into_box(Fair::default()),
-        into_box(Fair {
-            axis: Axis::Horizontal,
-            ..Default::default()
-        }),
-        into_box(Floating::default()),
     ])));
 
     // Use the cycling layout generator to manage layout requests.
@@ -173,11 +149,19 @@ async fn config() {
     // Enable focus borders with titlebars
     #[cfg(feature = "snowcap")]
     {
+        use pinnacle_api::experimental::snowcap_api::widget::Color;
         use pinnacle_api::{snowcap::FocusBorder, window::add_window_rule};
 
+        let focused = Color::rgb(0.74, 0.58, 0.98);
+        let unfocused = Color::rgb(0.38, 0.45, 0.64);
+
         // Add borders to already existing windows.
-        for win in pinnacle_api::window::get_all() {
-            let _ = FocusBorder::new(&win).decorate();
+        for window in pinnacle_api::window::get_all() {
+            let mut border = FocusBorder::new(&window);
+            border.focused_color = focused;
+            border.unfocused_color = unfocused;
+
+            let _ = border.decorate();
         }
 
         // Add borders to new windows.
@@ -185,7 +169,10 @@ async fn config() {
             use pinnacle_api::window::DecorationMode;
 
             window.set_decoration_mode(DecorationMode::ServerSide);
-            let _ = FocusBorder::new(&window).decorate();
+            let mut border = FocusBorder::new(&window);
+            border.focused_color = focused;
+            border.unfocused_color = unfocused;
+            let _ = border.decorate();
         });
     }
 

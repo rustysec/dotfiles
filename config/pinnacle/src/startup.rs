@@ -8,7 +8,8 @@ pub fn run() {
         ("waybar -c /home/russ/.config/waybar/config.pinnacle", vec![]),
         ("swaybg -m fill -i /usr/share/wallpapers/Next/contents/images_dark/5120x2880.png", vec![]),
         ("kanshi", vec![]),
-        (r#"swayidle -w timeout 300 'swaylock' timeout 600 'pinnacle-ctl output-toggle "*"' resume 'pinnacle-ctl output-toggle "*"' before-sleep 'swaylock'"#, vec![]),
+        (r#"swayidle -w timeout 300 'gtklock -d' timeout 600 'pinnacle-ctl output-toggle "*"' resume 'pinnacle-ctl output-toggle "*"' before-sleep 'gtklock -d'"#, vec![]),
+        ("rog-control-center", vec![]),
     ];
 
     for (app, env) in items {
