@@ -1,0 +1,11 @@
+[Unit]
+Description=Unload mt7925e wifi driver before sleep
+Before=hibernate.target suspend.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/wifi-bt-suspend.sh disable
+ExecStop=/usr/local/bin/wifi-bt-suspend.sh enable
+
+[Install]
+WantedBy=suspend.target hibernate.target
