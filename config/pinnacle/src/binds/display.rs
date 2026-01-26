@@ -4,24 +4,26 @@ use pinnacle_api::input::Keysym;
 use pinnacle_api::input::Mod;
 use pinnacle_api::process::Command;
 
+use crate::expand;
+
 pub fn binds(_mod_key: Mod) {
     input::keybind(Mod::empty(), Keysym::XF86_MonBrightnessUp)
         .on_press(|| {
-            Command::new("brightnessctl")
-                .args(["--class=backlight", "set", "+10%"])
+            Command::new(expand("~/dotfiles/tools/brightness.sh"))
+                .args(["up"])
                 .spawn();
         })
         .allow_when_locked()
         .group("Display")
-        .description("Increase display brightness by 10%");
+        .description("Increase display brightness by 5%");
 
     input::keybind(Mod::empty(), Keysym::XF86_MonBrightnessDown)
         .on_press(|| {
-            Command::new("brightnessctl")
-                .args(["--class=backlight", "set", "10%-"])
+            Command::new(expand("~/dotfiles/tools/brightness.sh"))
+                .args(["down"])
                 .spawn();
         })
         .allow_when_locked()
         .group("Display")
-        .description("Decrease display brightness by 10%");
+        .description("Decrease display brightness by 5%");
 }

@@ -3,9 +3,10 @@ use pinnacle_api::input;
 use pinnacle_api::input::Bind;
 use pinnacle_api::input::Mod;
 use pinnacle_api::util::Direction;
-use pinnacle_api::window::{get_all, get_focused};
 
 fn nav_to_window(direction: Direction) {
+    use pinnacle_api::window::{get_all, get_focused};
+
     if let Some(focused) = get_focused()
         && let Some(closest) = focused.in_direction(direction).next()
     {
@@ -15,7 +16,20 @@ fn nav_to_window(direction: Direction) {
     }
 }
 
+fn nav_to_output(direction: Direction) {
+    use pinnacle_api::output::get_focused;
+
+    if let Some(focused) = get_focused()
+        && let Some(closest) = focused.in_direction(direction).next()
+    {
+        closest.focus();
+    }
+}
+
 pub fn binds(mod_key: Mod) {
+    //
+    // ----- Window Navigation
+    //
     input::keybind(mod_key, Keysym::Left)
         .on_press(move || nav_to_window(Direction::Left))
         .group("Navigation")
@@ -49,5 +63,43 @@ pub fn binds(mod_key: Mod) {
         .description("Focus window down");
     input::keybind(mod_key, 'j')
         .on_press(move || nav_to_window(Direction::Down))
+        .description("Focus window down");
+
+    //
+    // ----- Output Navigation
+    //
+    input::keybind(mod_key | Mod::CTRL, Keysym::Left)
+        .on_press(move || nav_to_output(Direction::Left))
+        .group("Navigation")
+        .description("Focus window left");
+    input::keybind(mod_key | Mod::CTRL, 'h')
+        .on_press(move || nav_to_output(Direction::Left))
+        .group("Navigation")
+        .description("Focus window left");
+
+    input::keybind(mod_key | Mod::CTRL, Keysym::Right)
+        .on_press(move || nav_to_output(Direction::Right))
+        .group("Navigation")
+        .description("Focus window right");
+    input::keybind(mod_key | Mod::CTRL, 'l')
+        .on_press(move || nav_to_output(Direction::Right))
+        .group("Navigation")
+        .description("Focus window right");
+
+    input::keybind(mod_key | Mod::CTRL, Keysym::Up)
+        .on_press(move || nav_to_output(Direction::Up))
+        .group("Navigation")
+        .description("Focus window up");
+    input::keybind(mod_key | Mod::CTRL, 'k')
+        .on_press(move || nav_to_output(Direction::Up))
+        .group("Navigation")
+        .description("Focus window up");
+
+    input::keybind(mod_key | Mod::CTRL, Keysym::Down)
+        .on_press(move || nav_to_output(Direction::Down))
+        .group("Navigation")
+        .description("Focus window down");
+    input::keybind(mod_key | Mod::CTRL, 'j')
+        .on_press(move || nav_to_output(Direction::Down))
         .description("Focus window down");
 }

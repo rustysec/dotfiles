@@ -5,14 +5,17 @@ pub fn run() {
     #[allow(clippy::type_complexity)]
     let items: Vec<(&str, Vec<(&str, &str)>)> = vec![
         // ("dms", vec!["run"], vec![("DMS_DISABLE_MATUGEN", "1")]),
-        ("waybar -c /home/russ/.config/waybar/config.pinnacle", vec![]),
+        ("waybar -c ~/.config/waybar/config.pinnacle", vec![]),
         ("swaybg -m fill -i /usr/share/wallpapers/Next/contents/images_dark/5120x2880.png", vec![]),
         ("kanshi", vec![]),
         (r#"swayidle -w timeout 300 'gtklock -d' timeout 600 'pinnacle-ctl output-toggle "*"' resume 'pinnacle-ctl output-toggle "*"' before-sleep 'gtklock -d'"#, vec![]),
-        ("rog-control-center", vec![]),
+        ("~/dotfiles/tools/rog.sh", vec![]),
     ];
 
     for (app, env) in items {
-        Command::with_shell(["bash", "-c"], app).envs(env).spawn();
+        Command::with_shell(["bash", "-c"], app)
+            .envs(env)
+            .once()
+            .spawn();
     }
 }

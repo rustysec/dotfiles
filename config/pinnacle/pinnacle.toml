@@ -13,6 +13,7 @@
 # Paths are relative to the directory this file is in.
 # This must be an array.
 run = ["cargo", "run", "--release"]
+# run = ["cargo", "run", "--release", "--no-default-features"]
 
 ### Socket directory ###
 # Pinnacle will open a Unix socket at `$XDG_RUNTIME_DIR` by default, falling back to `/tmp` if it doesn't exist.

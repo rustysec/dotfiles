@@ -1,5 +1,6 @@
 mod binds;
 mod devices;
+mod selector;
 mod startup;
 mod theme;
 
@@ -14,16 +15,21 @@ use pinnacle_api::layout;
 use pinnacle_api::layout::LayoutGenerator;
 use pinnacle_api::layout::LayoutNode;
 use pinnacle_api::layout::LayoutResponse;
-use pinnacle_api::layout::generators::Cycle;
+use pinnacle_api::layout::generators::Dwindle;
+use pinnacle_api::layout::generators::Fair;
 use pinnacle_api::layout::generators::MasterSide;
 use pinnacle_api::layout::generators::MasterStack;
+use pinnacle_api::layout::generators::Spiral;
 use pinnacle_api::output;
 use pinnacle_api::pinnacle;
 use pinnacle_api::pinnacle::Backend;
 use pinnacle_api::signal::OutputSignal;
 use pinnacle_api::signal::WindowSignal;
+use pinnacle_api::util::Axis;
 use pinnacle_api::util::Batch;
 use pinnacle_api::window::connect_signal;
+
+use crate::selector::Selector;
 
 async fn config() {
     // Change the mod key to `Alt` when running as a nested window.
@@ -32,6 +38,7 @@ async fn config() {
         Backend::Window => Mod::ALT,
     };
 
+    devices::configure();
     theme::configure();
 
     //------------------------
@@ -46,6 +53,11 @@ async fn config() {
     binds::snowcap::binds(mod_key);
     binds::tags::binds(mod_key);
     binds::window::binds(mod_key);
+
+    // `mod_key + alt + space` cycles the keyboard layout
+    input::keybind(mod_key | Mod::ALT, Keysym::space).on_press(|| {
+        input::cycle_xkb_layout_forward();
+    });
 
     // `mod_key + ctrl + r` reloads the config
     input::keybind(mod_key | Mod::CTRL, 'r')
@@ -78,7 +90,7 @@ async fn config() {
     }
 
     // Create a cycling layout generator that can cycle between layouts on different tags.
-    let cycler = Arc::new(Mutex::new(Cycle::new([
+    let selector = Arc::new(Mutex::new(Selector::new([
         into_box(MasterStack {
             master_side: MasterSide::Left,
             ..Default::default()
@@ -95,12 +107,19 @@ async fn config() {
             master_side: MasterSide::Bottom,
             ..Default::default()
         }),
+        into_box(Dwindle::default()),
+        into_box(Spiral::default()),
+        into_box(Fair::default()),
+        into_box(Fair {
+            axis: Axis::Horizontal,
+            ..Default::default()
+        }),
     ])));
 
     // Use the cycling layout generator to manage layout requests.
     // This returns a layout requester that allows you to request layouts manually.
     let layout_requester = layout::manage({
-        let cycler = cycler.clone();
+        let cycler = selector.clone();
         move |args| {
             let Some(tag) = args.tags.first() else {
                 return LayoutResponse {
@@ -121,7 +140,7 @@ async fn config() {
     // `mod_key + shift + space` cycles to the next layout
     input::keybind(mod_key | Mod::SHIFT, Keysym::space)
         .on_press({
-            let cycler = cycler.clone();
+            let selector = selector.clone();
             let requester = layout_requester.clone();
             move || {
                 let Some(focused_op) = output::get_focused() else {
@@ -134,7 +153,7 @@ async fn config() {
                     return;
                 };
 
-                cycler
+                selector
                     .lock()
                     .unwrap()
                     .cycle_layout_forward(&first_active_tag);
@@ -144,7 +163,30 @@ async fn config() {
         .group("Layout")
         .description("Cycle the layout forward");
 
-    devices::configure();
+    // ---- Run the `pinnacle-ctl` listener ----
+    {
+        let ipc_server = pinnacle_ctl::ipc::server::IpcServer::default().with_layout_selector({
+            let selector = selector.clone();
+            let requester = layout_requester.clone();
+            move |idx: usize| {
+                let Some(focused_op) = output::get_focused() else {
+                    return;
+                };
+                let Some(first_active_tag) = focused_op
+                    .tags()
+                    .batch_find(|tag| Box::pin(tag.active_async()), |active| *active)
+                else {
+                    return;
+                };
+
+                selector.lock().unwrap().set_layout(&first_active_tag, idx);
+
+                requester.request_layout_on_output(&focused_op);
+            }
+        });
+
+        ipc_server.run().await;
+    }
 
     // Enable focus borders with titlebars
     #[cfg(feature = "snowcap")]
@@ -152,6 +194,7 @@ async fn config() {
         use pinnacle_api::experimental::snowcap_api::widget::Color;
         use pinnacle_api::{snowcap::FocusBorder, window::add_window_rule};
 
+        // Dracula colors
         let focused = Color::rgb(0.74, 0.58, 0.98);
         let unfocused = Color::rgb(0.38, 0.45, 0.64);
 
