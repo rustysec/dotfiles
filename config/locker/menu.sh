@@ -13,6 +13,9 @@ case $OPT in
   " Lock")
     gtklock || swaylock
     ;;
+  "󰒲 Suspend")
+    systemctl suspend || loginctl suspend
+    ;;
   *)
     echo "Doing Nothing!"
     ;;

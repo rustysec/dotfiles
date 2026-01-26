@@ -12,11 +12,10 @@
           "sway/mode",
           "pulseaudio",
           "battery",
-          "backlight",
           "cpu",
           "memory",
-          "power-profiles-daemon",
           "tray",
+          "power-profiles-daemon",
         ],
         "power-profiles-daemon": {
             "format": "{icon}",
@@ -140,7 +139,7 @@
         },
         "spacing": 0,
         "tray": {
-            "spacing": 10
+            "spacing": 5
         }
     }
 ]

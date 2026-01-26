@@ -39,4 +39,12 @@ pub fn binds(mod_key: Mod) {
         })
         .group("Process")
         .description("Session Menu");
+
+    // `mod_key + Shift + j` launch session menu
+    input::keybind(mod_key | Mod::SHIFT, Keysym::s)
+        .on_press(move || {
+            Command::new(expand("~/dotfiles/config/layout-switcher/menu.sh")).spawn();
+        })
+        .group("Process")
+        .description("Session Menu");
 }
