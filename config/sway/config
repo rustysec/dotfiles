@@ -83,7 +83,6 @@ bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-
 bindsym XF86AudioMute        exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 bindsym XF86AudioMicMute     exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
-
 mode "resize" {
   bindsym Down resize grow height 10 px
   bindsym Escape mode default
@@ -100,6 +99,7 @@ mode "resize" {
 gaps inner 5
 gaps outer 0
 
+exec ~/dotfiles/tools/rog.sh
 exec ~/.config/sway/pipewire.sh
 exec /usr/libexec/xdg-desktop-portal-wlr
 exec /usr/libexec/xdg-desktop-portal-gtk
@@ -110,20 +110,21 @@ exec_always kanshi
 
 exec brightnessctl -r
 
-exec ~/.config/sway/dms.sh
+# exec ~/.config/sway/dms.sh
 
-# exec waybar -c ~/.config/waybar/config.sway
+exec waybar -c ~/.config/waybar/config.sway
 
+exec swaybg -m fill --image /usr/share/wallpapers/Next/contents/images_dark/5120x2880.png 
 # exec swaybg -m fill --image ~/.config/sway/background.jpg
 # exec swaybg -c 282a36
 
-# exec swayidle -w timeout 300 '~/.config/sway/lock.sh' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep '~/.config/sway/lock.sh' 
+exec swayidle -w timeout 300 '~/.config/sway/lock.sh' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep '~/.config/sway/lock.sh' 
 
-# exec blueman-applet
+exec blueman-applet
 
-# exec mako
+exec mako
 
-# exec nm-applet --indicator
+exec nm-applet --indicator
 
 exec gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
@@ -145,7 +146,6 @@ client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
 client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
 client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
 client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
-
 client.background       #F8F8F2
 
 # bar {
@@ -220,6 +220,12 @@ input "5426:586:Razer_Razer_Blade_Keyboard" {
 }
 
 input "2821:6582:Asus_Keyboard" {
+  xkb_layout "us"
+  xkb_variant "colemak"
+  xkb_options caps:swapescape
+}
+
+input "2821:6582:ITE_Tech._Inc._ITE_Device(8910)" {
   xkb_layout "us"
   xkb_variant "colemak"
   xkb_options caps:swapescape
