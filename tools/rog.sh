@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
-sleep 5
-rog-control-center
+if [ -e /dev/dri/card0 ]; then
+    sleep 5
+    rog-control-center
+fi

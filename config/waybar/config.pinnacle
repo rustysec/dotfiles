@@ -9,9 +9,9 @@
           "clock",
         ],
         "modules-right": [
-          "sway/mode",
           "pulseaudio",
           "battery",
+          "custom/brightness",
           "cpu",
           "memory",
           "tray",
@@ -144,6 +144,10 @@
         "ext/workspaces": {
             "active-only": false,
             "on-click": "activate"
+        },
+        "custom/brightness": {
+            "exec": "~/.config/waybar/scripts/brightness.sh",
+            "restart-interval": 1,
         }
     }
 ]
