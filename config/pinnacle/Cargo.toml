@@ -4,7 +4,8 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-pinnacle-api = { git = "https://github.com/pinnacle-comp/pinnacle", default-features = false, tag = "v0.2.0" }
+# pinnacle-api = { git = "https://github.com/pinnacle-comp/pinnacle", default-features = false, tag = "v0.2.0" }
+pinnacle-api = { path = "../../../code/pinnacle/api/rust", default-features = false }
 pinnacle-ctl = { git = "https://github.com/rustysec/pinnacle-ctl" }
 
 [features]

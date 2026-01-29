@@ -1,5 +1,6 @@
 mod binds;
 mod devices;
+mod rules;
 mod selector;
 mod startup;
 mod theme;
@@ -40,12 +41,14 @@ async fn config() {
 
     devices::configure();
     theme::configure();
+    rules::configure();
 
     //------------------------
     // Keybinds              |
     //------------------------
     binds::apps::binds(mod_key);
     binds::display::binds(mod_key);
+    binds::gestures::binds(mod_key);
     binds::media::binds(mod_key);
     binds::mouse_binds::binds(mod_key);
     binds::moves::binds(mod_key);

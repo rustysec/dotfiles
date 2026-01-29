@@ -1,5 +1,6 @@
 pub mod apps;
 pub mod display;
+pub mod gestures;
 pub mod media;
 pub mod mouse_binds;
 pub mod moves;

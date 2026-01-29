@@ -7,9 +7,7 @@ use pinnacle_api::process::Command;
 pub fn binds(_mod_key: Mod) {
     input::keybind(Mod::empty(), Keysym::XF86_AudioRaiseVolume)
         .on_press(|| {
-            Command::new("wpctl")
-                .args(["set-volume", "@DEFAULT_AUDIO_SINK@", "0.02+", "-l", "1.0"])
-                .spawn();
+            Command::with_shell(["bash", "-c"], "~/dotfiles/tools/volume.sh up").spawn();
         })
         .allow_when_locked()
         .group("Media")
@@ -17,9 +15,7 @@ pub fn binds(_mod_key: Mod) {
 
     input::keybind(Mod::empty(), Keysym::XF86_AudioLowerVolume)
         .on_press(|| {
-            Command::new("wpctl")
-                .args(["set-volume", "@DEFAULT_AUDIO_SINK@", "0.02-", "-l", "1.0"])
-                .spawn();
+            Command::with_shell(["bash", "-c"], "~/dotfiles/tools/volume.sh down").spawn();
         })
         .allow_when_locked()
         .group("Media")
@@ -76,4 +72,28 @@ pub fn binds(_mod_key: Mod) {
         .allow_when_locked()
         .group("Media")
         .description("Go to previous media");
+
+    input::keybind(Mod::empty(), Keysym::Print)
+        .on_press(|| {
+            Command::with_shell(
+                ["bash", "-c"],
+                r#"grim -g "$(slurp -d)" - | wl-copy -t image/png"#,
+            )
+            .spawn();
+        })
+        .allow_when_locked()
+        .group("Screenshot")
+        .description("Screenshot of an area");
+
+    input::keybind(_mod_key, Keysym::p)
+        .on_press(|| {
+            Command::with_shell(
+                ["bash", "-c"],
+                r#"grim -g "$(slurp -d)" - | wl-copy -t image/png"#,
+            )
+            .spawn();
+        })
+        .allow_when_locked()
+        .group("Screenshot")
+        .description("Screenshot of an area");
 }
