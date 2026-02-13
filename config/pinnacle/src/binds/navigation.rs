@@ -63,6 +63,7 @@ pub fn binds(mod_key: Mod) {
         .description("Focus window down");
     input::keybind(mod_key, 'j')
         .on_press(move || nav_to_window(Direction::Down))
+        .group("Navigation")
         .description("Focus window down");
 
     //
@@ -71,35 +72,36 @@ pub fn binds(mod_key: Mod) {
     input::keybind(mod_key | Mod::CTRL, Keysym::Left)
         .on_press(move || nav_to_output(Direction::Left))
         .group("Navigation")
-        .description("Focus window left");
+        .description("Move window left");
     input::keybind(mod_key | Mod::CTRL, 'h')
         .on_press(move || nav_to_output(Direction::Left))
         .group("Navigation")
-        .description("Focus window left");
+        .description("Move window left");
 
     input::keybind(mod_key | Mod::CTRL, Keysym::Right)
         .on_press(move || nav_to_output(Direction::Right))
         .group("Navigation")
-        .description("Focus window right");
+        .description("Move window right");
     input::keybind(mod_key | Mod::CTRL, 'l')
         .on_press(move || nav_to_output(Direction::Right))
         .group("Navigation")
-        .description("Focus window right");
+        .description("Move window right");
 
     input::keybind(mod_key | Mod::CTRL, Keysym::Up)
         .on_press(move || nav_to_output(Direction::Up))
         .group("Navigation")
-        .description("Focus window up");
+        .description("Move window up");
     input::keybind(mod_key | Mod::CTRL, 'k')
         .on_press(move || nav_to_output(Direction::Up))
         .group("Navigation")
-        .description("Focus window up");
+        .description("Move window up");
 
     input::keybind(mod_key | Mod::CTRL, Keysym::Down)
         .on_press(move || nav_to_output(Direction::Down))
         .group("Navigation")
-        .description("Focus window down");
+        .description("Move window down");
     input::keybind(mod_key | Mod::CTRL, 'j')
         .on_press(move || nav_to_output(Direction::Down))
-        .description("Focus window down");
+        .group("Navigation")
+        .description("Move window down");
 }

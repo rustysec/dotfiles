@@ -1,21 +1,9 @@
-use pinnacle_api::{
-    input::{self, GestureDirection, GestureType, Mod},
-    process::Command,
-};
+use crate::binds::tags::{toggle_all_tags_everywhere, toggle_all_tags_on_focused};
+use pinnacle_api::input::{self, Bind, GestureType, Mod, SwipeDirection};
 
 pub fn binds(_mod_key: Mod) {
-    input::gesturebind(Mod::empty(), GestureDirection::Up, 3, GestureType::Swipe).on_finish(|| {
-        Command::with_shell(["bash", "-c"], "fuzzel 2>/dev/null || pkill -9 fuzzel").spawn();
-    });
-
-    input::gesturebind(Mod::empty(), GestureDirection::Down, 3, GestureType::Swipe).on_finish(
-        || {
-            Command::with_shell(["bash", "-c"], "pkill -9 fuzzel").spawn();
-        },
-    );
-
-    input::gesturebind(Mod::empty(), GestureDirection::Left, 3, GestureType::Swipe).on_finish(
-        || {
+    input::gesturebind(Mod::empty(), GestureType::Swipe(SwipeDirection::Right), 3)
+        .on_finish(|| {
             if let Some(output) = pinnacle_api::output::get_focused()
                 && let Some(current) = output.active_tags().next()
                 && let Some(pos) = output.tags().position(|tag| tag == current)
@@ -23,11 +11,12 @@ pub fn binds(_mod_key: Mod) {
             {
                 next.switch_to();
             }
-        },
-    );
+        })
+        .group("Gestures")
+        .description("Next workspaces");
 
-    input::gesturebind(Mod::empty(), GestureDirection::Right, 3, GestureType::Swipe).on_finish(
-        || {
+    input::gesturebind(Mod::empty(), GestureType::Swipe(SwipeDirection::Left), 3)
+        .on_finish(|| {
             if let Some(output) = pinnacle_api::output::get_focused()
                 && let Some(current) = output.active_tags().next()
                 && let Some(pos) = output.tags().position(|tag| tag == current)
@@ -35,10 +24,27 @@ pub fn binds(_mod_key: Mod) {
             {
                 next.switch_to();
             }
-        },
-    );
+        })
+        .group("Gestures")
+        .description("Previous workspaces");
 
-    input::gesturebind(Mod::empty(), GestureDirection::Up, 2, GestureType::Pinch).on_finish(|| {
-        Command::with_shell(["bash", "-c"], "fuzzel >/dev/null 2>&1 || pkill -9 fuzzel").spawn();
-    });
+    input::gesturebind(Mod::empty(), GestureType::Swipe(SwipeDirection::Up), 3)
+        .on_finish(toggle_all_tags_on_focused)
+        .group("Gestures")
+        .description("Toggle all tags");
+
+    input::gesturebind(Mod::empty(), GestureType::Swipe(SwipeDirection::Down), 3)
+        .on_finish(toggle_all_tags_on_focused)
+        .group("Gestures")
+        .description("Toggle all tags");
+
+    input::gesturebind(Mod::empty(), GestureType::Swipe(SwipeDirection::Up), 4)
+        .on_finish(toggle_all_tags_everywhere)
+        .group("Gestures")
+        .description("Toggle all tags everywhere");
+
+    input::gesturebind(Mod::empty(), GestureType::Swipe(SwipeDirection::Down), 4)
+        .on_finish(toggle_all_tags_everywhere)
+        .group("Gestures")
+        .description("Toggle all tags everywhere");
 }

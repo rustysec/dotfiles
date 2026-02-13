@@ -11,7 +11,7 @@ case $OPT in
     pinnacle-ctl quit || swaymsg exit || niri msg action quit -s
     ;;
   " Lock")
-    gtklock || swaylock
+    pgrep swaylock || swaylock
     ;;
   "󰒲 Suspend")
     systemctl suspend || loginctl suspend

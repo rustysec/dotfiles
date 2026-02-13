@@ -1,0 +1,25 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "llama.cpp": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Llama.cpp (local)",
+      "options": {
+        "baseURL": "http://127.0.0.1:8080/v1",
+        "num_ctx": "65536"
+      },
+      "models": {
+        "Qwen3-Coder-30B-A3B-Instruct-UD-Q4_K_M": {
+          "name": "Qwen3 Coder 30B",
+          "tools": true,
+          "num_ctx": "65536"
+        },
+        "Devstral-Small-2-24B-Instruct-2512-Q4_K_M": {
+          "name": "Devstral Small 2 24B",
+          "tools": true,
+          "num_ctx": "65536"
+        }
+      }
+    }
+  }
+}

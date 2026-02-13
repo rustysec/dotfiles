@@ -58,9 +58,11 @@ async fn config() {
     binds::window::binds(mod_key);
 
     // `mod_key + alt + space` cycles the keyboard layout
-    input::keybind(mod_key | Mod::ALT, Keysym::space).on_press(|| {
-        input::cycle_xkb_layout_forward();
-    });
+    input::keybind(mod_key | Mod::ALT, Keysym::space)
+        .on_press(|| {
+            input::cycle_xkb_layout_forward();
+        })
+        .description("Cycle the keyboard layout");
 
     // `mod_key + ctrl + r` reloads the config
     input::keybind(mod_key | Mod::CTRL, 'r')

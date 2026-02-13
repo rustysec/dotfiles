@@ -163,7 +163,7 @@ pulseaudio#waybar.empty #window {
     border: 2px solid @comment;
     border-radius: 10px;
     transition: 0.2s;
-    min-width: 25px;
+    min-width: 30px;
 
     padding: 0px;
     margin-right: 5px;
@@ -189,7 +189,7 @@ pulseaudio#waybar.empty #window {
 
 #workspaces button.focused {
     border: 2px solid @purple;
-    min-width: 40px;
+    min-width: 45px;
 }
 
 #workspaces button.focused:hover {
@@ -198,8 +198,4 @@ pulseaudio#waybar.empty #window {
 
 #workspaces button.urgent {
     border: 2px solid @orange;
-}
-
-#workspaces button.empty {
-    border: 2px solid @red;
 }

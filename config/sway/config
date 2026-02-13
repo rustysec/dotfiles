@@ -76,12 +76,14 @@ bindsym Print exec grim -g "$(slurp -d)" - | wl-copy -t image/png
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPrev exec playerctl previous
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%- ; brightnessctl -s
-bindsym XF86MonBrightnessUp exec brightnessctl set 5%+; brightnessctl -s
-bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+
-bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-
+bindsym XF86MonBrightnessDown exec ~/dotfiles/tools/brightness.sh down
+bindsym XF86MonBrightnessUp exec ~/dotfiles/tools/brightness.sh up
+bindsym XF86AudioRaiseVolume exec ~/dotfiles/tools/volume.sh up
+bindsym XF86AudioLowerVolume exec ~/dotfiles/tools/volume.sh down
 bindsym XF86AudioMute        exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 bindsym XF86AudioMicMute     exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym --locked Mod4+Shift+Slash exec swaymsg output eDP-1 toggle
+bindsym Mod4+Ctrl+r           reload
 
 mode "resize" {
   bindsym Down resize grow height 10 px
@@ -99,6 +101,7 @@ mode "resize" {
 gaps inner 5
 gaps outer 0
 
+exec ~/dotfiles/tools/wob.sh
 exec ~/dotfiles/tools/rog.sh
 exec ~/.config/sway/pipewire.sh
 exec /usr/libexec/xdg-desktop-portal-wlr

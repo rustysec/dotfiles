@@ -1,4 +1,5 @@
 daemonize
+clock
 show-failed-attempts
 color=6272A4
 font="Hack Nerd Font"

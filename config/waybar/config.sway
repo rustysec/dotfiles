@@ -12,6 +12,7 @@
           "sway/mode",
           "pulseaudio",
           "battery",
+          "custom/brightness",
           "cpu",
           "memory",
           "tray",
@@ -140,6 +141,10 @@
         "spacing": 0,
         "tray": {
             "spacing": 5
+        },
+        "custom/brightness": {
+            "exec": "~/.config/waybar/scripts/brightness.sh",
+            "restart-interval": 1,
         }
     }
 ]

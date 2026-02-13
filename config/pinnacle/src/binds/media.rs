@@ -81,7 +81,6 @@ pub fn binds(_mod_key: Mod) {
             )
             .spawn();
         })
-        .allow_when_locked()
         .group("Screenshot")
         .description("Screenshot of an area");
 
@@ -93,7 +92,6 @@ pub fn binds(_mod_key: Mod) {
             )
             .spawn();
         })
-        .allow_when_locked()
         .group("Screenshot")
         .description("Screenshot of an area");
 }
