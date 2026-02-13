@@ -69,5 +69,7 @@ return {
     { "gao", function() Snacks.picker.lsp_outgoing_calls() end, desc = "C[a]lls Outgoing" },
     { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
     { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+    -- Spelling
+    { "<leader>ll", function() Snacks.picker.spelling() end, desc = "Spelling suggestion" },
   },
 }

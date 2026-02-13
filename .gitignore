@@ -7,6 +7,7 @@ config/niri/config.kdl
 config/niri/dms
 config/tmux/plugins
 config/pinnacle/target
+config/pinnacle/Cargo.lock
 config/alacritty/dank-theme.toml
 config/foot/dank-colors.ini
 config/mango/dms
