@@ -11,3 +11,5 @@ config/pinnacle/Cargo.lock
 config/alacritty/dank-theme.toml
 config/foot/dank-colors.ini
 config/mango/dms
+config/opencode/agents
+config/opencode/package-lock.json

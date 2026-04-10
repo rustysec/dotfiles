@@ -1,7 +1,7 @@
 [
     {
         "start_hidden": false,
-        "layer": "bottom",
+        "layer": "top",
         "exclusive": true,
         "position": "top",
         "spacing": 0,
@@ -16,11 +16,12 @@
         ],
         "modules-right": [
             "pulseaudio",
-            "backlight",
+            "custom/brightness",
             "cpu",
             "memory",
             "battery",
             "tray",
+            "power-profiles-daemon",
         ],
         "power-profiles-daemon": {
             "format": "{icon}",
@@ -157,6 +158,13 @@
             "interval": 1,
             "format": " {}",
             "hide-empty-text": true,
+        },
+        "niri/workspaces": {
+            "empty": false,
+        },
+        "custom/brightness": {
+            "exec": "~/.config/waybar/scripts/brightness.sh",
+            "restart-interval": 1,
         }
     }
 ]

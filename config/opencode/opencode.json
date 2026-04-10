@@ -3,21 +3,38 @@
   "provider": {
     "llama.cpp": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "Llama.cpp (local)",
+      "name": "llama.cpp",
       "options": {
-        "baseURL": "http://127.0.0.1:8080/v1",
-        "num_ctx": "65536"
+        "baseURL": "http://127.0.0.1:8080/v1"
       },
       "models": {
-        "Qwen3-Coder-30B-A3B-Instruct-UD-Q4_K_M": {
-          "name": "Qwen3 Coder 30B",
-          "tools": true,
-          "num_ctx": "65536"
+        "Qwen3.5:Q4_K_XL": {
+          "name": "Qwen3.5",
+          "tools": true
         },
-        "Devstral-Small-2-24B-Instruct-2512-Q4_K_M": {
-          "name": "Devstral Small 2 24B",
-          "tools": true,
-          "num_ctx": "65536"
+        "Qwen3.5-Instruct:Q4_K_XL": {
+          "name": "Qwen3.5-Instruct",
+          "tools": true
+        },
+        "Gemma-4-26B:Q4_K_XL": {
+          "name": "Gemma-4",
+          "tools": true
+        },
+        "GLM-4.7-Flash-REAP-tools:Q4_K_XL": {
+          "name": "GLM Flash REAP (tools)",
+          "tools": true
+        },
+        "GLM-4.7-Flash-REAP:Q4_K_XL": {
+          "name": "GLM Flash REAP",
+          "tools": true
+        },
+        "GLM-4.7-Flash-tools:Q4_K_XL": {
+          "name": "GLM Flash REAP (tools)",
+          "tools": true
+        },
+        "GLM-4.7-Flash:Q4_K_XL": {
+          "name": "GLM Flash REAP",
+          "tools": true
         }
       }
     }

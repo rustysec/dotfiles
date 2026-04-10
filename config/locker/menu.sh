@@ -8,7 +8,7 @@ case $OPT in
     systemctl reboot || loginctl reboot
     ;;
   "󰩈 Logout")
-    pinnacle-ctl quit || swaymsg exit || niri msg action quit -s
+    pinnacle-ctl quit || swaymsg exit || niri msg action quit -s || mmsg -q
     ;;
   " Lock")
     pgrep swaylock || swaylock

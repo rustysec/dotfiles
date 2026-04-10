@@ -3,7 +3,8 @@
 * {
     font-family: "Hack Nerd Font", "Font Awesome 6 Free";
     font-size: 9pt;
-    padding: 0pt;
+    margin-top: 5pt;
+    margin-bottom: 5pt;
     margin: 0pt;
     border-radius: 0px;
 }
@@ -13,7 +14,11 @@ window#waybar {
     color: @foreground;
     transition-property: background-color;
     transition-duration: .5s;
-    /* border-bottom: 2px solid @comment; */
+    /* border-left: 2px solid @purple; */
+    border-top: 2px solid @purple;
+    border-right: 2px solid @purple;
+    border-bottom: 2px solid @purple;
+    border-radius: 0 10px 10px 0;
 }
 
 window#waybar.empty #window {
@@ -57,11 +62,13 @@ pulseaudio#waybar.empty #window {
 #mpris,
 #window {
     color: @foreground;
-    padding-right: 10px;
-    padding-left: 10px;
     margin-top: 5px;
+    margin-right: 5px;
     margin-left: 5px;
     margin-bottom: 5px;
+    padding-right: 7px;
+    padding-left: 5px;
+    min-width: 35px;
 }
 
 #tray {
@@ -97,8 +104,8 @@ pulseaudio#waybar.empty #window {
 
 #clock {
     color: @foreground;
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: 5px;
+    margin-right: 7px;
     padding-left: 0px;
     padding-right: 0px;
 }
@@ -107,8 +114,8 @@ pulseaudio#waybar.empty #window {
     color: @pink;
     margin-left: 0px;
     margin-right: 0px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 #custom-niri {
@@ -118,11 +125,14 @@ pulseaudio#waybar.empty #window {
 }
 
 .modules-left {
-    margin-left: 10px;
+    margin-top: 5px;
+    margin-left: 0px;
+    margin-right: 3px;
 }
 
 .modules-right {
-    margin-right: 10px;
+    margin-right: 0px;
+    margin-bottom: 5px;
 }
 
 .modules-left > widget:first-child > #workspaces {
@@ -163,10 +173,12 @@ pulseaudio#waybar.empty #window {
     border: 2px solid @comment;
     border-radius: 10px;
     transition: 0.2s;
-    min-width: 30px;
 
     padding: 0px;
+    margin-right: 20px;
+    margin-bottom: 5px;
     margin-right: 5px;
+    margin-left: 5px;
 }
 
 #workspaces button:hover {
@@ -180,7 +192,7 @@ pulseaudio#waybar.empty #window {
 
 #workspaces button.active {
     border: 2px solid @purple;
-    min-width: 40px;
+    min-height: 40px;
 }
 
 #workspaces button.active:hover {
@@ -189,7 +201,7 @@ pulseaudio#waybar.empty #window {
 
 #workspaces button.focused {
     border: 2px solid @purple;
-    min-width: 45px;
+    min-height: 40px;
 }
 
 #workspaces button.focused:hover {
@@ -197,5 +209,50 @@ pulseaudio#waybar.empty #window {
 }
 
 #workspaces button.urgent {
+    border: 2px solid @orange;
+}
+
+/* tags */
+
+#tags {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#tags button {
+    /* border: 2px solid transparent; */
+    border: 2px solid @comment;
+    border-radius: 10px;
+    transition: 0.2s;
+    min-height: 30px;
+
+    padding: 0px;
+    margin-right: 5px;
+}
+
+#tags button:hover {
+    border: 2px solid @pink;
+    background-color: @background;
+}
+
+#tags button.occupied {
+    border: 2px solid @purple;
+    min-height: 30px;
+}
+
+#tags button.occupied:hover {
+    border: 2px solid @purple;
+}
+
+#tags button.focused {
+    border: 2px solid @purple;
+    min-height: 45px;
+}
+
+#tags button.focused:hover {
+    border: 2px solid @purple;
+}
+
+#tags button.urgent {
     border: 2px solid @orange;
 }

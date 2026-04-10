@@ -84,6 +84,7 @@ bindsym XF86AudioMute        exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 bindsym XF86AudioMicMute     exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 bindsym --locked Mod4+Shift+Slash exec swaymsg output eDP-1 toggle
 bindsym Mod4+Ctrl+r           reload
+bindsym Mod4+Alt+k exec ~/.config/kanshi/menu.sh
 
 mode "resize" {
   bindsym Down resize grow height 10 px
@@ -104,10 +105,10 @@ gaps outer 0
 exec ~/dotfiles/tools/wob.sh
 exec ~/dotfiles/tools/rog.sh
 exec ~/.config/sway/pipewire.sh
-exec /usr/libexec/xdg-desktop-portal-wlr
-exec /usr/libexec/xdg-desktop-portal-gtk
-exec /usr/libexec/xdg-desktop-portal-kde
-exec /usr/libexec/polkit-kde-authentication-agent-1
+# exec /usr/libexec/xdg-desktop-portal-wlr
+# exec /usr/libexec/xdg-desktop-portal-gtk
+# exec /usr/libexec/xdg-desktop-portal-kde
+exec /usr/lib/polkit-kde-authentication-agent-1
 
 exec_always kanshi
 
@@ -117,7 +118,7 @@ exec brightnessctl -r
 
 exec waybar -c ~/.config/waybar/config.sway
 
-exec swaybg -m fill --image /usr/share/wallpapers/Next/contents/images_dark/5120x2880.png 
+exec swaybg -m fill --image /usr/share/wallpapers/Orionids/contents/images_dark/5120x2880.png 
 # exec swaybg -m fill --image ~/.config/sway/background.jpg
 # exec swaybg -c 282a36
 
@@ -137,7 +138,7 @@ exec gsettings set org.gnome.desktop.interface icon-theme 'Dracula'
 
 exec gsettings set org.gnome.desktop.interface cursor-theme 'breeze_cursors'
 
-exec "dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE"
+# exec "dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE"
 
 exec_always python3 ~/pkgs/autotiling/autotiling/main.py
 
@@ -216,12 +217,6 @@ input "1452:834:Apple_Internal_Keyboard_/_Trackpad" {
   xkb_options caps:swapescape
 }
 
-input "5426:586:Razer_Razer_Blade_Keyboard" {
-  xkb_layout "us"
-  xkb_variant "colemak"
-  xkb_options caps:swapescape
-}
-
 input "2821:6582:Asus_Keyboard" {
   xkb_layout "us"
   xkb_variant "colemak"
@@ -245,4 +240,6 @@ for_window [app_id="^nm-openconnect-auth-dialog$"] floating enable, resize set 1
 for_window [window_role="dialog"] floating enable
 for_window [app_id="thunar" title="^Confirm to replace files"] floating enable
 for_window [app_id="thunar" title="File Operation Progress"] floating enable
-for_window [app_id="foot" title="python"] floating enable
+# for_window [app_id="foot" title="python"] floating enable
+
+include /etc/sway/config.d/*
