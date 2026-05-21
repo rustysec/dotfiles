@@ -36,7 +36,9 @@ require('lazy').setup('plugins')
 require("ibl").setup()
 require('gitsigns').setup()
 require('mini.surround').setup()
-require('render-markdown').setup()
+require('render-markdown').setup({
+    file_types = { 'markdown', 'codecompanion', 'vimwiki' },
+})
 require('notify').setup({
     background_colour = "#00000000"
 })
@@ -175,6 +177,41 @@ local function on_attach(client, bufnr)
     end
 end
 
+require("codecompanion").setup({
+  adapters = {
+    http = {
+      ["llama.cpp"] = function()
+        return require("codecompanion.adapters").extend("openai_compatible", {
+          env = {
+            url = os.getenv('LLAMA_API') or "http://127.0.0.1:10000",
+            api_key = "TERM",
+            chat_url = "/v1/chat/completions",
+          },
+        })
+      end,
+    },
+  },
+  interactions = {
+    chat = {
+      adapter = "llama.cpp",
+    },
+    inline = {
+      adapter = "llama.cpp",
+      keymaps = {
+        accept_change = {
+          modes = { n = "cga" },
+          description = "Accept the suggested change",
+        },
+        reject_change = {
+          modes = { n = "cgr" },
+          opts = { nowait = true },
+          description = "Reject the suggested change",
+        },
+      },
+    },
+  },
+})
+
 local keymaps = {
     { mode = 'n', key = '<C-S>',      action = ':w<cr>' },
     { mode = 'n', key = '<C-]>',      action = ':w<cr>' },
@@ -224,8 +261,6 @@ local keymaps = {
     { mode = 'n', key = '<leader>|',  action = '<C-W>v', },
     { mode = 'n', key = '<leader>w-', action = '<C-W>s', },
     { mode = 'n', key = '<leader>-',  action = '<C-W>s', },
-
-    { mode = 'n', key = '<leader>ss', action = ':Telescope spell_suggest<cr>' },
 
     { mode = 'n', key = '<esc>',      action = '<esc>:noh<cr>' },
     { mode = 'i', key = '<esc>',      action = '<esc>:noh<cr>' },
