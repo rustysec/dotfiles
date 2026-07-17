@@ -4,7 +4,7 @@ return {
     config = function()
         require('minuet').setup {
             virtualtext = {
-                auto_trigger_ft = { },
+                auto_trigger_ft = {},
                 keymap = {
                     -- accept whole completion
                     accept = '<A-Space>',
@@ -35,7 +35,7 @@ return {
                     -- Consider using APPDATA instead.
                     api_key = 'TERM',
                     name = 'Llama.cpp',
-                    end_point = os.getenv('LLAMA_API') or 'http://localhost:10000' .. '/v1/completions',
+                    end_point = os.getenv('LLAMA_API') or 'http://llama:10000' .. '/v1/completions',
                     -- The model is set by the llama-cpp server and cannot be altered
                     -- post-launch.
                     model = 'PLACEHOLDER',

@@ -170,46 +170,39 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
-local navic = require("nvim-navic")
-local function on_attach(client, bufnr)
-    if client.server_capabilities.documentSymbolProvider then
-        navic.attach(client, bufnr)
-    end
-end
-
 require("codecompanion").setup({
-  adapters = {
-    http = {
-      ["llama.cpp"] = function()
-        return require("codecompanion.adapters").extend("openai_compatible", {
-          env = {
-            url = os.getenv('LLAMA_API') or "http://127.0.0.1:10000",
-            api_key = "TERM",
-            chat_url = "/v1/chat/completions",
-          },
-        })
-      end,
-    },
-  },
-  interactions = {
-    chat = {
-      adapter = "llama.cpp",
-    },
-    inline = {
-      adapter = "llama.cpp",
-      keymaps = {
-        accept_change = {
-          modes = { n = "cga" },
-          description = "Accept the suggested change",
+    adapters = {
+        http = {
+            ["llama.cpp"] = function()
+                return require("codecompanion.adapters").extend("openai_compatible", {
+                    env = {
+                        url = os.getenv('LLAMA_API') or "http://llama:10000",
+                        api_key = "TERM",
+                        chat_url = "/v1/chat/completions",
+                    },
+                })
+            end,
         },
-        reject_change = {
-          modes = { n = "cgr" },
-          opts = { nowait = true },
-          description = "Reject the suggested change",
-        },
-      },
     },
-  },
+    interactions = {
+        chat = {
+            adapter = "llama.cpp",
+        },
+        inline = {
+            adapter = "llama.cpp",
+            keymaps = {
+                accept_change = {
+                    modes = { n = "cga" },
+                    description = "Accept the suggested change",
+                },
+                reject_change = {
+                    modes = { n = "cgr" },
+                    opts = { nowait = true },
+                    description = "Reject the suggested change",
+                },
+            },
+        },
+    },
 })
 
 local keymaps = {
@@ -229,9 +222,10 @@ local keymaps = {
     { mode = 'n', key = '<leader>fs', action = ':Telescope lsp_document_symbols<cr>' },
     { mode = 'n', key = '<leader>fS', action = ':Telescope lsp_dynamic_workspace_symbols<cr>' },
     { mode = 'n', key = '<leader>fw', action = ':Telescope grep_string<cr>' },
-    ]]--
+    ]] --
 
     { mode = 'n', key = 'gd',         action = ':lua vim.lsp.buf.definition()<cr>' },
+    { mode = 'n', key = 'gr',         action = ':lua vim.lsp.buf.references()<cr>' },
     { mode = 'n', key = '<leader>ca', action = ':lua vim.lsp.buf.actions()<cr>' },
     { mode = 'n', key = '<leader>cd', action = ':lua vim.diagnostic.open_float()<cr>' },
     { mode = 'n', key = '<leader>cn', action = ':Navbuddy<cr>' },
