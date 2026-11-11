@@ -168,7 +168,19 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     command = 'silent! lua vim.highlight.on_yank()',
 })
 
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
+-- vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+    callback = function(args)
+        local clients = vim.lsp.get_clients({ bufnr = args.buf })
+        for _, client in ipairs(clients) do
+            if client:supports_method("textDocument/formatting") then
+                vim.lsp.buf.format({ bufnr = args.buf })
+                return
+            end
+        end
+    end,
+})
 
 require("codecompanion").setup({
     adapters = {

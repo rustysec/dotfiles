@@ -85,6 +85,7 @@ keybinds clear-defaults=true {
         bind "n" { MovePane; }
         bind "p" { MovePaneBackwards; }
         bind "tab" { MovePane; }
+        bind "a" { NextSwapLayout; }
     }
     scroll {
         bind "e" { EditScrollback; SwitchToMode "normal"; }
@@ -145,10 +146,10 @@ keybinds clear-defaults=true {
         bind "Alt s" { GoToNextTab; }
     }
     shared_except "locked" "move" {
-        bind "Ctrl m" { SwitchToMode "move"; }
+        bind "Ctrl k" { SwitchToMode "move"; }
     }
     shared_except "locked" "session" {
-        bind "Ctrl o" { SwitchToMode "session"; }
+        bind "Ctrl ?" { SwitchToMode "session"; }
     }
     shared_except "locked" "scroll" "search" "tmux" {
         bind "Ctrl b" { SwitchToMode "tmux"; }
