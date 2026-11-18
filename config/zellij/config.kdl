@@ -374,13 +374,18 @@ plugins {
 // eg. "https://example.com/my-plugin.wasm"
 load_plugins {
 }
+
+pane_frame_style "full"
+
 ui {
     pane_frames {
+        rounded_corners true
+        border_rounded_corners true
         hide_session_name true
     }
 }
 web_client {
-    font "monospace"
+    font "Hack Nerd Font Mono"
 }
  
 // Use a simplified UI without special fonts (arrow glyphs)
